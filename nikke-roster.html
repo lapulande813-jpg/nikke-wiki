@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>GODDESS OF VICTORY NIKKE 角色名单 - 按上线时间排序</title>
+<style>
+/* ===== 主题 CSS 变量 ===== */
+:root, [data-theme="dark"] {
+    --bg: #0a0e17;
+    --bg-2: #0c1220;
+    --bg-3: #0f1729;
+    --bg-4: #111827;
+    --bg-card: #1a2744;
+    --bg-card-hover: #233656;
+    --bg-header-grad: linear-gradient(135deg, #0f1729 0%, #1a2744 50%, #0f1729 100%);
+    --bg-row-hover: linear-gradient(90deg, #0f1a3055, transparent);
+    --bg-stats: rgba(15,23,41,0.8);
+    --border: #1e2d4a;
+    --border-2: #233656;
+    --border-row: #111827;
+    --accent: #00d4ff;
+    --accent-soft: #00d4ff55;
+    --text: #c8d4e8;
+    --text-strong: #e8ecf4;
+    --text-muted: #8899b3;
+    --text-dim: #6b7a94;
+    --text-faint: #5a6a84;
+    --text-very-faint: #4a5578;
+    --text-footer: #3a4558;
+    --btn-active-grad: linear-gradient(135deg, #00d4ff22, #0088ff22);
+    --input-bg: #0a0e17;
+    --shadow-hover: 0 6px 24px rgba(0, 212, 255, 0.6);
+}
+[data-theme="light"] {
+    --bg: #f5f7fb;
+    --bg-2: #eef1f7;
+    --bg-3: #ffffff;
+    --bg-4: #e8ecf4;
+    --bg-card: #e8ecf4;
+    --bg-card-hover: #d6dde9;
+    --bg-header-grad: linear-gradient(135deg, #e8ecf4 0%, #f5f7fb 50%, #e8ecf4 100%);
+    --bg-row-hover: linear-gradient(90deg, #dae3f355, transparent);
+    --bg-stats: rgba(255,255,255,0.9);
+    --border: #cbd3df;
+    --border-2: #b8c2d0;
+    --border-row: #e8ecf4;
+    --accent: #0077b6;
+    --accent-soft: #0077b655;
+    --text: #2a3548;
+    --text-strong: #1a2332;
+    --text-muted: #4a5568;
+    --text-dim: #5e6b7a;
+    --text-faint: #6b7280;
+    --text-very-faint: #9ca3af;
+    --text-footer: #9ca3af;
+    --btn-active-grad: linear-gradient(135deg, #0077b622, #00a8cc22);
+    --input-bg: #ffffff;
+    --shadow-hover: 0 6px 24px rgba(0, 119, 182, 0.35);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Segoe UI', system-ui, -apple-system, 'Microsoft YaHei', sans-serif;
+    min-height: 100vh;
+    transition: background 0.25s, color 0.25s;
+}
+.header {
+    background: var(--bg-header-grad);
+    border-bottom: 2px solid var(--accent);
+    padding: 25px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+.header h1 {
+    font-size: 24px;
+    color: var(--accent);
+    letter-spacing: 3px;
+    text-shadow: 0 0 30px var(--accent-soft);
+}
+.header .subtitle { margin-top: 6px; font-size: 13px; color: var(--text-dim); }
+
+/* 主题切换按钮 */
+.theme-toggle {
+    position: absolute; top: 20px; right: 24px;
+    padding: 6px 14px; border-radius: 18px; cursor: pointer;
+    background: var(--bg-card); color: var(--text-muted);
+    border: 1px solid var(--border-2); font-size: 13px;
+    transition: all 0.2s; display: flex; align-items: center; gap: 6px;
+}
+.theme-toggle:hover { background: var(--bg-card-hover); color: var(--text-strong); }
+
+.filter-bar {
+    display: flex; gap: 6px; padding: 10px 20px;
+    background: var(--bg-3); border-bottom: 1px solid var(--border);
+    flex-wrap: wrap; align-items: center;
+}
+.filter-btn {
+    padding: 5px 14px; border-radius: 16px; cursor: pointer;
+    font-size: 12px; border: 1px solid transparent;
+    background: var(--bg-card); color: var(--text-muted); transition: all 0.2s; white-space: nowrap;
+}
+.filter-btn:hover { background: var(--bg-card-hover); color: var(--text-strong); }
+.filter-btn.active {
+    background: var(--btn-active-grad);
+    border-color: var(--accent); color: var(--accent);
+}
+.search-box {
+    margin-left: auto; padding: 5px 12px; border-radius: 16px;
+    border: 1px solid var(--border); background: var(--input-bg); color: var(--text);
+    font-size: 12px; outline: none; width: 180px;
+}
+.search-box:focus { border-color: var(--accent); }
+.search-box::placeholder { color: var(--text-very-faint); }
+.stats-line {
+    display: flex; gap: 30px; padding: 10px 20px;
+    background: var(--bg-stats); border-bottom: 1px solid var(--border);
+    font-size: 12px; color: var(--text-dim); flex-wrap: wrap;
+}
+.stats-line span b { color: var(--accent); }
+
+/* 表格样式 */
+.table-wrap { max-width: 1200px; margin: 0 auto; padding: 15px 20px; }
+.char-table {
+    width: 100%; border-collapse: collapse;
+}
+.char-table thead th {
+    position: sticky; top: 0; z-index: 10;
+    background: var(--bg-4); color: var(--text-muted);
+    font-size: 11px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 1px; padding: 10px 12px;
+    border-bottom: 2px solid var(--accent-soft); text-align: left;
+    white-space: nowrap;
+}
+/* 列宽 */
+.col-date { width: 110px; }
+.col-name { width: auto; min-width: 180px; }
+.col-en { width: 200px; }
+.col-rarity { width: 50px; text-align: center !important; }
+.col-faction { width: 80px; }
+.col-squad { width: 138px; }
+.col-attr { width: 60px; text-align: center !important; }
+.col-weapon { width: 70px; }
+.col-note { width: auto; min-width: 140px; }
+
+.char-table tbody tr {
+    transition: all 0.15s ease;
+    border-bottom: 1px solid var(--border-row);
+}
+.char-table tbody tr:nth-child(even) { background: var(--bg-2); }
+.char-table tbody tr:hover {
+    background: var(--bg-row-hover);
+}
+.char-table td {
+    padding: 8px 12px; font-size: 13px; vertical-align: middle;
+}
+
+/* 阵营色条（避开属性色：火红/水蓝/电紫/风绿/铁金；避开备注橙） */
+.faction-bar { display: inline-block; width: 3px; height: 14px; border-radius: 2px; vertical-align: middle; margin-right: 8px; flex-shrink: 0; }
+.faction-Pilgrim  .faction-bar { background: #ffd700; } /* 朝圣者 金 - NIKKE 官方朝圣者代表色 */
+.faction-Tetra    .faction-bar { background: #ff69b4; } /* 泰特拉 粉红 - Tetra Line 官方品牌色 */
+.faction-Missilis .faction-bar { background: #00bcd4; } /* 米西利斯 青 - 与水蓝区分 */
+.faction-Elysion  .faction-bar { background: #6366f1; } /* 极乐净土 靛蓝紫 - 与备注橙不撞 */
+.faction-Abnormal .faction-bar { background: #b0b0b0; } /* 反常 灰 - 表示不属任一厂商 */
+
+/* 阵营文字颜色与色条保持一致 */
+.faction-Pilgrim  .faction-tag { color: #ffd700; }
+.faction-Tetra    .faction-tag { color: #ff69b4; }
+.faction-Missilis .faction-tag { color: #00bcd4; }
+.faction-Elysion  .faction-tag { color: #818cf8; } /* 靛蓝文字调亮（纯靛太暗） */
+.faction-Abnormal .faction-tag { color: #b0b0b0; }
+
+/* 阵营筛选按钮颜色 */
+.fbtn-Pilgrim  { color: #ffd700; border-color: rgba(255,215,0,0.35) !important; }
+.fbtn-Tetra    { color: #ff69b4; border-color: rgba(255,105,180,0.35) !important; }
+.fbtn-Missilis { color: #00bcd4; border-color: rgba(0,188,212,0.35) !important; }
+.fbtn-Elysion  { color: #818cf8; border-color: rgba(99,102,241,0.45) !important; }
+.fbtn-Abnormal { color: #b0b0b0; border-color: rgba(176,176,176,0.35) !important; }
+.fbtn-Pilgrim:hover  { background: rgba(255,215,0,0.12); }
+.fbtn-Tetra:hover    { background: rgba(255,105,180,0.12); }
+.fbtn-Missilis:hover { background: rgba(0,188,212,0.12); }
+.fbtn-Elysion:hover  { background: rgba(99,102,241,0.18); }
+.fbtn-Abnormal:hover { background: rgba(176,176,176,0.15); }
+/* active 状态：阵营色实色背景 + 黑字 */
+.fbtn-Pilgrim.active  { background: #ffd700 !important; color: #1a1a1a !important; border-color: #ffd700 !important; }
+.fbtn-Tetra.active    { background: #ff69b4 !important; color: #fff      !important; border-color: #ff69b4 !important; }
+.fbtn-Missilis.active { background: #00bcd4 !important; color: #1a1a1a !important; border-color: #00bcd4 !important; }
+.fbtn-Elysion.active  { background: #6366f1 !important; color: #fff      !important; border-color: #6366f1 !important; }
+.fbtn-Abnormal.active { background: #b0b0b0 !important; color: #1a1a1a !important; border-color: #b0b0b0 !important; }
+.faction-other .faction-bar { background: #6b7a94; }
+
+.name-cell { display: flex; align-items: center; gap: 8px; }
+.char-name-main { color: var(--text-strong); font-weight: 500; }
+.char-en-text { color: var(--text-faint); font-size: 11.5px; margin-top: 1px; }
+
+/* 角色头像 */
+.char-avatar {
+    width: 36px; height: 36px;
+    border-radius: 6px;
+    object-fit: cover;
+    background: var(--bg-card);
+    border: 1px solid var(--border-2);
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+}
+.char-avatar:hover {
+    transform: scale(2.2);
+    z-index: 100;
+    position: relative;
+    box-shadow: var(--shadow-hover);
+    border-color: var(--accent);
+}
+/* 头像加载失败的占位符 */
+.avatar-placeholder {
+    width: 36px; height: 36px;
+    border-radius: 6px;
+    background: linear-gradient(135deg, var(--border), var(--bg-3));
+    border: 1px solid var(--border-2);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text-very-faint); font-size: 14px; font-weight: bold;
+    flex-shrink: 0;
+}
+
+.rarity-tag {
+    display: inline-block; padding: 1px 8px; border-radius: 10px;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.5px;
+}
+.rarity-SSR { background: #ffd70022; color: #ffd700; border: 1px solid #ffd70044; }
+.rarity-SR { background: #9b59b622; color: #bb77dd; border: 1px solid #bb77dd44; }
+.rarity-R { background: #27ae6022; color: #2ecc71; border: 1px solid #2ecc7144; }
+/* 浅色主题下稀有度标签做对比度优化 */
+[data-theme="light"] .rarity-SSR { background: #ffb70022; color: #b58900; border-color: #b5890066; }
+[data-theme="light"] .rarity-SR { background: #9b59b622; color: #7c3aed; border-color: #7c3aed66; }
+[data-theme="light"] .rarity-R { background: #27ae6022; color: #15803d; border-color: #15803d66; }
+
+.date-text { font-family: 'Consolas','Courier New',monospace; color: var(--text-dim); font-size: 12.5px; }
+.faction-tag { font-size: 11px; color: var(--text-dim); }
+.squad-tag {
+    font-size: 11px; color: #8aa9c9;
+    background: rgba(70,130,180,0.12);
+    border: 1px solid rgba(70,130,180,0.25);
+    padding: 1px 6px; border-radius: 3px;
+    white-space: nowrap;
+    display: inline-block;
+}
+.attr-dot {
+    display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+    vertical-align: middle; margin-right: 4px;
+}
+.attr-Fire { background: #e74c3c; } /* 火 红 */
+.attr-Water { background: #3498db; } /* 水 蓝 */
+.attr-Electric { background: #9b59b6; } /* 电 紫 */
+.attr-Wind { background: #2ecc71; } /* 风 绿 */
+.attr-Iron { background: #d4a017; } /* 铁 暗金（NIKKE 铁甲色）*/
+.weapon-tag { font-size: 11.5px; color: var(--text-dim); }
+.note-text { font-size: 11.5px; color: #e67e22; }
+.limited-mark { 
+    color: #f1c40f; font-size: 10px; font-weight: bold;
+    margin-left: 4px; vertical-align: middle;
+}
+
+.footer {
+    text-align: center; padding: 20px; color: var(--text-footer);
+    font-size: 11px; border-top: 1px solid var(--border); margin-top: 20px;
+}
+.footer a { color: var(--text-very-faint); text-decoration: none; }
+
+
+/* === 双服数据相关样式 === */
+.col-date-cn { width: 110px; }
+.char-name-cn { color: var(--text-muted); font-size: 11.5px; margin-top: 2px; }
+.date-na { color: var(--text-footer); font-size: 12px; font-style: italic; }
+.date-cn-text { font-family: 'Consolas','Courier New',monospace; color: #e67e22; font-size: 12.5px; }
+
+/* 服务器筛选时隐藏对侧日期列（单服模式不重复显示另一服） */
+body.server-only-global .col-date-cn { display: none; }
+body.server-only-cn     .col-date    { display: none; }
+.server-filter {
+    display: flex; gap: 6px; padding: 8px 20px;
+    background: var(--bg-2); border-bottom: 1px solid var(--border);
+    flex-wrap: wrap; align-items: center; font-size: 12px;
+}
+.server-filter .label { color: var(--text-dim); margin-right: 6px; }
+.server-btn {
+    padding: 4px 12px; border-radius: 14px; cursor: pointer;
+    font-size: 11.5px; border: 1px solid transparent;
+    background: var(--bg-card); color: var(--text-muted); transition: all 0.2s;
+}
+.server-btn:hover { background: var(--bg-card-hover); color: var(--text-strong); }
+.server-btn.active {
+    background: linear-gradient(135deg, #4f8cff22, #6366f122);
+    border-color: #818cf8; color: #a5b4fc;
+}
+.stats-line .cn-stat b { color: #818cf8; }
+
+/* 顶部固定区（header + filter-bar + server-filter + stats-line 整体粘顶） */
+.page-top-fixed {
+    position: sticky; top: 0; z-index: 50;
+    background: var(--bg-1);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+}
+
+/* 统计行 SSR/SR/R 按稀有度色（呼应稀有度 tag） */
+#ssrCount { color: #f1c40f; }
+#srCount  { color: #c084fc; }
+#rCount   { color: #95a5a6; }
+
+@media (max-width: 768px) {
+    .col-en, .col-note, .col-date-cn { display: none; }
+    .char-table td { padding: 6px 8px; font-size: 12px; }
+    .char-name-main { font-size: 13px; }
+    .search-box { width: 130px; }
+}
+</style>
+</head>
+<body>
+
+<a href="index.html" class="page-back-link" style="position:fixed;top:18px;left:18px;z-index:9999;display:inline-flex;align-items:center;gap:6px;padding:8px 16px;background:rgba(20,20,40,0.85);color:#e0e0e0;text-decoration:none;border:1px solid rgba(255,255,255,0.12);border-radius:20px;font-size:0.85em;backdrop-filter:blur(10px);transition:all 0.3s;font-family:'Microsoft YaHei','PingFang SC',sans-serif;">← 返回首页</a>
+<style>.page-back-link:hover{background:#6c5ce7 !important;border-color:#6c5ce7 !important;color:#fff !important;transform:translateX(-2px);}@media (max-width:768px){.page-back-link{top:10px !important;left:10px !important;font-size:0.75em !important;padding:6px 12px !important;}}</style>
+
+
+<div class="page-top-fixed">
+<div class="header">
+    <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="切换白天/夜晚主题">
+        <span id="themeIcon">🌙</span><span id="themeText">夜间</span>
+    </button>
+    <h1>⚡ GODDESS OF VICTORY NIKKE 角色名单</h1>
+    <div class="subtitle">GODDESS OF VICTORY NIKKE · 全角色一览 · 按上线时间从新到旧排列</div>
+</div>
+
+<div class="filter-bar">
+    <button class="filter-btn active" onclick="setFilter('all', event)">全部</button>
+    <button class="filter-btn fbtn-Elysion"  onclick="setFilter('Elysion', event)">极乐净土</button>
+    <button class="filter-btn fbtn-Missilis" onclick="setFilter('Missilis', event)">米西利斯</button>
+    <button class="filter-btn fbtn-Tetra"    onclick="setFilter('Tetra', event)">泰特拉</button>
+    <button class="filter-btn fbtn-Pilgrim"  onclick="setFilter('Pilgrim', event)">朝圣者</button>
+    <button class="filter-btn fbtn-Abnormal" onclick="setFilter('Abnormal', event)">反常</button>
+    <input type="text" class="search-box" id="searchBox" placeholder="🔍 搜索..." oninput="doRender()">
+</div>
+
+
+<div class="server-filter">
+    <span class="label">服务器：</span>
+    <button class="server-btn active" onclick="setServerFilter('all', event)">全部</button>
+    <button class="server-btn" onclick="setServerFilter('global', event)">仅国际服</button>
+    <button class="server-btn" onclick="setServerFilter('cn', event)">仅国服</button>
+    <button class="server-btn" onclick="setServerFilter('both', event)">双服已上线</button>
+</div>
+
+<div class="stats-line">
+    <span>共 <b id="totalCount">0</b> 名角色</span>
+    <span>SSR: <b id="ssrCount">0</b></span>
+    <span>SR: <b id="srCount">0</b></span>
+    <span>R: <b id="rCount">0</b></span>
+    <span>国际服已上线: <b id="globalCount">0</b></span>
+    <span class="cn-stat">国服已上线: <b id="cnCount">0</b></span>
+    <span>双服已上线: <b id="bothCount">0</b></span>
+</div>
+</div>
+
+<div class="table-wrap">
+<table class="char-table" id="charTable">
+<thead>
+<tr>
+    <th class="col-date">📅 国际服上线</th>
+    <th class="col-date-cn">🇨🇳 国服上线</th>
+    <th class="col-name">角色名</th>
+    <th class="col-rarity">稀有度</th>
+    <th class="col-faction">阵营</th>
+    <th class="col-squad">小队</th>
+    <th class="col-attr">属性</th>
+    <th class="col-weapon">武器</th>
+    <th class="col-note">备注</th>
+</tr>
+</thead>
+<tbody id="tbody"></tbody>
+</table>
+</div>
+
+<div class="footer">
+    数据来源：Prydwen.gg · Fandom Wiki · BWIKI · dotgg.gg | 发布时间仅供参考，以游戏内实际为准
+</div>
+
+<script>
+// ===========================================================================
+// 主题切换（白天/夜晚）
+// ===========================================================================
+function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    try { localStorage.setItem('nikke_theme', theme); } catch(e){}
+    const icon = document.getElementById('themeIcon');
+    const text = document.getElementById('themeText');
+    if (icon && text) {
+        if (theme === 'light') { icon.textContent = '☀️'; text.textContent = '白天'; }
+        else { icon.textContent = '🌙'; text.textContent = '夜间'; }
+    }
+}
+function toggleTheme() {
+    const cur = document.documentElement.getAttribute('data-theme') || 'dark';
+    applyTheme(cur === 'dark' ? 'light' : 'dark');
+}
+// 页面加载时恢复主题（含系统偏好检测）
+(function initTheme(){
+    let saved = null;
+    try { saved = localStorage.getItem('nikke_theme'); } catch(e){}
+    if (!saved) {
+        saved = (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) ? 'light' : 'dark';
+    }
+    document.documentElement.setAttribute('data-theme', saved);
+    // DOMContentLoaded 后再更新按钮文字（此时按钮还没渲染）
+    document.addEventListener('DOMContentLoaded', () => applyTheme(saved));
+})();
+
+// 表头 thead 的 sticky top 设为 page-top-fixed 实际高度（顶部区改变高度时自动同步）
+(function syncStickyTop(){
+    function update() {
+        const top = document.querySelector('.page-top-fixed');
+        const ths = document.querySelectorAll('.char-table thead th');
+        if (!top || !ths.length) return;
+        const h = top.offsetHeight;
+        ths.forEach(th => th.style.top = h + 'px');
+    }
+    document.addEventListener('DOMContentLoaded', update);
+    window.addEventListener('resize', update);
+    // 顶部区内容变化（如切换筛选导致 stats 数字宽度变化）也同步
+    window.addEventListener('load', update);
+    if (window.ResizeObserver) {
+        document.addEventListener('DOMContentLoaded', () => {
+            const top = document.querySelector('.page-top-fixed');
+            if (top) new ResizeObserver(update).observe(top);
+        });
+    }
+})();
+
+// 数据已基于国服 BWIKI 官方译名 + Nikke-db 反编译游戏数据全面修正
+// 修正项: 译名统一/删除重复/补全缺漏角色/规范阵营&属性
+// ===========================================================================
+
+const characters = [
+
+    // ─── 权威表 v2 C 类补录（属性/上线日期/头像 待核对）───
+    { name_global:"爱德：特工兔女郎", name_cn:"爱德：特工兔女郎", en:"Ade: Agent Bunny", r:"SSR", f:"Tetra", a:"Iron", w:"SR", d_global:"2025-09-04", d_cn:"", lim:true, n_global:"兔女郎限定", n_cn:"", avatar:"爱德：特工兔女郎" }, // 日期源: lootandwaifus (首发 banner)
+    { name_global:"阿尔卡娜：命运搭档", name_cn:"阿尔卡娜：命运搭档", en:"Arcana: Fortune Mate", r:"SSR", f:"Elysion", a:"Fire", w:"SG", d_global:"2026-03-19", d_cn:"", lim:true, n_global:"皮肤变体", n_cn:"", avatar:"阿尔卡娜：命运搭档" }, // 日期源: lootandwaifus (首发 banner)
+    { name_global:"布蕾德", name_cn:"布蕾德", en:"Bready", r:"SSR", f:"Tetra", a:"Water", w:"SR", d_global:"2025-03-27", d_cn:"", lim:false, n_global:"", n_cn:"", avatar:"布蕾德" }, // 日期: lootandwaifus + 百度交叉验证
+    { name_global:"克拉斯", name_cn:"克拉斯", en:"Crust", r:"SSR", f:"Tetra", a:"Water", w:"RL", d_global:"2025-04-10", d_cn:"", lim:false, n_global:"", n_cn:"", avatar:"克拉斯" }, // 日期: lootandwaifus 单源
+    { name_global:"D", name_cn:"D", en:"D", r:"SSR", f:"Elysion", a:"Wind", w:"SMG", d_global:"2023-04-13", d_cn:"2026-02-25", lim:false, n_global:"", n_cn:"", avatar:"D" }, // 日期: lootandwaifus 单源
+    { name_global:"迪赛尔：冬日甜品", name_cn:"迪赛尔：冬日甜品", en:"Diesel: Winter Sweets", r:"SSR", f:"Elysion", a:"Fire", w:"RL", d_global:"2025-12-04", d_cn:"2025-12-04", lim:true, n_global:"冬日限定", n_cn:"", avatar:"迪赛尔：冬日甜品" }, // 日期源: lootandwaifus (首发 banner)
+    { name_global:"E.H.", name_cn:"E.H.", en:"E.H.", r:"SSR", f:"Elysion", a:"Wind", w:"SMG", d_global:"2026-03-05", d_cn:"", lim:false, n_global:"", n_cn:"", avatar:"E.H." }, // 日期源: lootandwaifus (首发 banner)
+    { name_global:"爱因", name_cn:"爱因", en:"Ein", r:"SSR", f:"Missilis", a:"Electric", w:"SR", d_global:"2024-07-25", d_cn:"", lim:false, n_global:"", n_cn:"", avatar:"爱因" }, // 日期: lootandwaifus 单源
+    { name_global:"艾米莉亚", name_cn:"艾米莉亚", en:"Emilia", r:"SSR", f:"Abnormal", a:"Water", w:"RL", d_global:"2024-03-21", d_cn:"", lim:true, n_global:"Re:Zero联动", n_cn:"", avatar:"艾米莉亚" }, // 日期: layerlicensing+prydwen双源验证
+    { name_global:"弗洛拉", name_cn:"弗洛拉", en:"Flora", r:"SSR", f:"Missilis", a:"Electric", w:"MG", d_global:"2024-11-21", d_cn:"", lim:false, n_global:"", n_cn:"", avatar:"弗洛拉" }, // 日期: gamingonphone+lootandwaifus双源验证
+    { name_global:"吉萝婷：冬日杀手", name_cn:"吉萝婷：冬日杀手", en:"Guillotine: Winter Slayer", r:"SSR", f:"Elysion", a:"Water", w:"AR", d_global:"2024-12-12", d_cn:"", lim:true, n_global:"冬日限定", n_cn:"", avatar:"吉萝婷：冬日杀手" }, // 日期源: lootandwaifus (首发 banner)
+    { name_global:"胡桃", name_cn:"胡桃", en:"Kurumi", r:"SR", f:"Abnormal", a:"Iron", w:"AR", d_global:"2026-02-12", d_cn:"", lim:true, n_global:"莉可丽丝联动 免费SR", n_cn:"", avatar:"胡桃" }, // 莉可丽丝联动开始日 2026-02-12
+    { name_global:"莱贝尔", name_cn:"莱贝尔", en:"Label", r:"SSR", f:"Elysion", a:"Iron", w:"AR", d_global:"2026-01-15", d_cn:"", lim:false, n_global:"", n_cn:"", avatar:"莱贝尔" }, // 日期源: lootandwaifus (首发 banner)
+    { name_global:"梅登：冰之玫瑰", name_cn:"梅登：冰之玫瑰", en:"Maiden: Ice Rose", r:"SSR", f:"Elysion", a:"Electric", w:"RL", d_global:"2024-12-05", d_cn:"", lim:true, n_global:"冬日限定", n_cn:"", avatar:"梅登：冰之玫瑰" }, // 日期源: lootandwaifus (首发 banner)
+    { name_global:"米哈拉：羁绊之链", name_cn:"米哈拉：羁绊之链", en:"Mihara: Bonding Chain", r:"SSR", f:"Missilis", a:"Fire", w:"MG", d_global:"2025-05-01", d_cn:"", lim:true, n_global:"皮肤变体", n_cn:"", avatar:"米哈拉：羁绊之链" }, // 日期源: lootandwaifus (首发 banner)
+    { name_global:"米尔克：绽放兔女郎", name_cn:"米尔克：绽放兔女郎", en:"Milk: Blooming Bunny", r:"SSR", f:"Tetra", a:"Iron", w:"SR", d_global:"2025-09-11", d_cn:"", lim:true, n_global:"兔女郎限定", n_cn:"", avatar:"米尔克：绽放兔女郎" }, // 日期源: lootandwaifus (首发 banner)
+    { name_global:"莫里", name_cn:"莫里", en:"Mori", r:"SSR", f:"Missilis", a:"Wind", w:"AR", d_global:"2025-04-24", d_cn:"", lim:false, n_global:"", n_cn:"", avatar:"莫里" }, // prydwen属性，日期待核对（lootandwaifus数据为最近复刻非首发）
+    { name_global:"娜嘉", name_cn:"娜嘉", en:"Naga", r:"SSR", f:"Missilis", a:"Electric", w:"SG", d_global:"2023-10-05", d_cn:"2026-01-21", lim:false, n_global:"", n_cn:"", avatar:"娜嘉" }, // 日期: lootandwaifus 单源
+    { name_global:"妮芙", name_cn:"妮芙", en:"Neve", r:"SR", f:"Tetra", a:"Water", w:"SG", d_global:"2023-11-14", d_cn:"2025-12-17", lim:false, n_global:"", n_cn:"", avatar:"妮芙" }, // prydwen属性，日期待核对 [Burst 3]
+    { name_global:"普丽瓦蒂：刻薄女仆", name_cn:"普丽瓦蒂：刻薄女仆", en:"Privaty: Unkind Maid", r:"SSR", f:"Elysion", a:"Electric", w:"SG", d_global:"2024-02-05", d_cn:"2026-01-28", lim:true, n_global:"女仆限定", n_cn:"", avatar:"普丽瓦蒂：刻薄女仆" }, // 日期源: lootandwaifus (首发 banner)
+    { name_global:"坎西：逃生女王", name_cn:"坎西：逃生女王", en:"Quency: Escape Queen", r:"SSR", f:"Missilis", a:"Water", w:"SMG", d_global:"2024-10-03", d_cn:"", lim:true, n_global:"皮肤变体", n_cn:"", avatar:"坎西：逃生女王" },  // 日期源: lootandwaifus (首发 banner)
+    { name_global:"基里", name_cn:"基里", en:"Quiry", r:"SSR", f:"Elysion", a:"Wind", w:"RL", d_global:"2023-10-19", d_cn:"", lim:false, n_global:"", n_cn:"", avatar:"基里" }, // bahamut + gamekee
+    { name_global:"拉姆", name_cn:"拉姆", en:"Ram", r:"SR", f:"Abnormal", a:"Wind", w:"SR", d_global:"2024-03-21", d_cn:"", lim:true, n_global:"Re:Zero联动 免费SR", n_cn:"", avatar:"拉姆" }, // 日期: 联动同日锚定
+    { name_global:"长发公主：纯洁恩典", name_cn:"长发公主：纯洁恩典", en:"Rapunzel: Pure Grace", r:"SSR", f:"Pilgrim", a:"Iron", w:"SR", d_global:"2024-10-31", d_cn:"", lim:true, n_global:"皮肤变体", n_cn:"", avatar:"长发公主：纯洁恩典" }, // prydwen属性，日期待核对 [Burst 1]
+    { name_global:"零（暂称）", name_cn:"零（暂称）", en:"Rei Ayanami (Tentative Name)", r:"SSR", f:"Abnormal", a:"Wind", w:"AR", d_global:"2025-02-27", d_cn:"", lim:true, n_global:"EVA联动", n_cn:"", avatar:"零（暂称）" }, // 日期源: lootandwaifus (首发 banner)
+    { name_global:"蕾姆", name_cn:"蕾姆", en:"Rem", r:"SSR", f:"Abnormal", a:"Water", w:"MG", d_global:"2024-03-28", d_cn:"", lim:true, n_global:"Re:Zero联动", n_cn:"", avatar:"蕾姆" }, // 日期源: lootandwaifus (首发 banner)
+    { name_global:"罗珊娜：时髦海洋", name_cn:"罗珊娜：时髦海洋", en:"Rosanna: Chic Ocean", r:"SSR", f:"Tetra", a:"Wind", w:"AR", d_global:"2024-07-11", d_cn:"", lim:true, n_global:"夏日限定", n_cn:"", avatar:"罗珊娜：时髦海洋" }, // 日期源: lootandwaifus (首发 banner)
+    { name_global:"露姬", name_cn:"露姬", en:"Rouge", r:"SSR", f:"Tetra", a:"Electric", w:"SR", d_global:"2024-09-19", d_cn:"", lim:false, n_global:"", n_cn:"", avatar:"露姬" }, // 日期源: lootandwaifus (首发 banner)；译名修正：鲁格→露姬
+    { name_global:"樱", name_cn:"樱", en:"Sakura Suzuhara", r:"SR", f:"Abnormal", a:"Water", w:"SMG", d_global:"2025-02-20", d_cn:"", lim:true, n_global:"EVA联动 免费SR", n_cn:"", avatar:"樱" }, // prydwen属性，日期待核对（lootandwaifus数据为最近复刻非首发）
+    { name_global:"樱花：盛夏绽放", name_cn:"樱花：盛夏绽放", en:"Sakura: Bloom in Summer", r:"SSR", f:"Tetra", a:"Wind", w:"AR", d_global:"2024-07-04", d_cn:"", lim:true, n_global:"夏日限定", n_cn:"", avatar:"樱花：盛夏绽放" }, // 日期源: lootandwaifus (首发 banner)
+    { name_global:"白雪公主：纯真时光", name_cn:"白雪公主：纯真时光", en:"Snow White: Innocent Days", r:"SSR", f:"Pilgrim", a:"Iron", w:"AR", d_global:"2023-11-02", d_cn:"2025-10-29", lim:true, n_global:"皮肤变体", n_cn:"", avatar:"白雪公主：纯真时光" }, // prydwen属性，日期待核对（lootandwaifus数据为最近复刻非首发）
+    { name_global:"索林：冰霜车票", name_cn:"索林：冰霜车票", en:"Soline: Frost Ticket", r:"SSR", f:"Elysion", a:"Water", w:"SG", d_global:"2025-11-20", d_cn:"2025-11-26", lim:true, n_global:"冬日限定", n_cn:"", avatar:"索林：冰霜车票" }, // 日期源: lootandwaifus (首发 banner)
+    { name_global:"特蕾娜", name_cn:"特蕾娜", en:"Trina", r:"SSR", f:"Missilis", a:"Electric", w:"RL", d_global:"2025-03-13", d_cn:"", lim:false, n_global:"", n_cn:"", avatar:"特蕾娜" }, // 日期源: lootandwaifus (首发 banner)
+    { name_global:"特罗尼", name_cn:"特罗尼", en:"Trony", r:"SSR", f:"Missilis", a:"Fire", w:"SR", d_global:"2024-05-16", d_cn:"2025-10-15", lim:false, n_global:"", n_cn:"", avatar:"特罗尼" }, // 日期源: lootandwaifus (首发 banner); 国服: D.ark Hero 黑暗英雄活动
+    { name_global:"维尔维特", name_cn:"维尔维特", en:"Velvet", r:"SSR", f:"Tetra", a:"Wind", w:"SR", d_global:"2026-01-29", d_cn:"", lim:false, n_global:"", n_cn:"", avatar:"维尔维特" }, // 日期源: lootandwaifus (首发 banner)
+    { name_global:"贝斯蒂：战术升级", name_cn:"贝斯蒂：战术升级", en:"Vesti: Tactical Upgrade", r:"SSR", f:"Elysion", a:"Fire", w:"RL", d_global:"2025-08-21", d_cn:"", lim:true, n_global:"战术升级", n_cn:"", avatar:"贝斯蒂：战术升级" }, // 日期源: lootandwaifus (首发 banner)
+
+    // ─── 以下来自用户权威对照表 C 类补录 (属性/稀有度/上线日期 待核对) ───
+    { name_global:"明日香", name_cn:"明日香", en:"Asuka Shikinami Langley", r:"SSR", f:"Abnormal", a:"Fire", w:"AR", d_global:"2024-08-22", d_cn:"", lim:true, n_global:"EVA联动", n_cn:"", avatar:"明日香" }, // prydwen属性，日期待核对（lootandwaifus数据为最近复刻非首发）
+
+    { name_global:"阿维斯塔", name_cn:"阿维斯塔", en:"Avistar", r:"SSR", f:"Elysion", a:"Electric", w:"MG", d_global:"2026-04-23", d_cn:"", lim:false, n_global:"", n_cn:"", avatar:"阿维斯塔" }, // prydwen属性, en 修正为Avistar, 日期待核对
+    { name_global:"阿尔卡娜", name_cn:"阿尔卡娜", en:"Arcana", r:"SSR", f:"Elysion", a:"Electric", w:"RL", d_global:"2025-05-15", d_cn:"", lim:false, n_global:"也译阿卡娜", n_cn:"", avatar:"阿尔卡娜" }, // 日期源: lootandwaifus (首发 banner)
+    { name_global:"钟鸣", name_cn:"钟鸣", en:"Chime", r:"SSR", f:"Pilgrim", a:"Iron", w:"SMG", d_global:"2025-10-30", d_cn:"", lim:false, n_global:"", n_cn:"", avatar:"钟鸣" }, // prydwen属性，日期待核对（lootandwaifus数据为最近复刻非首发）
+    { name_global:"克雷伊", name_cn:"克雷伊", en:"Clay", r:"SSR", f:"Tetra", a:"Electric", w:"SMG", d_global:"2024-06-20", d_cn:"", lim:false, n_global:"", n_cn:"", avatar:"克雷伊" }, // 日期源: lootandwaifus (首发 banner)
+    { name_global:"伊莱格：风暴", name_cn:"伊莱格：风暴", en:"Elegg: Boom and Shock", r:"SSR", f:"Missilis", a:"Water", w:"MG", d_global:"2025-07-24", d_cn:"", lim:true, n_global:"皮肤变体", n_cn:"", avatar:"伊莱格：风暴" }, // 日期源: lootandwaifus (首发 banner)
+
+    { name_global:"格拉维", name_cn:"格拉维", en:"Grave", r:"SSR", f:"Pilgrim", a:"Fire", w:"AR", d_global:"2024-11-07", d_cn:"", lim:false, n_global:"", n_cn:"", avatar:"格拉维" }, // 日期源: lootandwaifus (首发 banner)；译名修正：格雷夫→格拉维
+    { name_global:"马斯特", name_cn:"马斯特", en:"Mast", r:"SSR", f:"Elysion", a:"Electric", w:"SMG", d_global:"2023-07-20", d_cn:"2025-08-20", lim:false, n_global:"", n_cn:"", avatar:"马斯特" }, // 日期源: lootandwaifus (首发 banner)
+
+    { name_global:"尼恩：幻视之眼", name_cn:"尼恩：幻视之眼", en:"Neon: Vision Eye", r:"SSR", f:"Missilis", a:"Electric", w:"RL", d_global:"2026-04-30", d_cn:"", lim:true, n_global:"3.5周年新角", n_cn:"", avatar:"尼恩：幻视之眼" }, // 用户确认
+    { name_global:"潘托姆", name_cn:"潘托姆", en:"Phantom", r:"SSR", f:"Elysion", a:"Water", w:"AR", d_global:"2024-10-10", d_cn:"", lim:false, n_global:"", n_cn:"", avatar:"潘托姆" }, // 日期源: lootandwaifus (首发 banner)
+    { name_global:"渡鸦", name_cn:"渡鸦", en:"Raven", r:"SSR", f:"Abnormal", a:"Iron", w:"RL", d_global:"2025-06-19", d_cn:"2025-09-24", lim:true, n_global:"剑星联动", n_cn:"", avatar:"渡鸦" }, // 日期源: lootandwaifus (首发 banner 2025-06-19) + 剑星联动；译名修正：雷文→渡鸦
+    { name_global:"索拉", name_cn:"索拉", en:"Sora", r:"SSR", f:"Elysion", a:"Wind", w:"RL", d_global:"2025-07-03", d_cn:"", lim:false, n_global:"", n_cn:"", avatar:"索拉" }, // 日期源: lootandwaifus (首发 banner)
+    { name_global:"索达：闪亮兔女郎", name_cn:"索达：闪亮兔女郎", en:"Soda: Twinkling Bunny", r:"SSR", f:"Tetra", a:"Iron", w:"SG", d_global:"2024-05-30", d_cn:"2026-04-29", lim:true, n_global:"兔女郎限定", n_cn:"", avatar:"索达：闪亮兔女郎" }, // 日期源: lootandwaifus (首发 banner)；译名对齐 nikke.qq.com 4-29 公告：闪耀→闪亮
+
+    // ─── 以下 10 条来自 BWIKI 角色图鉴对账补录 (英文名/上线日期/头像 待核对) ───
+    { name_global:"鲁德米拉", name_cn:"鲁德米拉", en:"Ludmilla", r:"SSR", f:"Tetra", a:"Water", w:"SMG", d_global:"2022-11-04", d_cn:"2025-05-22", lim:false, n_global:"", n_cn:"", avatar:"鲁德米拉" },
+    { name_global:"鲁德米拉：冬日之主", name_cn:"鲁德米拉：冬日之主", en:"Ludmilla: Winter Owner", r:"SSR", f:"Tetra", a:"Water", w:"MG", d_global:"2023-12-07", d_cn:"2026-01-07", lim:true, n_global:"冬日限定", n_cn:"", avatar:"鲁德米拉：冬日之主" },  // 日期源: lootandwaifus (首发 banner)
+    { name_global:"莱昂纳", name_cn:"莱昂纳", en:"Leona", r:"SSR", f:"Tetra", a:"Water", w:"SG", d_global:"2024-01-11", d_cn:"2026-03-18", lim:false, n_global:"", n_cn:"", avatar:"莱昂纳" },
+    { name_global:"莱伊", name_cn:"莱伊", en:"Rei", r:"SSR", f:"Tetra", a:"Water", w:"SMG", d_global:"2023-04-27", d_cn:"2025-06-11", lim:false, n_global:"", n_cn:"", avatar:"莱伊" },
+    { name_global:"托比", name_cn:"托比", en:"Tove", r:"SSR", f:"Missilis", a:"Water", w:"AR", d_global:"2023-11-23", d_cn:"2026-03-11", lim:false, n_global:"", n_cn:"", avatar:"托比" }, // 日期源: lootandwaifus (首发 banner)
+    { name_global:"蒂亚", name_cn:"蒂亚", en:"Tia", r:"SSR", f:"Missilis", a:"Iron", w:"RL", d_global:"2023-10-12", d_cn:"2026-01-24", lim:false, n_global:"", n_cn:"", avatar:"蒂亚" },  // 日期源: lootandwaifus (首发 banner)
+    { name_global:"红莲：暗影", name_cn:"红莲：暗影", en:"Scarlet: Black Shadow", r:"SSR", f:"Pilgrim", a:"Wind", w:"RL", d_global:"2023-12-31", d_cn:"2025-12-31", lim:true, n_global:"皮肤变体", n_cn:"", avatar:"红莲：暗影" },  // 日期源: lootandwaifus (首发 banner)
+    { name_global:"安克", name_cn:"安克", en:"Anchor", r:"SR", f:"Elysion", a:"Wind", w:"RL", d_global:"2023-08-03", d_cn:"2025-08-30", lim:false, n_global:"", n_cn:"", avatar:"安克" },
+    { name_global:"贝伊", name_cn:"贝伊", en:"Bay", r:"SSR", f:"Tetra", a:"Fire", w:"RL", d_global:"2024-04-11", d_cn:"", lim:false, n_global:"", n_cn:"", avatar:"贝伊" }, // 两源验证 (prydwen/siliconera)
+    { name_global:"牡丹", name_cn:"牡丹", en:"Moran", r:"SSR", f:"Tetra", a:"Electric", w:"AR", d_global:"2024-01-25", d_cn:"", lim:false, n_global:"", n_cn:"", avatar:"牡丹" }, // 两源验证 (prydwen/fandom)；上线日期仅 fandom 一源 待核对
+    { name_global:"茨瓦伊", name_cn:"茨瓦伊", en:"Zwei", r:"SSR", f:"Elysion", a:"Electric", w:"SG", d_global:"2024-08-08", d_cn:"", lim:false, n_global:"", n_cn:"", avatar:"茨瓦伊" }, // 中文译名待核对 (源: prydwen 阵营/属性/武器 + nikke.gg patch notes 2024-08-08)
+    { name_global:"迪赛尔（珍藏品）", name_cn:"迪赛尔（珍藏品）", en:"Diesel (Treasure)", r:"SSR", f:"Elysion", a:"Wind", w:"MG", d_global:"2024-05-30", d_cn:"2025-05-28", lim:false, n_global:"珍藏品强化 · S1", n_cn:"", avatar:"迪赛尔（珍藏品）" }, // 珍藏品 S1；国服首批 (gamersky 2025-06-11)
+    { name_global:"艾可希雅（珍藏品）", name_cn:"艾可希雅（珍藏品）", en:"Exia (Treasure)", r:"SSR", f:"Tetra", a:"Electric", w:"SR", d_global:"2024-05-30", d_cn:"2025-05-28", lim:false, n_global:"珍藏品强化 · S1", n_cn:"", avatar:"艾可希雅（珍藏品）" }, // 珍藏品 S1；国服首批 (gamersky 2025-06-11)
+    { name_global:"拉普拉斯（珍藏品）", name_cn:"拉普拉斯（珍藏品）", en:"Laplace (Treasure)", r:"SSR", f:"Missilis", a:"Iron", w:"RL", d_global:"2024-05-30", d_cn:"2025-10-29", lim:false, n_global:"珍藏品强化 · S1", n_cn:"", avatar:"拉普拉斯（珍藏品）" }, // 珍藏品 S1；国服半周年 EX 活动解锁 (taptap/NGA/xiaomi)
+    { name_global:"普琳玛（珍藏品）", name_cn:"普琳玛（珍藏品）", en:"Frima (Treasure)", r:"SSR", f:"Tetra", a:"Iron", w:"SR", d_global:"2024-05-30", d_cn:"2025-05-28", lim:false, n_global:"珍藏品强化 · S1", n_cn:"", avatar:"普琳玛（珍藏品）" }, // 珍藏品 S1；国服首批 (gamersky 2025-06-11)
+    { name_global:"毒蛇（珍藏品）", name_cn:"毒蛇（珍藏品）", en:"Viper (Treasure)", r:"SSR", f:"Tetra", a:"Water", w:"SG", d_global:"2024-07-04", d_cn:"2025-08-06", lim:false, n_global:"珍藏品强化 · S2", n_cn:"", avatar:"毒蛇（珍藏品）" }, // 珍藏品 S2；国服毒蛇本体+珍藏品同步上线 (bilibili/taptap/smzdm 多源)
+    { name_global:"海伦（珍藏品）", name_cn:"海伦（珍藏品）", en:"Helm (Treasure)", r:"SSR", f:"Elysion", a:"Water", w:"SR", d_global:"2025-01-16", d_cn:"2026-04-01", lim:false, n_global:"珍藏品强化 · S3", n_cn:"", avatar:"海伦（珍藏品）" }, // 珍藏品 S3；d_cn 用户确认 2026-04-01
+    { name_global:"米兰达（珍藏品）", name_cn:"米兰达（珍藏品）", en:"Miranda (Treasure)", r:"SSR", f:"Elysion", a:"Fire", w:"SMG", d_global:"2025-01-16", d_cn:"2026-04-01", lim:false, n_global:"珍藏品强化 · S3", n_cn:"", avatar:"米兰达（珍藏品）" }, // 珍藏品 S3；国服 4.1 批次 (NGA 制作组笔记第7期)
+    { name_global:"德雷克（珍藏品）", name_cn:"德雷克（珍藏品）", en:"Drake (Treasure)", r:"SSR", f:"Missilis", a:"Fire", w:"SG", d_global:"2025-01-16", d_cn:"2026-04-01", lim:false, n_global:"珍藏品强化 · S3", n_cn:"", avatar:"德雷克（珍藏品）" }, // 珍藏品 S3；国服 4.1 批次 (NGA 制作组笔记第7期)
+    { name_global:"米尔克（珍藏品）", name_cn:"米尔克（珍藏品）", en:"Milk (Treasure)", r:"SSR", f:"Tetra", a:"Water", w:"SR", d_global:"2025-01-16", d_cn:"2026-04-01", lim:false, n_global:"珍藏品强化 · S3", n_cn:"", avatar:"米尔克（珍藏品）" }, // 珍藏品 S3；国服 4.1 批次 (NGA 制作组笔记第7期)
+    { name_global:"波莉（珍藏品）", name_cn:"波莉（珍藏品）", en:"Poli (Treasure)", r:"SSR", f:"Elysion", a:"Water", w:"SG", d_global:"2025-07-17", d_cn:"", lim:false, n_global:"珍藏品强化 · S4", n_cn:"", avatar:"波莉（珍藏品）" }, // 珍藏品 S4
+    { name_global:"尤莉亚（珍藏品）", name_cn:"尤莉亚（珍藏品）", en:"Julia (Treasure)", r:"SSR", f:"Missilis", a:"Iron", w:"AR", d_global:"2025-07-17", d_cn:"", lim:false, n_global:"珍藏品强化 · S4", n_cn:"", avatar:"尤莉亚（珍藏品）" }, // 珍藏品 S4
+    { name_global:"贝伊（珍藏品）", name_cn:"贝伊（珍藏品）", en:"Bay (Treasure)", r:"SSR", f:"Tetra", a:"Fire", w:"RL", d_global:"2025-07-17", d_cn:"", lim:false, n_global:"珍藏品强化 · S4", n_cn:"", avatar:"贝伊（珍藏品）" }, // 珍藏品 S4
+    { name_global:"托比（珍藏品）", name_cn:"托比（珍藏品）", en:"Tove (Treasure)", r:"SSR", f:"Missilis", a:"Water", w:"AR", d_global:"2025-07-17", d_cn:"", lim:false, n_global:"珍藏品强化 · S4", n_cn:"", avatar:"托比（珍藏品）" }, // 珍藏品 S4
+    { name_global:"牡丹（珍藏品）", name_cn:"牡丹（珍藏品）", en:"Moran (Treasure)", r:"SSR", f:"Tetra", a:"Electric", w:"AR", d_global:"2026-02-12", d_cn:"", lim:false, n_global:"珍藏品强化 · S5", n_cn:"", avatar:"牡丹（珍藏品）" }, // 珍藏品 S5
+    { name_global:"茨瓦伊（珍藏品）", name_cn:"茨瓦伊（珍藏品）", en:"Zwei (Treasure)", r:"SSR", f:"Elysion", a:"Electric", w:"SG", d_global:"2026-02-12", d_cn:"", lim:false, n_global:"珍藏品强化 · S5", n_cn:"", avatar:"茨瓦伊（珍藏品）" }, // 珍藏品 S5 (源: earlygg 2026-02-09 patch breakdown)
+
+    { name_global:"桑迪（珍藏品）", name_cn:"桑迪（珍藏品）", en:"Centi (Treasure)", r:"SSR", f:"Missilis", a:"Iron", w:"RL", d_global:"2026-02-12", d_cn:"", lim:false, n_global:"珍藏品强化 · S5", n_cn:"", avatar:"桑迪（珍藏品）" }, // 珍藏品 S5
+    { name_global:"普丽瓦蒂（珍藏品）", name_cn:"普丽瓦蒂（珍藏品）", en:"Privaty (Treasure)", r:"SSR", f:"Elysion", a:"Water", w:"AR", d_global:"2026-02-12", d_cn:"", lim:false, n_global:"珍藏品强化 · S5", n_cn:"", avatar:"普丽瓦蒂（珍藏品）" }, // 珍藏品 S5
+    { name_global:"阿妮斯：超级巨星", name_cn:"阿妮斯：超级巨星", en:"Anis: Star", r:"SSR", f:"Tetra", a:"Electric", w:"RL", d_global:"2026-04-23", d_cn:"", lim:true, n_global:"3.5周年限定", n_cn:"", avatar:"阿妮斯：超级巨星" },  // 日期源: lootandwaifus (首发 banner)
+    { name_global:"白鹤", name_cn:"白鹤", en:"Snow Crane", r:"SSR", f:"Missilis", a:"Water", w:"SR", d_global:"2026-04-09", d_cn:"", lim:true, n_global:"", n_cn:"", avatar:"白鹤" },
+    { name_global:"银华：战术升级", name_cn:"银华：战术升级", en:"Eunhwa: Tactical Upgrade", r:"SSR", f:"Elysion", a:"Fire", w:"SR", d_global:"2025-08-14", d_cn:"", lim:true, n_global:"战术升级", n_cn:"", avatar:"银华：战术升级" },  // 日期源: lootandwaifus (首发 banner)
+    { name_global:"艾玛：战术升级", name_cn:"艾玛：战术升级", en:"Emma: Tactical Upgrade", r:"SSR", f:"Elysion", a:"Fire", w:"MG", d_global:"2025-08-07", d_cn:"", lim:true, n_global:"战术升级", n_cn:"", avatar:"艾玛：战术升级" },  // 日期源: lootandwaifus (首发 banner)
+    { name_global:"桃乐丝：机缘巧遇", name_cn:"桃乐丝：机缘巧遇", en:"Dorothy: Serendipity", r:"SSR", f:"Pilgrim", a:"Water", w:"SG", d_global:"2025-07-17", d_cn:"", lim:true, n_global:"夏日限定", n_cn:"", avatar:"桃乐丝：机缘巧遇" },  // 日期源: lootandwaifus (首发 banner)
+    { name_global:"尼罗", name_cn:"尼罗", en:"Nero", r:"SSR", f:"Tetra", a:"Fire", w:"SMG", d_global:"2023-07-06", d_cn:"2026-03-04", lim:false, n_global:"", n_cn:"", avatar:"尼罗" },  // 日期源: lootandwaifus (首发 banner)
+    { name_global:"饼干", name_cn:"饼干", en:"Biscuit", r:"SSR", f:"Tetra", a:"Electric", w:"RL", d_global:"2023-03-15", d_cn:"2025-07-23", lim:false, n_global:"", n_cn:"", avatar:"饼干" },  // 日期源: lootandwaifus (首发 banner)
+    { name_global:"K", name_cn:"K", en:"K", r:"SSR", f:"Elysion", a:"Electric", w:"SMG", d_global:"2025-05-29", d_cn:"", lim:false, n_global:"", n_cn:"", avatar:"K" },  // 日期源: lootandwaifus (首发 banner)
+    { name_global:"基洛", name_cn:"基洛", en:"Kilo", r:"SSR", f:"Missilis", a:"Fire", w:"MG", d_global:"2024-04-25", d_cn:"2026-02-11", lim:false, n_global:"1.5周年免费SSR", n_cn:"", avatar:"基洛" },
+    { name_global:"玛律恰那", name_cn:"玛律恰那", en:"Marciana", r:"SSR", f:"Elysion", a:"Iron", w:"SG", d_global:"2023-09-21", d_cn:"2025-11-26", lim:false, n_global:"", n_cn:"", avatar:"玛律恰那" },  // 日期源: lootandwaifus (首发 banner)
+    { name_global:"拉毗：小红帽", name_cn:"拉毗：小红帽", en:"Rapi: Red Hood", r:"SSR", f:"Elysion", a:"Fire", w:"MG", d_global:"2024-12-31", d_cn:"2026-04-01", lim:true, n_global:"冬日限定", n_cn:"", avatar:"拉毗：小红帽" },
+    { name_global:"鲁玛妮", name_cn:"鲁玛妮", en:"Rumani", r:"SSR", f:"Tetra", a:"Fire", w:"RL", d_global:"2024-10-17", d_cn:"", lim:false, n_global:"", n_cn:"", avatar:"鲁玛妮" },  // 日期源: lootandwaifus (首发 banner)
+    { name_global:"灰姑娘", name_cn:"灰姑娘", en:"Cinderella", r:"SSR", f:"Pilgrim", a:"Electric", w:"RL", d_global:"2024-10-31", d_cn:"", lim:true, n_global:"2周年限定", n_cn:"", avatar:"灰姑娘" },
+    { name_global:"诺薇儿", name_cn:"诺薇儿", en:"Novel", r:"SSR", f:"Tetra", a:"Iron", w:"SMG", d_global:"2022-11-04", d_cn:"2025-05-22", lim:false, n_global:"", n_cn:"", avatar:"诺薇儿" },
+    { name_global:"森", name_cn:"森", en:"Sin", r:"SSR", f:"Missilis", a:"Electric", w:"AR", d_global:"2023-01-12", d_cn:"2025-08-20", lim:false, n_global:"解放系统免费SSR", n_cn:"更生系统免费SSR", avatar:"森" }, // 译名修正：罪→森；avatar 文件名保持"罪.png"
+    { name_global:"吉尔提", name_cn:"吉尔提", en:"Guilty", r:"SSR", f:"Missilis", a:"Wind", w:"SG", d_global:"2023-01-12", d_cn:"2025-08-20", lim:false, n_global:"解放系统免费SSR", n_cn:"更生系统免费SSR", avatar:"吉尔提" },
+    { name_global:"朵拉", name_cn:"朵拉", en:"Dolla", r:"SSR", f:"Tetra", a:"Wind", w:"SR", d_global:"2022-11-04", d_cn:"2025-05-22", lim:false, n_global:"", n_cn:"", avatar:"朵拉" },
+    { name_global:"明日香：WILLE", name_cn:"明日香：WILLE", en:"Asuka Shikinami Langley：Wille", r:"SSR", f:"Abnormal", a:"Wind", w:"MG", d_global:"2025-02-20", d_cn:"", lim:true, n_global:"EVA联动", n_cn:"", avatar:"明日香：WILLE" },  // 日期源: lootandwaifus (首发 banner)
+    { name_global:"真理", name_cn:"真理", en:"Mari Makinami Illustrious", r:"SSR", f:"Abnormal", a:"Electric", w:"SR", d_global:"2024-09-05", d_cn:"", lim:true, n_global:"EVA联动", n_cn:"", avatar:"真理" },
+    { name_global:"美里", name_cn:"美里", en:"Misato Katsuragi", r:"SR", f:"Abnormal", a:"Iron", w:"SMG", d_global:"2024-08-22", d_cn:"", lim:true, n_global:"EVA联动 免费SR", n_cn:"", avatar:"美里" },
+    { name_global:"零", name_cn:"零", en:"Rei Ayanami", r:"SSR", f:"Abnormal", a:"Fire", w:"MG", d_global:"2024-08-29", d_cn:"", lim:true, n_global:"EVA联动", n_cn:"", avatar:"零" },  // 日期源: lootandwaifus (首发 banner)
+    { name_global:"玛娜", name_cn:"玛娜", en:"Mana", r:"SSR", f:"Missilis", a:"Wind", w:"AR", d_global:"2025-01-16", d_cn:"", lim:false, n_global:"", n_cn:"", avatar:"玛娜" },  // 日期源: lootandwaifus (首发 banner)
+    { name_global:"艾瑟儿", name_cn:"艾瑟儿", en:"Ether", r:"SR", f:"Missilis", a:"Electric", w:"SG", d_global:"2022-11-04", d_cn:"2025-05-22", lim:false, n_global:"", n_cn:"", avatar:"艾瑟儿" },
+    { name_global:"德尔塔：忍者小偷", name_cn:"德尔塔：忍者小偷", en:"Delta: Ninja Thief", r:"SSR", f:"Elysion", a:"Water", w:"MG", d_global:"2025-10-16", d_cn:"", lim:true, n_global:"皮肤变体", n_cn:"", avatar:"德尔塔：忍者小偷" },  // 日期源: lootandwaifus (首发 banner)
+    { name_global:"豺狼", name_cn:"豺狼", en:"Jackal", r:"SSR", f:"Missilis", a:"Iron", w:"RL", d_global:"2023-01-12", d_cn:"2025-08-13", lim:false, n_global:"", n_cn:"", avatar:"豺狼" },  // 日期源: lootandwaifus (首发 banner)
+    { name_global:"毒蛇", name_cn:"毒蛇", en:"Viper", r:"SSR", f:"Tetra", a:"Water", w:"SG", d_global:"2023-01-19", d_cn:"2025-08-06", lim:false, n_global:"", n_cn:"", avatar:"毒蛇" },  // 日期源: lootandwaifus (首发 banner)
+    { name_global:"爱丽丝：仙境兔女郎", name_cn:"爱丽丝：仙境兔女郎", en:"Alice: Wonderland Bunny", r:"SSR", f:"Tetra", a:"Water", w:"SMG", d_global:"2024-06-06", d_cn:"2026-05-06", lim:true, n_global:"兔女郎限定", n_cn:"", avatar:"爱丽丝：仙境兔女郎" },  // 日期源: lootandwaifus (首发 banner)
+    { name_global:"尤尔夏", name_cn:"尤尔夏", en:"Yulha", r:"SSR", f:"Tetra", a:"Fire", w:"SR", d_global:"2022-11-04", d_cn:"2025-05-22", lim:false, n_global:"", n_cn:"", avatar:"尤尔夏" },
+    { name_global:"伊芙", name_cn:"伊芙", en:"Eve", r:"SSR", f:"Abnormal", a:"Iron", w:"AR", d_global:"2025-06-12", d_cn:"2025-09-24", lim:true, n_global:"剑星联动", n_cn:"", avatar:"伊芙" },  // 日期源: lootandwaifus (首发 banner 2025-06-12) + dotgg属性双源验证
+    { name_global:"千束", name_cn:"千束", en:"Chisato Nishikigi", r:"SSR", f:"Abnormal", a:"Iron", w:"SMG", d_global:"2026-02-12", d_cn:"", lim:true, n_global:"莉可丽丝联动", n_cn:"", avatar:"千束" }, // 莉可丽丝联动首发 2026-02-12 (lootandwaifus 2026-02-11)
+    { name_global:"泷奈", name_cn:"泷奈", en:"Takina Inoue", r:"SSR", f:"Abnormal", a:"Iron", w:"SR", d_global:"2026-02-19", d_cn:"", lim:true, n_global:"莉可丽丝联动", n_cn:"", avatar:"泷奈" }, // 莉可丽丝联动 第二档 banner (lootandwaifus 2026-02-18)
+    { name_global:"莉贝雷利奥", name_cn:"莉贝雷利奥", en:"Liberalio", r:"SSR", f:"Pilgrim", a:"Wind", w:"SR", d_global:"2025-11-06", d_cn:"", lim:false, n_global:"", n_cn:"", avatar:"莉贝雷利奥" },  // 日期源: lootandwaifus (首发 banner)
+    { name_global:"爱德", name_cn:"爱德", en:"Ade", r:"SSR", f:"Tetra", a:"Wind", w:"AR", d_global:"2024-02-15", d_cn:"2026-02-04", lim:false, n_global:"", n_cn:"", avatar:"爱德" },  // bahamut
+    { name_global:"可可", name_cn:"可可", en:"Cocoa", r:"SR", f:"Tetra", a:"Fire", w:"SR", d_global:"2023-02-01", d_cn:"2025-12-31", lim:false, n_global:"", n_cn:"", avatar:"可可" },  // 日期源: lootandwaifus (首发 banner)
+    { name_global:"索达", name_cn:"索达", en:"Soda", r:"SR", f:"Tetra", a:"Fire", w:"MG", d_global:"2023-02-08", d_cn:"2025-12-31", lim:false, n_global:"", n_cn:"", avatar:"索达" },  // 日期源: lootandwaifus (首发 banner)
+    { name_global:"米哈拉", name_cn:"米哈拉", en:"Mihara", r:"SR", f:"Missilis", a:"Water", w:"AR", d_global:"2022-11-04", d_cn:"2025-05-22", lim:false, n_global:"", n_cn:"", avatar:"米哈拉" },
+    { name_global:"布兰儿", name_cn:"布兰儿", en:"Blanc", r:"SSR", f:"Tetra", a:"Wind", w:"AR", d_global:"2023-05-18", d_cn:"2025-09-10", lim:false, n_global:"", n_cn:"", avatar:"布兰儿" },  // bahamut
+    { name_global:"诺亚尔", name_cn:"诺亚尔", en:"Noir", r:"SSR", f:"Tetra", a:"Wind", w:"SG", d_global:"2023-05-25", d_cn:"2025-09-17", lim:false, n_global:"", n_cn:"", avatar:"诺亚尔" },  // 日期源: lootandwaifus (首发 banner)
+    { name_global:"尼希利斯塔", name_cn:"尼希利斯塔", en:"Nihilister", r:"SSR", f:"Pilgrim", a:"Fire", w:"SR", d_global:"2023-03-30", d_cn:"", lim:false, n_global:"解放系统免费SSR", n_cn:"", avatar:"尼希利斯塔" },
+    { name_global:"尼恩：蓝色海洋", name_cn:"尼恩：蓝色海洋", en:"Neon: Blue Ocean", r:"SSR", f:"Elysion", a:"Water", w:"MG", d_global:"2023-06-22", d_cn:"2025-08-20", lim:true, n_global:"夏日限定", n_cn:"", avatar:"尼恩：蓝色海洋" }, // 日期源: lootandwaifus (首发 banner)
+    { name_global:"米兰达", name_cn:"米兰达", en:"Miranda", r:"SSR", f:"Elysion", a:"Fire", w:"SMG", d_global:"2022-11-04", d_cn:"2025-05-22", lim:false, n_global:"", n_cn:"", avatar:"米兰达" },
+    { name_global:"马斯特：浪漫的女仆", name_cn:"马斯特：浪漫的女仆", en:"Mast: Romantic Maid", r:"SSR", f:"Elysion", a:"Water", w:"MG", d_global:"2025-01-23", d_cn:"", lim:true, n_global:"女仆限定", n_cn:"", avatar:"马斯特：浪漫的女仆" },  // 日期源: lootandwaifus (首发 banner)
+    { name_global:"安克：天真的女仆", name_cn:"安克：天真的女仆", en:"Anchor: Innocent Maid", r:"SSR", f:"Elysion", a:"Water", w:"RL", d_global:"2025-02-06", d_cn:"", lim:true, n_global:"女仆限定", n_cn:"", avatar:"安克：天真的女仆" },  // 日期源: lootandwaifus (首发 banner)
+    { name_global:"白雪公主：重型武装", name_cn:"白雪公主：重型武装", en:"Snow White: Heavy Arms", r:"SSR", f:"Pilgrim", a:"Water", w:"SR", d_global:"2026-01-01", d_cn:"", lim:true, n_global:"2026新年限定", n_cn:"", avatar:"白雪公主：重型武装" },  // 日期源: lootandwaifus (首发 banner)
+    { name_global:"皇冠", name_cn:"皇冠", en:"Crown", r:"SSR", f:"Pilgrim", a:"Iron", w:"MG", d_global:"2024-04-25", d_cn:"2026-02-11", lim:true, n_global:"1.5周年推出", n_cn:"", avatar:"皇冠" },  // 日期源: lootandwaifus (首发 banner)
+    { name_global:"小红帽", name_cn:"小红帽", en:"Red Hood", r:"SSR", f:"Pilgrim", a:"Iron", w:"SR", d_global:"2023-11-01", d_cn:"2025-10-29", lim:true, n_global:"1周年限定", n_cn:"", avatar:"小红帽" },  // 日期源: lootandwaifus (首发 banner)
+    { name_global:"玛奇玛", name_cn:"玛奇玛", en:"Makima", r:"SSR", f:"Abnormal", a:"Water", w:"SMG", d_global:"2023-02-22", d_cn:"", lim:true, n_global:"电锯人联动", n_cn:"", avatar:"玛奇玛" },  // 日期源: lootandwaifus (首发 banner)
+    { name_global:"帕瓦", name_cn:"帕瓦", en:"Power", r:"SSR", f:"Abnormal", a:"Fire", w:"RL", d_global:"2023-02-22", d_cn:"", lim:true, n_global:"电锯人联动", n_cn:"", avatar:"帕瓦" },  // 日期源: lootandwaifus (首发 banner)
+    { name_global:"姬野", name_cn:"姬野", en:"Himeno", r:"SR", f:"Abnormal", a:"Wind", w:"SR", d_global:"2023-02-22", d_cn:"", lim:true, n_global:"电锯人联动 免费SR", n_cn:"", avatar:"姬野" },
+    { name_global:"阿妮斯：闪耀夏日", name_cn:"阿妮斯：闪耀夏日", en:"Anis: Sparkling Summer", r:"SSR", f:"Tetra", a:"Electric", w:"SG", d_global:"2023-08-03", d_cn:"2025-08-30", lim:true, n_global:"夏日限定", n_cn:"", avatar:"阿妮斯：闪耀夏日" },  // 日期源: lootandwaifus (首发 banner)
+    { name_global:"伊莎贝尔", name_cn:"伊莎贝尔", en:"Isabel", r:"SSR", f:"Pilgrim", a:"Electric", w:"SG", d_global:"2022-11-04", d_cn:"2025-05-22", lim:false, n_global:"", n_cn:"", avatar:"伊莎贝尔" },
+    { name_global:"富克旺", name_cn:"富克旺", en:"Folkwang", r:"SSR", f:"Tetra", a:"Water", w:"AR", d_global:"2022-11-04", d_cn:"2025-05-22", lim:false, n_global:"", n_cn:"", avatar:"富克旺" },
+    { name_global:"布丽德：寂静轨道", name_cn:"布丽德：寂静轨道", en:"Brid: Silent Track", r:"SSR", f:"Elysion", a:"Fire", w:"SG", d_global:"2025-12-11", d_cn:"2025-12-11", lim:true, n_global:"皮肤变体", n_cn:"", avatar:"布丽德：寂静轨道" },  // 日期源: lootandwaifus (首发 banner)
+    { name_global:"樱花", name_cn:"樱花", en:"Sakura", r:"SSR", f:"Tetra", a:"Fire", w:"SR", d_global:"2023-03-30", d_cn:"2026-04-01", lim:false, n_global:"", n_cn:"", avatar:"樱花" },  // bahamut
+    { name_global:"坎西", name_cn:"坎西", en:"Quency", r:"SSR", f:"Missilis", a:"Electric", w:"SMG", d_global:"2023-01-12", d_cn:"2025-08-20", lim:false, n_global:"解放系统免费SSR", n_cn:"更生系统免费SSR", avatar:"坎西" },
+    { name_global:"海伦", name_cn:"海伦", en:"Helm", r:"SSR", f:"Elysion", a:"Water", w:"SR", d_global:"2022-11-10", d_cn:"2025-05-28", lim:false, n_global:"", n_cn:"", avatar:"海伦" },  // 日期源: lootandwaifus (首发 banner)
+    { name_global:"海伦：海蓝宝石", name_cn:"海伦：海蓝宝石", en:"Helm: Aquamarine", r:"SSR", f:"Elysion", a:"Iron", w:"AR", d_global:"2023-08-10", d_cn:"2025-09-06", lim:true, n_global:"夏日限定", n_cn:"", avatar:"海伦：海蓝宝石" },  // 日期源: lootandwaifus (首发 banner)
+    { name_global:"娜由塔", name_cn:"娜由塔", en:"Nayuta", r:"SSR", f:"Pilgrim", a:"Wind", w:"SMG", d_global:"2025-10-30", d_cn:"", lim:false, n_global:"", n_cn:"", avatar:"娜由塔" },  // 日期源: lootandwaifus (首发 banner)
+    { name_global:"百合", name_cn:"百合", en:"Lily", r:"SR", f:"Abnormal", a:"Wind", w:"SMG", d_global:"2025-06-12", d_cn:"2025-09-24", lim:true, n_global:"剑星联动 免费SR", n_cn:"", avatar:"百合" }, // 剑星联动免费赠送SR（与Eve同期）
+    { name_global:"小美人鱼", name_cn:"小美人鱼", en:"Little Mermaid", r:"SSR", f:"Pilgrim", a:"Wind", w:"SMG", d_global:"2025-04-24", d_cn:"", lim:false, n_global:"2.5周年限定（别名：塞壬）", n_cn:"", avatar:"小美人鱼" },
+    { name_global:"长发公主", name_cn:"长发公主", en:"Rapunzel", r:"SSR", f:"Pilgrim", a:"Iron", w:"RL", d_global:"2022-11-04", d_cn:"2025-05-22", lim:false, n_global:"", n_cn:"", avatar:"长发公主" },
+    { name_global:"艾达", name_cn:"艾达", en:"Ada Wong", r:"SSR", f:"Abnormal", a:"Electric", w:"RL", d_global:"2025-09-24", d_cn:"", lim:true, n_global:"生化危机联动", n_cn:"", avatar:"艾达" },  // 日期源: lootandwaifus (首发 banner)
+    { name_global:"吉尔", name_cn:"吉尔", en:"Jill Valentine", r:"SSR", f:"Abnormal", a:"Electric", w:"AR", d_global:"2025-10-02", d_cn:"", lim:true, n_global:"生化危机联动", n_cn:"", avatar:"吉尔" },  // 日期源: lootandwaifus (首发 banner)
+    { name_global:"克莱尔", name_cn:"克莱尔", en:"Claire Redfield", r:"SR", f:"Abnormal", a:"Electric", w:"RL", d_global:"2025-09-24", d_cn:"", lim:true, n_global:"生化危机联动 免费SR", n_cn:"", avatar:"克莱尔" },
+    { name_global:"哈兰", name_cn:"哈兰", en:"Harran", r:"SSR", f:"Pilgrim", a:"Electric", w:"SR", d_global:"2022-11-04", d_cn:"2025-05-22", lim:false, n_global:"", n_cn:"", avatar:"哈兰" },
+    { name_global:"梅登", name_cn:"梅登", en:"Maiden", r:"SSR", f:"Elysion", a:"Electric", w:"SG", d_global:"2022-11-04", d_cn:"2025-05-22", lim:false, n_global:"", n_cn:"", avatar:"梅登" },
+    { name_global:"伊莱格", name_cn:"伊莱格", en:"Elegg", r:"SSR", f:"Missilis", a:"Electric", w:"MG", d_global:"2024-02-22", d_cn:"2025-10-08", lim:false, n_global:"", n_cn:"", avatar:"伊莱格" },  // 日期源: lootandwaifus (首发 banner)
+    { name_global:"2B", name_cn:"2B", en:"2B", r:"SSR", f:"Abnormal", a:"Fire", w:"AR", d_global:"2023-09-01", d_cn:"2025-07-03", lim:true, n_global:"尼尔联动", n_cn:"", avatar:"2B" },  // 日期源: lootandwaifus (首发 banner)
+    { name_global:"A2", name_cn:"A2", en:"A2", r:"SSR", f:"Abnormal", a:"Fire", w:"RL", d_global:"2023-09-08", d_cn:"2025-07-10", lim:true, n_global:"尼尔联动", n_cn:"", avatar:"A2" },  // 日期源: lootandwaifus (首发 banner)
+    { name_global:"帕斯卡", name_cn:"帕斯卡", en:"Pascal", r:"SR", f:"Abnormal", a:"Iron", w:"RL", d_global:"2023-08-31", d_cn:"2025-07-03", lim:true, n_global:"尼尔联动 免费SR", n_cn:"", avatar:"帕斯卡" },
+    { name_global:"梅里：海湾女神", name_cn:"梅里：海湾女神", en:"Mary: Bay Goddess", r:"SSR", f:"Tetra", a:"Water", w:"SR", d_global:"2023-06-15", d_cn:"2025-08-25", lim:true, n_global:"夏日限定", n_cn:"", avatar:"梅里：海湾女神" },  // 日期源: lootandwaifus (首发 banner)
+    { name_global:"安妮：奇迹仙女", name_cn:"安妮：奇迹仙女", en:"Anne: Miracle Fairy", r:"SSR", f:"Missilis", a:"Wind", w:"RL", d_global:"2022-12-15", d_cn:"2025-12-17", lim:true, n_global:"圣诞限定", n_cn:"", avatar:"安妮：奇迹仙女" },
+    { name_global:"露菲：冬日购物狂", name_cn:"露菲：冬日购物狂", en:"Rupee: Winter Shopper", r:"SSR", f:"Tetra", a:"Electric", w:"AR", d_global:"2022-12-08", d_cn:"2025-12-17", lim:true, n_global:"冬日限定", n_cn:"", avatar:"露菲：冬日购物狂" },
+    { name_global:"米卡：雪地伙伴", name_cn:"米卡：雪地伙伴", en:"Mica: Snow Buddy", r:"SSR", f:"Tetra", a:"Iron", w:"SMG", d_global:"2023-12-14", d_cn:"2026-01-07", lim:true, n_global:"冬日限定", n_cn:"", avatar:"米卡：雪地伙伴" },  // 日期源: lootandwaifus (首发 banner)
+    { name_global:"拉普拉斯", name_cn:"拉普拉斯", en:"Laplace", r:"SSR", f:"Missilis", a:"Iron", w:"RL", d_global:"2022-11-24", d_cn:"2025-10-29", lim:false, n_global:"", n_cn:"", avatar:"拉普拉斯" },
+    { name_global:"拉毗", name_cn:"拉毗", en:"Rapi", r:"SR", f:"Elysion", a:"Fire", w:"AR", d_global:"2022-11-04", d_cn:"2025-05-22", lim:false, n_global:"", n_cn:"", avatar:"拉毗" },
+    { name_global:"阿妮斯", name_cn:"阿妮斯", en:"Anis", r:"SR", f:"Tetra", a:"Iron", w:"RL", d_global:"2022-11-04", d_cn:"2025-05-22", lim:false, n_global:"", n_cn:"", avatar:"阿妮斯" },
+    { name_global:"尼恩", name_cn:"尼恩", en:"Neon", r:"SR", f:"Elysion", a:"Fire", w:"SG", d_global:"2022-11-04", d_cn:"2025-05-22", lim:false, n_global:"", n_cn:"", avatar:"尼恩" }, // 译名修正：霓虹→尼恩 (用户权威表)
+    { name_global:"白雪公主", name_cn:"白雪公主", en:"Snow White", r:"SSR", f:"Pilgrim", a:"Iron", w:"AR", d_global:"2022-11-04", d_cn:"2025-05-22", lim:false, n_global:"", n_cn:"", avatar:"白雪公主" },
+    { name_global:"红莲", name_cn:"红莲", en:"Scarlet", r:"SSR", f:"Pilgrim", a:"Electric", w:"AR", d_global:"2022-11-04", d_cn:"2025-05-22", lim:false, n_global:"", n_cn:"", avatar:"红莲" },
+    { name_global:"神罚", name_cn:"神罚", en:"Modernia", r:"SSR", f:"Pilgrim", a:"Fire", w:"MG", d_global:"2022-12-31", d_cn:"2025-06-18", lim:false, n_global:"", n_cn:"", avatar:"神罚" },  // 日期源: lootandwaifus (首发 banner)；BWIKI 国服权威译名 = 神罚
+    { name_global:"爱丽丝", name_cn:"爱丽丝", en:"Alice", r:"SSR", f:"Tetra", a:"Fire", w:"SR", d_global:"2023-04-13", d_cn:"2025-05-22", lim:false, n_global:"", n_cn:"", avatar:"爱丽丝" },  // 日期源: lootandwaifus (首发 banner)
+    { name_global:"诺雅", name_cn:"诺雅", en:"Noah", r:"SSR", f:"Pilgrim", a:"Wind", w:"RL", d_global:"2022-11-04", d_cn:"2025-05-22", lim:false, n_global:"", n_cn:"", avatar:"诺雅" },
+    { name_global:"桃乐丝", name_cn:"桃乐丝", en:"Dorothy", r:"SSR", f:"Pilgrim", a:"Water", w:"AR", d_global:"2023-04-27", d_cn:"2025-06-11", lim:false, n_global:"", n_cn:"", avatar:"桃乐丝" },  // 日期源: lootandwaifus (首发 banner)
+    { name_global:"菲涅尔", name_cn:"菲涅尔", en:"Epinel", r:"SSR", f:"Missilis", a:"Wind", w:"SMG", d_global:"2022-11-04", d_cn:"2025-05-22", lim:false, n_global:"", n_cn:"", avatar:"菲涅尔" },
+    { name_global:"普丽瓦蒂", name_cn:"普丽瓦蒂", en:"Privaty", r:"SSR", f:"Elysion", a:"Water", w:"AR", d_global:"2022-11-04", d_cn:"2025-05-22", lim:false, n_global:"", n_cn:"", avatar:"普丽瓦蒂" },
+    { name_global:"艾德米", name_cn:"艾德米", en:"Admi", r:"SSR", f:"Missilis", a:"Wind", w:"SR", d_global:"2022-11-04", d_cn:"2025-05-22", lim:false, n_global:"", n_cn:"", avatar:"艾德米" },
+    { name_global:"麦斯威尔", name_cn:"麦斯威尔", en:"Maxwell", r:"SSR", f:"Missilis", a:"Iron", w:"SR", d_global:"2022-11-04", d_cn:"2025-05-22", lim:false, n_global:"", n_cn:"", avatar:"麦斯威尔" },
+    { name_global:"艾可希雅", name_cn:"艾可希雅", en:"Exia", r:"SSR", f:"Tetra", a:"Electric", w:"SR", d_global:"2022-11-04", d_cn:"2025-05-22", lim:false, n_global:"", n_cn:"", avatar:"艾可希雅" },
+    { name_global:"尤妮", name_cn:"尤妮", en:"Yuni", r:"SSR", f:"Missilis", a:"Fire", w:"RL", d_global:"2022-11-04", d_cn:"2025-05-22", lim:false, n_global:"", n_cn:"", avatar:"尤妮" },
+    { name_global:"杨", name_cn:"杨", en:"Yan", r:"SSR", f:"Tetra", a:"Fire", w:"RL", d_global:"2022-11-04", d_cn:"2025-05-22", lim:false, n_global:"", n_cn:"", avatar:"杨" },
+    { name_global:"尤莉亚", name_cn:"尤莉亚", en:"Julia", r:"SSR", f:"Missilis", a:"Iron", w:"AR", d_global:"2022-11-04", d_cn:"2025-05-22", lim:false, n_global:"", n_cn:"", avatar:"尤莉亚" },
+    { name_global:"银华", name_cn:"银华", en:"Eunhwa", r:"SSR", f:"Elysion", a:"Fire", w:"SR", d_global:"2022-11-04", d_cn:"2025-05-22", lim:false, n_global:"", n_cn:"", avatar:"银华" },
+    { name_global:"贝斯蒂", name_cn:"贝斯蒂", en:"Vesti", r:"SSR", f:"Elysion", a:"Water", w:"RL", d_global:"2022-11-04", d_cn:"2025-05-22", lim:false, n_global:"", n_cn:"", avatar:"贝斯蒂" },
+    { name_global:"艾玛", name_cn:"艾玛", en:"Emma", r:"SSR", f:"Elysion", a:"Fire", w:"MG", d_global:"2022-11-04", d_cn:"2025-05-22", lim:false, n_global:"", n_cn:"", avatar:"艾玛" },
+    { name_global:"布丽德", name_cn:"布丽德", en:"Brid", r:"SSR", f:"Elysion", a:"Water", w:"AR", d_global:"2022-11-04", d_cn:"2025-05-22", lim:false, n_global:"", n_cn:"", avatar:"布丽德" },
+    { name_global:"索林", name_cn:"索林", en:"Soline", r:"SSR", f:"Elysion", a:"Iron", w:"SMG", d_global:"2022-11-04", d_cn:"2025-05-22", lim:false, n_global:"", n_cn:"", avatar:"索林" },
+    { name_global:"迪赛尔", name_cn:"迪赛尔", en:"Diesel", r:"SSR", f:"Elysion", a:"Wind", w:"MG", d_global:"2022-11-04", d_cn:"2025-05-22", lim:false, n_global:"", n_cn:"", avatar:"迪赛尔" },
+    { name_global:"桑迪", name_cn:"桑迪", en:"Centi", r:"SSR", f:"Missilis", a:"Iron", w:"RL", d_global:"2022-11-04", d_cn:"2025-05-22", lim:false, n_global:"", n_cn:"", avatar:"桑迪" },
+    { name_global:"丽塔", name_cn:"丽塔", en:"Liter", r:"SSR", f:"Missilis", a:"Iron", w:"SMG", d_global:"2022-11-04", d_cn:"2025-05-22", lim:false, n_global:"", n_cn:"", avatar:"丽塔" },
+    { name_global:"D：杀手妻子", name_cn:"D：杀手妻子", en:"D: Killer Wife", r:"SSR", f:"Elysion", a:"Fire", w:"SR", d_global:"2024-03-07", d_cn:"", lim:true, n_global:"皮肤变体", n_cn:"", avatar:"D：杀手妻子" },  // 日期源: lootandwaifus (首发 banner)
+    { name_global:"克拉乌", name_cn:"克拉乌", en:"Crow", r:"SSR", f:"Missilis", a:"Fire", w:"SMG", d_global:"2022-11-04", d_cn:"2025-05-22", lim:false, n_global:"", n_cn:"", avatar:"克拉乌" },
+    { name_global:"德雷克", name_cn:"德雷克", en:"Drake", r:"SSR", f:"Missilis", a:"Fire", w:"SG", d_global:"2022-11-04", d_cn:"2025-05-22", lim:false, n_global:"", n_cn:"", avatar:"德雷克" },
+    { name_global:"梅里", name_cn:"梅里", en:"Mary", r:"SSR", f:"Tetra", a:"Water", w:"SG", d_global:"2022-11-04", d_cn:"2025-05-22", lim:false, n_global:"", n_cn:"", avatar:"梅里" },
+    { name_global:"佩珀", name_cn:"佩珀", en:"Pepper", r:"SSR", f:"Missilis", a:"Wind", w:"SG", d_global:"2022-11-04", d_cn:"2025-05-22", lim:false, n_global:"", n_cn:"", avatar:"佩珀" },
+    { name_global:"舒格", name_cn:"舒格", en:"Sugar", r:"SSR", f:"Tetra", a:"Iron", w:"SG", d_global:"2022-11-04", d_cn:"2025-05-22", lim:false, n_global:"", n_cn:"", avatar:"舒格" },
+    { name_global:"波莉", name_cn:"波莉", en:"Poli", r:"SSR", f:"Elysion", a:"Water", w:"SG", d_global:"2022-11-04", d_cn:"2025-05-22", lim:false, n_global:"", n_cn:"", avatar:"波莉" },
+    { name_global:"吉萝婷", name_cn:"吉萝婷", en:"Guillotine", r:"SSR", f:"Elysion", a:"Electric", w:"MG", d_global:"2022-11-04", d_cn:"2025-05-22", lim:false, n_global:"", n_cn:"", avatar:"吉萝婷" },
+    { name_global:"罗珊娜", name_cn:"罗珊娜", en:"Rosanna", r:"SSR", f:"Tetra", a:"Electric", w:"MG", d_global:"2023-06-01", d_cn:"2026-04-22", lim:false, n_global:"", n_cn:"", avatar:"罗珊娜" },  // 日期源: lootandwaifus (首发 banner)
+    { name_global:"露菲", name_cn:"露菲", en:"Rupee", r:"SSR", f:"Tetra", a:"Iron", w:"AR", d_global:"2022-11-04", d_cn:"2025-05-22", lim:false, n_global:"", n_cn:"", avatar:"露菲" },
+    { name_global:"N102", name_cn:"N102", en:"N102", r:"SR", f:"Missilis", a:"Water", w:"RL", d_global:"2022-11-04", d_cn:"2025-05-22", lim:false, n_global:"", n_cn:"", avatar:"N102" },
+    { name_global:"米卡", name_cn:"米卡", en:"Mica", r:"SR", f:"Tetra", a:"Wind", w:"RL", d_global:"2022-11-04", d_cn:"2025-05-22", lim:false, n_global:"", n_cn:"", avatar:"米卡" },
+    { name_global:"贝洛塔", name_cn:"贝洛塔", en:"Belorta", r:"SR", f:"Tetra", a:"Electric", w:"RL", d_global:"2022-11-04", d_cn:"2025-05-22", lim:false, n_global:"", n_cn:"", avatar:"贝洛塔" },
+    { name_global:"德尔塔", name_cn:"德尔塔", en:"Delta", r:"SR", f:"Elysion", a:"Wind", w:"SR", d_global:"2022-11-04", d_cn:"2025-05-22", lim:false, n_global:"", n_cn:"", avatar:"德尔塔" },
+    { name_global:"西格娜", name_cn:"西格娜", en:"Signal", r:"SSR", f:"Elysion", a:"Fire", w:"SMG", d_global:"2022-11-04", d_cn:"2025-05-22", lim:false, n_global:"", n_cn:"", avatar:"西格娜" }, // 译名修正：希格纳→西格娜 (BWIKI)
+    { name_global:"沃伦姆", name_cn:"沃伦姆", en:"Volume", r:"SSR", f:"Tetra", a:"Wind", w:"SMG", d_global:"2022-11-04", d_cn:"2025-05-22", lim:false, n_global:"", n_cn:"", avatar:"沃伦姆" },
+    { name_global:"诺伊斯", name_cn:"诺伊斯", en:"Noise", r:"SSR", f:"Tetra", a:"Electric", w:"RL", d_global:"2022-11-04", d_cn:"2025-05-28", lim:false, n_global:"", n_cn:"", avatar:"诺伊斯" },
+    { name_global:"阿莉亚", name_cn:"阿莉亚", en:"Aria", r:"SSR", f:"Tetra", a:"Water", w:"MG", d_global:"2022-11-04", d_cn:"2025-05-22", lim:false, n_global:"", n_cn:"", avatar:"阿莉亚" },
+    { name_global:"米尔克", name_cn:"米尔克", en:"Milk", r:"SSR", f:"Tetra", a:"Water", w:"SR", d_global:"2022-11-04", d_cn:"2025-05-22", lim:false, n_global:"", n_cn:"", avatar:"米尔克" },
+    { name_global:"普琳玛", name_cn:"普琳玛", en:"Frima", r:"SSR", f:"Tetra", a:"Iron", w:"SR", d_global:"2022-11-04", d_cn:"2025-05-22", lim:false, n_global:"", n_cn:"", avatar:"普琳玛" },
+    { name_global:"士兵EG", name_cn:"士兵EG", en:"Soldier EG", r:"R", f:"Elysion", a:"Electric", w:"AR", d_global:"2022-11-04", d_cn:"2025-05-22", lim:false, n_global:"", n_cn:"", avatar:"士兵EG" },
+    { name_global:"士兵FA", name_cn:"士兵FA", en:"Soldier FA", r:"R", f:"Elysion", a:"Iron", w:"SG", d_global:"2022-11-04", d_cn:"2025-05-22", lim:false, n_global:"", n_cn:"", avatar:"士兵FA" },
+    { name_global:"士兵OW", name_cn:"士兵OW", en:"Soldier OW", r:"R", f:"Elysion", a:"Fire", w:"SMG", d_global:"2022-11-04", d_cn:"2025-05-22", lim:false, n_global:"", n_cn:"", avatar:"士兵OW" },
+    { name_global:"产品08", name_cn:"产品08", en:"Product 08", r:"R", f:"Missilis", a:"Electric", w:"SR", d_global:"2022-11-04", d_cn:"2025-05-22", lim:false, n_global:"", n_cn:"", avatar:"产品08" },
+    { name_global:"产品12", name_cn:"产品12", en:"Product 12", r:"R", f:"Missilis", a:"Fire", w:"MG", d_global:"2022-11-04", d_cn:"2025-05-22", lim:false, n_global:"", n_cn:"", avatar:"产品12" },
+    { name_global:"产品23", name_cn:"产品23", en:"Product 23", r:"R", f:"Missilis", a:"Wind", w:"SG", d_global:"2022-11-04", d_cn:"2025-05-22", lim:false, n_global:"", n_cn:"", avatar:"产品23" },
+    { name_global:"IDoll 花", name_cn:"IDoll 花", en:"IDoll Flower", r:"R", f:"Tetra", a:"Wind", w:"RL", d_global:"2022-11-04", d_cn:"2025-05-22", lim:false, n_global:"", n_cn:"", avatar:"IDoll 花" },
+    { name_global:"IDoll 海", name_cn:"IDoll 海", en:"IDoll Ocean", r:"R", f:"Tetra", a:"Water", w:"SMG", d_global:"2022-11-04", d_cn:"2025-05-22", lim:false, n_global:"", n_cn:"", avatar:"IDoll 海" },
+    { name_global:"IDoll 太阳", name_cn:"IDoll 太阳", en:"IDoll Sun", r:"R", f:"Tetra", a:"Iron", w:"AR", d_global:"2022-11-04", d_cn:"2025-05-22", lim:false, n_global:"", n_cn:"", avatar:"IDoll 太阳" },
+];
+
+// 按日期排序（新→旧）
+// 同日期：SSR > SR > R > 珍藏品（珍藏品在最下方，新角色优先展示）
+// 同稀有度：阵营优先 朝圣者→泰特拉→米西利斯→极乐净土→反常
+// 同阵营：按"小队"聚合（squadMap 显式分组），无小队的按英文名稳定排序
+const factionOrder = { Pilgrim:1, Tetra:2, Missilis:3, Elysion:4, Abnormal:5 };
+// 小队映射（en → "厂商·小队名"）。
+// 数据源：fandom 厂商页 Squads section 解析 + 手补特殊小队（Counters 主角队等）
+// 同小队的角色会聚合显示。未列入的角色（联动/特殊）显示 "-"。
+const squadMap = {
+    // ===== Pilgrim =====
+    'Rapunzel: Pure Grace':'Pilgrim·Goddess', 'Red Hood':'Pilgrim·Goddess', 'Scarlet: Black Shadow':'Pilgrim·Goddess', 'Snow White: Heavy Arms':'Pilgrim·Goddess', 'Snow White: Innocent Days':'Pilgrim·Goddess',
+    'Cinderella':'Pilgrim·Old Tales', 'Grave':'Pilgrim·Old Tales', 'Little Mermaid':'Pilgrim·Old Tales',
+    'Nayuta':'Pilgrim·Pioneer', 'Rapunzel':'Pilgrim·Pioneer', 'Scarlet':'Pilgrim·Pioneer', 'Snow White':'Pilgrim·Pioneer',
+    'Dorothy':'Pilgrim·Inherit', 'Dorothy: Serendipity':'Pilgrim·Inherit', 'Harran':'Pilgrim·Inherit', 'Isabel':'Pilgrim·Inherit', 'Noah':'Pilgrim·Inherit',
+    'Chime':'Pilgrim·White Knight', 'Crown':'Pilgrim·White Knight',
+    'Liberalio':'Pilgrim·Heretic',
+    'Nihilister':'Pilgrim·Heretic',
+    // ===== Tetra =====
+    'Frima':'Tetra·Cafe Sweety', 'Frima (Treasure)':'Tetra·Cafe Sweety', 'Milk':'Tetra·Cafe Sweety', 'Milk (Treasure)':'Tetra·Cafe Sweety', 'Milk: Blooming Bunny':'Tetra·Cafe Sweety', 'Sugar':'Tetra·Cafe Sweety',
+    'Alice':'Tetra·Unlimited', 'Alice: Wonderland Bunny':'Tetra·Unlimited', 'Ludmilla':'Tetra·Unlimited', 'Ludmilla: Winter Owner':'Tetra·Unlimited', 'Neve':'Tetra·Unlimited', 'Tove':'Tetra·Unlimited', 'Tove (Treasure)':'Tetra·Unlimited',
+    'Aria':'Tetra·Prima Donna', 'Noise':'Tetra·Prima Donna', 'Volume':'Tetra·Prima Donna',
+    'Dolla':'Tetra·Talentum', 'Rupee':'Tetra·Talentum', 'Rupee: Winter Shopper':'Tetra·Talentum', 'Yan':'Tetra·Talentum',
+    'Mary':'Tetra·Seraphim', 'Mary: Bay Goddess':'Tetra·Seraphim',
+    // ⚠️ 修正：Pepper / Epinel 实际属 Missilis（gamersky 中文权威源），fandom 厂商页归类有误
+    'Epinel':'Missilis·Nepenthe', 'Folkwang':'Tetra·Nepenthe', 'Rumani':'Tetra·Nepenthe',
+    'Belorta':'Tetra·The Carronades', 'Mica':'Tetra·The Carronades', 'Mica: Snow Buddy':'Tetra·The Carronades',
+    'Ade':'Tetra·Maid For You', 'Ade: Agent Bunny':'Tetra·Maid For You', 'Cocoa':'Tetra·Maid For You', 'Privaty: Unkind Maid':'Tetra·Maid For You', 'Soda':'Tetra·Maid For You', 'Soda: Twinkling Bunny':'Tetra·Maid For You', 'Velvet':'Tetra·Maid For You',
+    'Exia':'Tetra·Protocol', 'Exia (Treasure)':'Tetra·Protocol', 'Novel':'Tetra·Protocol',
+    'Biscuit':'Tetra·Happy Zoo', 'Leona':'Tetra·Happy Zoo', 'Nero':'Tetra·Happy Zoo',
+    'Moran':'Tetra·Underworld Queen', 'Moran (Treasure)':'Tetra·Underworld Queen', 'Rosanna':'Tetra·Underworld Queen', 'Rosanna: Chic Ocean':'Tetra·Underworld Queen', 'Sakura':'Tetra·Underworld Queen', 'Sakura: Bloom in Summer':'Tetra·Underworld Queen',
+    'Blanc':'Tetra·777', 'Noir':'Tetra·777', 'Rouge':'Tetra·777',
+    'Bay':'Tetra·Rewind', 'Bay (Treasure)':'Tetra·Rewind', 'Clay':'Tetra·Rewind',
+    'Bready':'Tetra·Cooking Oil', 'Crust':'Tetra·Cooking Oil',
+    'Yulha':'Tetra·Inherit',
+    // ===== Missilis =====
+    'Drake':'Missilis·Matis', 'Drake (Treasure)':'Missilis·Matis', 'Laplace':'Missilis·Matis', 'Laplace (Treasure)':'Missilis·Matis', 'Maxwell':'Missilis·Matis',
+    'Mihara':'Missilis·Wardress', 'Mihara: Bonding Chain':'Missilis·Wardress', 'Yuni':'Missilis·Wardress',
+    'Centi':'Missilis·Mighty Tools', 'Centi (Treasure)':'Missilis·Mighty Tools', 'Liter':'Missilis·Mighty Tools',
+    'Anne: Miracle Fairy':'Missilis·Recall & Release', 'N102':'Missilis·Recall & Release',
+    'Ether':'Missilis·M.M.R.', 'Mana':'Missilis·M.M.R.',
+    'Crow':'Missilis·Exotic', 'E.H.':'Missilis·Exotic', 'Jackal':'Missilis·Exotic', 'Viper':'Missilis·Exotic', 'Viper (Treasure)':'Missilis·Exotic',
+    // 修正：Pepper 实属 Missilis（与梅里同名 Seraphim 小队的 Missilis 分支）
+    'Pepper':'Missilis·Seraphim',
+    'Guilty':'Missilis·Real Kindness', 'Quency':'Missilis·Real Kindness', 'Quency: Escape Queen':'Missilis·Real Kindness', 'Sin':'Missilis·Real Kindness',
+    'Julia':'Missilis·Master Hand', 'Julia (Treasure)':'Missilis·Master Hand',
+    'Naga':'Missilis·Dazzling Pearl', 'Tia':'Missilis·Dazzling Pearl',
+    'Elegg':'Missilis·Electric Shock', 'Elegg: Boom and Shock':'Missilis·Electric Shock', 'Trony':'Missilis·Electric Shock',
+    'Kilo':'Missilis·Heavy Gram',
+    'Flora':'Missilis·Botanic Garden', 'Trina':'Missilis·Botanic Garden',
+    'Mori':'Missilis·Incubator',
+    'Snow Crane':'Missilis·Veiled Order',
+    // ===== Elysion =====
+    'Emma':'Elysion·Absolute', 'Emma: Tactical Upgrade':'Elysion·Absolute', 'Eunhwa':'Elysion·Absolute', 'Eunhwa: Tactical Upgrade':'Elysion·Absolute', 'Vesti':'Elysion·Absolute', 'Vesti: Tactical Upgrade':'Elysion·Absolute',
+    'Brid':'Elysion·Infinity Rail', 'Brid: Silent Track':'Elysion·Infinity Rail', 'Diesel':'Elysion·Infinity Rail', 'Diesel (Treasure)':'Elysion·Infinity Rail', 'Diesel: Winter Sweets':'Elysion·Infinity Rail', 'Soline':'Elysion·Infinity Rail', 'Soline: Frost Ticket':'Elysion·Infinity Rail',
+    'Delta':'Elysion·The Scouts', 'Delta: Ninja Thief':'Elysion·The Scouts', 'Signal':'Elysion·The Scouts',
+    'Anchor':'Elysion·Aegis', 'Anchor: Innocent Maid':'Elysion·Aegis', 'Helm':'Elysion·Aegis', 'Helm (Treasure)':'Elysion·Aegis', 'Helm: Aquamarine':'Elysion·Aegis', 'Mast':'Elysion·Aegis', 'Mast: Romantic Maid':'Elysion·Aegis',
+    'Guillotine':'Elysion·Extrinsic', 'Guillotine: Winter Slayer':'Elysion·Extrinsic', 'Maiden':'Elysion·Extrinsic', 'Maiden: Ice Rose':'Elysion·Extrinsic',
+    'Miranda':'Elysion·A.C.P.U.', 'Miranda (Treasure)':'Elysion·A.C.P.U.', 'Poli':'Elysion·A.C.P.U.', 'Poli (Treasure)':'Elysion·A.C.P.U.', 'Quiry':'Elysion·A.C.P.U.',
+    'D':'Elysion·Perilous Siege', 'D: Killer Wife':'Elysion·Perilous Siege', 'K':'Elysion·Perilous Siege',
+    'Marciana':'Elysion·Academia',
+    'Arcana':'Elysion·Best Seller', 'Arcana: Fortune Mate':'Elysion·Best Seller', 'Label':'Elysion·Best Seller', 'Phantom':'Elysion·Best Seller',
+    'Sora':'Elysion·Over the Horizon',
+    'Avistar':'Elysion·Overseer',
+    // ===== Counters（主角队，不属任何厂商，故事独立单位） =====
+    'Rapi':'Counters', 'Anis':'Counters', 'Neon':'Counters', 'Modernia':'Counters',
+    'Rapi: Red Hood':'Counters', 'Anis: Sparkling Summer':'Counters', 'Anis: Star':'Counters', 'Neon: Blue Ocean':'Counters', 'Neon: Vision Eye':'Counters',
+    // ===== 联动（无小队归属，但联动批次本身可视作"小队"对齐显示） =====
+    'Asuka Shikinami Langley':'EVA联动', 'Asuka Shikinami Langley:Wille':'EVA联动', 'Rei Ayanami':'EVA联动', 'Rei Ayanami (Tentative Name)':'EVA联动', 'Mari Makinami Illustrious':'EVA联动', 'Misato Katsuragi':'EVA联动',
+    '2B':'尼尔联动', 'A2':'尼尔联动', 'Pascal':'尼尔联动',
+    'Power':'电锯人联动', 'Makima':'电锯人联动', 'Himeno':'电锯人联动',
+    'Emilia':'Re:Zero联动', 'Rem':'Re:Zero联动', 'Ram':'Re:Zero联动',
+    'Eve':'剑星联动', 'Raven':'剑星联动', 'Lily':'剑星联动',
+    'Ada Wong':'生化危机联动', 'Jill Valentine':'生化危机联动', 'Claire Redfield':'生化危机联动',
+    'Chisato Nishikigi':'莉可丽丝联动', 'Takina Inoue':'莉可丽丝联动', 'Kurumi':'莉可丽丝联动',
+    'Sakura Suzuhara':'EVA联动',
+    // ===== BWIKI 补充小队（fandom 厂商页漏的） =====
+    'Privaty':'Elysion·Triangle', 'Admi':'Missilis·Triangle', 'Yulha':'Tetra·Triangle',  // 三角部队（跨阵营，BWIKI）
+    'Privaty (Treasure)':'Elysion·Triangle',  // 珍藏品跟本体
+    // 校园社团 School Circle（跨阵营，3 人）
+    'Rei':'Tetra·SchoolCircle', 'Ein':'Missilis·SchoolCircle', 'Zwei':'Elysion·SchoolCircle',
+    'Zwei (Treasure)':'Elysion·SchoolCircle',  // 珍藏品跟本体
+    // Modernia 归 Counters 主角队（前文已映射），不再重复
+    // 替代者部队（BWIKI 仅列士兵/iDoll/产品类，米卡/贝洛塔属"小加农炮部队"另算）
+    'Soldier EG':'Elysion·Substitute', 'Soldier FA':'Elysion·Substitute', 'Soldier OW':'Elysion·Substitute',
+    'IDoll Flower':'Tetra·Substitute', 'IDoll Ocean':'Tetra·Substitute', 'IDoll Sun':'Tetra·Substitute',
+    'Product 08':'Missilis·Substitute', 'Product 12':'Missilis·Substitute', 'Product 23':'Missilis·Substitute',
+};
+
+// 小队英文名 → 中文名（基于 BWIKI 部队介绍页 wiki.biligame.com/nikke/部队介绍 国服权威译名 +
+// 未收录的按 NIKKE 国际服简中惯用译法补全）
+const squadCnMap = {
+    // ===== Pilgrim =====
+    'Pilgrim·Goddess':         '女神小队',     // 小红帽/重装白雪/暗影红莲/纯洁恩典 - 朝圣者皮肤主小队
+    'Pilgrim·Old Tales':       '童话小队',     // 灰姑娘/格雷夫/小美人鱼
+    'Pilgrim·Pioneer':         '开拓者部队',   // 白雪/红莲/长发公主/娜由塔（BWIKI）
+    'Pilgrim·Inherit':         '继承者部队',   // 伊莎贝尔/哈兰/诺雅/桃乐丝（BWIKI）
+    'Pilgrim·White Knight':    '白骑士小队',   // 皇冠/钟鸣
+    'Pilgrim·Heretic':         '异端者',       // 神罚/尼希利斯塔/莉贝雷利奥（BWIKI）
+    // ===== Tetra =====
+    'Tetra·Cafe Sweety':       '咖啡厅甜心部队', // BWIKI
+    'Tetra·Unlimited':         '无极限部队',     // BWIKI
+    'Tetra·Prima Donna':       '首席女歌手',     // BWIKI
+    'Tetra·Talentum':          '达兰特部队',     // BWIKI
+    'Tetra·Seraphim':          '六翼天使部队',   // BWIKI
+    'Tetra·Nepenthe':          '生命补药部队',   // BWIKI
+    'Tetra·The Carronades':    '小加农炮部队',   // BWIKI
+    'Tetra·Maid For You':      '专属女仆部队',   // BWIKI
+    'Tetra·Protocol':          '协议部队',       // BWIKI
+    'Tetra·Happy Zoo':         '快乐动物园部队', // BWIKI
+    'Tetra·Underworld Queen':  '黑道女王部队',   // BWIKI
+    'Tetra·777':               '777部队',        // BWIKI
+    'Tetra·Rewind':            '倒带部队',       // 贝伊/克雷伊
+    'Tetra·Cooking Oil':       '料理油部队',     // 布蕾德/克拉斯
+    'Tetra·Inherit':           '三角部队',       // 尤尔夏 - BWIKI 标"三角部队"
+    // ===== Missilis =====
+    'Missilis·Matis':          '墨提斯部队',     // BWIKI
+    'Missilis·Wardress':       '警备卫士部队',   // BWIKI
+    'Missilis·Mighty Tools':   '非凡工具部队',   // BWIKI
+    'Missilis·Recall & Release': '召回释放部队', // BWIKI
+    'Missilis·M.M.R.':         'M.M.R',          // BWIKI
+    'Missilis·Exotic':         '外来者部队',     // BWIKI
+    'Missilis·Real Kindness':  '真善美',         // BWIKI
+    'Missilis·Master Hand':    '大师之手部队',   // BWIKI
+    'Missilis·Nepenthe':       '生命补药部队',   // 跨阵营小队（与 Tetra·Nepenthe 同名同小队）
+    'Missilis·Seraphim':       '六翼天使部队',   // 跨阵营小队（与 Tetra·Seraphim 同名同小队）
+    'Missilis·Dazzling Pearl': '璀璨之珠部队',   // 娜嘉/蒂亚
+    'Missilis·Electric Shock': '电击部队',       // 伊莱格/特罗尼
+    'Missilis·Heavy Gram':     '重量级小队',     // 基洛
+    'Missilis·Botanic Garden': '植物园部队',     // 弗洛拉/特蕾娜
+    'Missilis·Incubator':      '孵化舱部队',     // 莫里
+    'Missilis·Veiled Order':   '隐秩部队',       // 白鹤
+    // ===== Elysion =====
+    'Elysion·Absolute':        '特种部队',       // BWIKI
+    'Elysion·Infinity Rail':   '无限轨道部队',   // BWIKI
+    'Elysion·The Scouts':      '侦察者部队',     // BWIKI
+    'Elysion·Aegis':           '宙斯盾部队',     // BWIKI
+    'Elysion·Extrinsic':       '外界部队',       // BWIKI
+    'Elysion·A.C.P.U.':        'A.C.P.U',        // BWIKI
+    'Elysion·Perilous Siege':  '危险席部队',     // BWIKI
+    // Academia 中文移到下方 BWIKI 补充区统一定义为"学术界"
+    'Elysion·Best Seller':     '畅销书部队',     // 阿尔卡娜/莱贝尔/潘托姆
+    'Elysion·Over the Horizon':'地平线部队',     // 索拉
+    'Elysion·Overseer':        '监督者部队',     // 阿维斯塔
+    // ===== BWIKI 补充小队 =====
+    'Elysion·Triangle':        '三角部队',       // BWIKI（普丽瓦蒂）
+    'Missilis·Triangle':       '三角部队',       // BWIKI（艾德米）
+    'Tetra·Triangle':          '三角部队',       // BWIKI（尤尔夏）
+    'Tetra·SchoolCircle':      '校园社团',       // School Circle（莱伊）
+    'Missilis·SchoolCircle':   '校园社团',       // School Circle（艾因）
+    'Elysion·SchoolCircle':    '校园社团',       // School Circle（茨瓦伊）
+    'Elysion·Academia':        '学术界',         // Taptap 国服译名（玛律恰那）
+    'Elysion·Substitute':      '替代者部队',     // BWIKI
+    'Missilis·Substitute':     '替代者部队',
+    'Tetra·Substitute':        '替代者部队',
+    // ===== 主角队 + 联动 =====
+    'Counters':                '反击部队',       // BWIKI 反击部队
+    'EVA联动':                 'EVA联动',
+    '尼尔联动':                '尼尔联动',
+    '电锯人联动':              '电锯人联动',
+    'Re:Zero联动':             'Re:Zero联动',
+    '剑星联动':                '剑星联动',
+    '生化危机联动':            '生化危机联动',
+    '莉可丽丝联动':            '莉可丽丝联动',
+};
+// 排序函数（按 server 决定主排序键：
+//   'cn' → 优先 d_cn（国服模式按国服时间降序）
+//   其他 → 优先 d_global（默认/国际服/双服按国际服时间降序）
+function sortCharacters(server) {
+    // 预统计每个日期内的角色数（用于决定"阵营优先 vs 小队优先"）
+    // 同日期 ≥3 个角色 → 阵营优先（朝圣者聚顶）
+    // 同日期 <3 个角色 → 小队优先（跨阵营同小队凑一起）
+    const dateOf = (c) => server === 'cn'
+        ? (c.d_cn || c.d_global || "")
+        : (c.d_global || c.d_cn || "");
+    const dateCount = {};
+    characters.forEach(c => {
+        const d = dateOf(c);
+        dateCount[d] = (dateCount[d] || 0) + 1;
+    });
+
+    // 预计算每个角色的"中文小队名"
+    const cnSquadOf = (c) => {
+        const sq = squadMap[c.en] || '';
+        return sq ? (squadCnMap[sq] || sq.split('·').pop()) : '';
+    };
+
+    // 预计算"跨阵营小队"集合：同一中文小队涉及 ≥2 个不同阵营的，记下来
+    const squadFactions = {};
+    characters.forEach(c => {
+        const sq = cnSquadOf(c);
+        if (!sq) return;
+        if (!squadFactions[sq]) squadFactions[sq] = new Set();
+        squadFactions[sq].add(c.f);
+    });
+    const crossFactionSquads = new Set(
+        Object.keys(squadFactions).filter(sq => squadFactions[sq].size >= 2)
+    );
+
+    characters.sort((a,b) => {
+        const dateA = dateOf(a), dateB = dateOf(b);
+        if (dateA !== dateB) return dateB.localeCompare(dateA);
+        const typeWeight = (c) => {
+            if ((c.name_global || "").includes("（珍藏品）")) return 9;
+            if (c.r === "SSR") return 1;
+            if (c.r === "SR") return 2;
+            if (c.r === "R") return 3;
+            return 4;
+        };
+        const wa = typeWeight(a), wb = typeWeight(b);
+        if (wa !== wb) return wa - wb;
+
+        const sqCnA = cnSquadOf(a), sqCnB = cnSquadOf(b);
+        const fa = factionOrder[a.f] || 99, fb = factionOrder[b.f] || 99;
+
+        // 同日期角色数 ≥3 → 阵营优先模式（朝圣者聚顶）
+        // 跨阵营同小队成员单独成段，挪到所有阵营段之后
+        if ((dateCount[dateA] || 0) >= 3) {
+            const xA = crossFactionSquads.has(sqCnA);
+            const xB = crossFactionSquads.has(sqCnB);
+            // 跨阵营小队成员排在所有非跨阵营成员之后
+            if (xA !== xB) return xA ? 1 : -1;
+            // 都是跨阵营小队成员：按中文小队名聚合
+            if (xA && xB) {
+                if (sqCnA !== sqCnB) return sqCnA.localeCompare(sqCnB, 'zh');
+                if (fa !== fb) return fa - fb;
+                return (a.en || "").localeCompare(b.en || "");
+            }
+            // 都不是跨阵营：阵营 → 小队 → 英文名
+            if (fa !== fb) return fa - fb;
+            if ((sqCnA && !sqCnB) || (!sqCnA && sqCnB)) return sqCnA ? -1 : 1;
+            if (sqCnA !== sqCnB) return sqCnA.localeCompare(sqCnB, 'zh');
+        } else {
+            // 小日期 <3：小队优先 → 阵营 → 英文名
+            if ((sqCnA && !sqCnB) || (!sqCnA && sqCnB)) return sqCnA ? -1 : 1;
+            if (sqCnA !== sqCnB) return sqCnA.localeCompare(sqCnB, 'zh');
+            if (fa !== fb) return fa - fb;
+        }
+        return (a.en || "").localeCompare(b.en || "");
+    });
+}
+// 初始按默认（国际服优先）排一次
+sortCharacters('all');
+
+const factionMap = { Elysion:'极乐净土', Missilis:'米西利斯', Tetra:'泰特拉', Pilgrim:'朝圣者', Abnormal:'反常' };
+const attrMap = { Fire:'火', Water:'水', Electric:'电', Wind:'风', Iron:'铁' };
+const weaponMap = { AR:'步枪', MG:'加特林', RL:'发射器', SG:'霰弹枪', SMG:'冲锋枪', SR:'狙击枪' };
+
+let currentFaction = 'all';
+let currentServer = 'all';
+
+function setFilter(f, evt) {
+    currentFaction = f;
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    if (evt && evt.target) evt.target.classList.add('active');
+    doRender();
+}
+
+function setServerFilter(s, evt) {
+    currentServer = s;
+    document.querySelectorAll('.server-btn').forEach(b => b.classList.remove('active'));
+    if (evt && evt.target) evt.target.classList.add('active');
+    // 切换 body class 以隐藏对侧日期列
+    document.body.classList.remove('server-only-global', 'server-only-cn');
+    if (s === 'global') document.body.classList.add('server-only-global');
+    else if (s === 'cn') document.body.classList.add('server-only-cn');
+    doRender();
+}
+
+function doRender() {
+    // 按当前服重排（国服模式按 d_cn 降序，其他按 d_global 降序）
+    sortCharacters(currentServer);
+    const q = document.getElementById('searchBox').value.toLowerCase();
+    let data = currentFaction === 'all' ? characters : characters.filter(c => c.f === currentFaction);
+
+    // 服务器过滤
+    if (currentServer === 'global') data = data.filter(c => c.d_global);
+    else if (currentServer === 'cn') data = data.filter(c => c.d_cn);
+    else if (currentServer === 'both') data = data.filter(c => c.d_global && c.d_cn);
+
+    if (q) data = data.filter(c =>
+        (c.name_global && c.name_global.toLowerCase().includes(q)) ||
+        (c.name_cn && c.name_cn.toLowerCase().includes(q)) ||
+        (c.en && c.en.toLowerCase().includes(q)) ||
+        (c.n_global && c.n_global.toLowerCase().includes(q)) ||
+        (c.n_cn && c.n_cn.toLowerCase().includes(q))
+    );
+
+    const tbody = document.getElementById('tbody');
+    tbody.innerHTML = '';
+
+    let ssr=0, sr=0, rr=0, globalN=0, cnN=0, bothN=0;
+
+    data.forEach(c => {
+        if (c.r==='SSR') ssr++;
+        else if (c.r==='SR') sr++;
+        else if (c.r==='R') rr++;
+        if (c.d_global) globalN++;
+        if (c.d_cn) cnN++;
+        if (c.d_global && c.d_cn) bothN++;
+
+        const tr = document.createElement('tr');
+        tr.className = `faction-${c.f}`;
+        const limitedMark = c.lim ? '<span class="limited-mark">★</span>' : '';
+        const attrHtml = c.a ? `<span class="attr-dot attr-${c.a}"></span>${attrMap[c.a]||''}` : '-';
+        const factionName = factionMap[c.f] || c.f || '-';
+
+        // 角色名：双行（国服名与国际服名不同才展示）+ 英文小字
+        const showCnName = c.name_cn && c.name_cn !== c.name_global;
+        const nameHtml = `
+            <div class="char-name-main">${c.name_global}${limitedMark}</div>
+            ${showCnName ? `<div class="char-name-cn">🇨🇳 ${c.name_cn}</div>` : ''}
+            <div class="char-en-text">${c.en || ''}</div>
+        `;
+
+        // 头像：文件名格式 `中文 (English).png`
+        // 1) 英文中的 ": "（半角冒号+空格）整体替换为全角冒号 `：`
+        // 2) 直接按数据行 avatar + en 拼文件名（珍藏品已单独存图）
+        const avatarHtml = (c.avatar && c.en)
+            ? (() => {
+                const enClean = c.en.replace(/:\s*/g, '：');
+                const avatarClean = c.avatar.replace(/:\s*/g, '：');
+                const fname = `${avatarClean} (${enClean}).png`;
+                return `<img class="char-avatar" src="avatars/${encodeURIComponent(fname)}" alt="${c.name_global}" onerror="this.outerHTML='<div class=\\'avatar-placeholder\\'>?</div>'">`;
+            })()
+            : `<div class="avatar-placeholder">?</div>`;
+
+        // 日期
+        const dGlobalHtml = c.d_global
+            ? `<span class="date-text">${c.d_global}</span>`
+            : `<span class="date-na">未上线</span>`;
+        const dCnHtml = c.d_cn
+            ? `<span class="date-cn-text">${c.d_cn}</span>`
+            : `<span class="date-na">未上线</span>`;
+
+        // 备注：优先显示国际服备注，国服备注不同时追加
+        let noteHtml = '';
+        if (c.n_global) noteHtml += `<div class="note-text">${c.n_global}</div>`;
+        if (c.n_cn && c.n_cn !== c.n_global) noteHtml += `<div class="note-text" style="color:#d35400">🇨🇳 ${c.n_cn}</div>`;
+
+        tr.innerHTML = `
+            <td class="col-date">${dGlobalHtml}</td>
+            <td class="col-date-cn">${dCnHtml}</td>
+            <td class="col-name"><div class="name-cell"><span class="faction-bar"></span>${avatarHtml}<div>${nameHtml}</div></div></td>
+            <td class="col-rarity"><span class="rarity-tag rarity-${c.r}">${c.r}</span></td>
+            <td class="col-faction"><span class="faction-tag">${factionName}</span></td>
+            <td class="col-squad"><span class="squad-tag">${squadCnMap[squadMap[c.en]] || (squadMap[c.en] ? squadMap[c.en].split('·').pop() : '-')}</span></td>
+            <td class="col-attr">${attrHtml}</td>
+            <td class="col-weapon"><span class="weapon-tag">${weaponMap[c.w]||c.w||'-'}</span></td>
+            <td class="col-note">${noteHtml}</td>
+        `;
+        tbody.appendChild(tr);
+    });
+
+    document.getElementById('totalCount').textContent = data.length;
+    document.getElementById('ssrCount').textContent = ssr;
+    document.getElementById('srCount').textContent = sr;
+    document.getElementById('rCount').textContent = rr;
+    document.getElementById('globalCount').textContent = globalN;
+    document.getElementById('cnCount').textContent = cnN;
+    document.getElementById('bothCount').textContent = bothN;
+}
+
+// 初始化
+doRender();
+</script>
+
+</body>
+</html>

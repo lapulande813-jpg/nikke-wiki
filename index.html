@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NIKKE 胜利女神 - 资料中心</title>
+    <style>
+        :root {
+            --primary: #6c5ce7;
+            --primary-light: #a29bfe;
+            --accent: #fd79a8;
+            --bg: #0f0f1a;
+            --bg-card: #1a1a2e;
+            --bg-card-hover: #222240;
+            --text: #e0e0e0;
+            --text-dim: #888;
+            --border: #2d2d4a;
+            --gold: #ffd700;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 背景动画 */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 20% 30%, rgba(108,92,231,0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(253,121,168,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(162,155,254,0.05) 0%, transparent 60%);
+            z-index: -1;
+            animation: bgMove 15s ease-in-out infinite;
+        }
+
+        @keyframes bgMove {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.1) rotate(5deg); }
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 80px 20px 40px;
+            position: relative;
+        }
+
+        .logo {
+            font-size: 4em;
+            margin-bottom: 20px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .header h1 {
+            font-size: 3em;
+            background: linear-gradient(135deg, var(--primary-light), var(--accent), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            color: var(--text-dim);
+            font-size: 1.1em;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            flex: 1;
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 30px;
+            text-decoration: none;
+            color: var(--text);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 60px rgba(108, 92, 231, 0.3);
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card-icon {
+            font-size: 3em;
+            line-height: 1;
+        }
+
+        .card-title {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: var(--primary-light);
+        }
+
+        .card-desc {
+            color: var(--text-dim);
+            font-size: 0.95em;
+            line-height: 1.6;
+            flex: 1;
+        }
+
+        .card-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.75em;
+            background: rgba(108,92,231,0.2);
+            color: var(--primary-light);
+            border: 1px solid rgba(108,92,231,0.3);
+        }
+
+        .card-arrow {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.95em;
+            margin-top: 5px;
+        }
+
+        .card-arrow::after {
+            content: '→';
+            transition: transform 0.3s;
+        }
+
+        .card:hover .card-arrow::after {
+            transform: translateX(5px);
+        }
+
+        /* 卡片主题色 */
+        .card-1 { --gradient: linear-gradient(135deg, #6c5ce7, #a29bfe); }
+        .card-2 { --gradient: linear-gradient(135deg, #fd79a8, #fdcb6e); }
+        .card-3 { --gradient: linear-gradient(135deg, #00b894, #55efc4); }
+        .card-4 { --gradient: linear-gradient(135deg, #ff4757, #ffd93d); }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-dim);
+            font-size: 0.85em;
+            border-top: 1px solid var(--border);
+            margin-top: 40px;
+        }
+
+        .footer a {
+            color: var(--primary-light);
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            color: var(--accent);
+        }
+
+        /* Stats */
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-num {
+            font-size: 2em;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary-light), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            color: var(--text-dim);
+            font-size: 0.85em;
+            margin-top: 5px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header { padding: 50px 20px 30px; }
+            .header h1 { font-size: 2em; }
+            .logo { font-size: 3em; }
+            .cards-grid { grid-template-columns: 1fr; }
+            .stats { gap: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <div class="logo">🎮</div>
+    <h1>NIKKE 资料中心</h1>
+    <p class="subtitle">胜利女神：NIKKE 攻略与角色资料汇总<br>包含知识库、角色名单、养成详情等内容</p>
+
+    <div class="stats">
+        <div class="stat-item">
+            <div class="stat-num">4</div>
+            <div class="stat-label">资料页面</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-num">200+</div>
+            <div class="stat-label">角色数据</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-num">∞</div>
+            <div class="stat-label">持续更新</div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="cards-grid">
+
+        <a href="nikke-wiki.html" class="card card-1">
+            <div class="card-icon">📚</div>
+            <div class="card-title">知识库</div>
+            <div class="card-desc">完整攻略整理：进池规则、角色培养、配队方案、养成数据、PVE强度榜等</div>
+            <div class="card-tags">
+                <span class="tag">攻略</span>
+                <span class="tag">强度榜</span>
+                <span class="tag">配队</span>
+            </div>
+            <div class="card-arrow">进入查看</div>
+        </a>
+
+        <a href="nikke-training.html" class="card card-2">
+            <div class="card-icon">⚔️</div>
+            <div class="card-title">角色培养</div>
+            <div class="card-desc">各角色的技能等级推荐、词条优先级、魔方选择等详细养成方案</div>
+            <div class="card-tags">
+                <span class="tag">培养</span>
+                <span class="tag">技能</span>
+                <span class="tag">词条</span>
+            </div>
+            <div class="card-arrow">进入查看</div>
+        </a>
+
+        <a href="nikke-roster.html" class="card card-3">
+            <div class="card-icon">👥</div>
+            <div class="card-title">角色名单</div>
+            <div class="card-desc">全角色名单与详细信息：属性、武器、企业、稀有度等筛选查询</div>
+            <div class="card-tags">
+                <span class="tag">名单</span>
+                <span class="tag">角色</span>
+                <span class="tag">查询</span>
+            </div>
+            <div class="card-arrow">进入查看</div>
+        </a>
+
+        <a href="nikke-pvp.html" class="card card-4">
+            <div class="card-icon">⚔️</div>
+            <div class="card-title">PVP 指南</div>
+            <div class="card-desc">竞技场机制、阵容配队、角色养成、攻防策略全解析</div>
+            <div class="card-tags">
+                <span class="tag">PVP</span>
+                <span class="tag">竞技场</span>
+                <span class="tag">配队</span>
+            </div>
+            <div class="card-arrow">进入查看</div>
+        </a>
+
+    </div>
+</div>
+
+<div class="footer">
+    <p>NIKKE 胜利女神资料中心 © 2026</p>
+    <p style="margin-top: 8px;">攻略来源：哔哩哔哩UP主「吡万YeeVan」 | 仅供个人学习参考</p>
+</div>
+
+</body>
+</html>

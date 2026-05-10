@@ -1,0 +1,1569 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NIKKE PVP 玩法指南</title>
+    <style>
+        :root {
+            --primary: #6c5ce7;
+            --primary-light: #a29bfe;
+            --accent: #fd79a8;
+            --bg: #0f0f1a;
+            --bg-card: #1a1a2e;
+            --bg-card-hover: #222240;
+            --text: #e0e0e0;
+            --text-dim: #888;
+            --border: #2d2d4a;
+            --gold: #ffd700;
+            --pvp-red: #ff4757;
+            --pvp-blue: #3742fa;
+            --fire: #ff6b6b;
+            --water: #74b9ff;
+            --electric: #ffeaa7;
+            --iron: #b2bec3;
+            --wind: #55efc4;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #2d1b2e 0%, #3e1a3e 50%, #6c1b4f 100%);
+            padding: 60px 20px 40px;
+            text-align: center;
+            border-bottom: 2px solid var(--pvp-red);
+            position: relative;
+            overflow: hidden;
+        }
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,71,87,0.1) 0%, transparent 50%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 1; }
+        }
+        .header h1 {
+            font-size: 2.5em;
+            background: linear-gradient(135deg, #ff4757, #ffd93d, #fd79a8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            margin-bottom: 10px;
+        }
+        .header .subtitle {
+            color: var(--text-dim);
+            font-size: 0.95em;
+            position: relative;
+        }
+
+        /* Back Link */
+        .back-link {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: var(--text);
+            text-decoration: none;
+            padding: 6px 14px;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            font-size: 0.85em;
+            background: rgba(0,0,0,0.3);
+            z-index: 10;
+            transition: all 0.3s;
+        }
+        .back-link:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        /* Navigation */
+        .nav {
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border);
+            padding: 15px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .nav a {
+            color: var(--text);
+            text-decoration: none;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            transition: all 0.3s;
+            border: 1px solid var(--border);
+        }
+        .nav a:hover {
+            background: var(--pvp-red);
+            border-color: var(--pvp-red);
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        /* Section */
+        .section {
+            margin-bottom: 50px;
+        }
+        .section-title {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--pvp-red);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-title .emoji { font-size: 1.2em; }
+
+        .subsection-title {
+            font-size: 1.3em;
+            margin: 25px 0 15px;
+            color: #ff6b7a;
+            padding-left: 12px;
+            border-left: 3px solid var(--pvp-red);
+        }
+
+        .sub-subsection-title {
+            font-size: 1.1em;
+            margin: 20px 0 10px;
+            color: var(--accent);
+        }
+
+        /* Sub nav */
+        .sub-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 10px 0 20px;
+            padding: 10px 14px;
+            background: rgba(255, 71, 87, 0.06);
+            border: 1px solid rgba(255, 71, 87, 0.2);
+            border-radius: 10px;
+        }
+        .sub-nav a {
+            display: inline-block;
+            padding: 5px 12px;
+            font-size: 0.88em;
+            color: #ff6b7a;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 71, 87, 0.3);
+            border-radius: 16px;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .sub-nav a:hover {
+            background: var(--pvp-red);
+            color: #fff;
+            border-color: var(--pvp-red);
+        }
+
+        /* Info boxes */
+        .info-box {
+            background: rgba(108, 92, 231, 0.1);
+            border: 1px solid rgba(108, 92, 231, 0.3);
+            border-radius: 10px;
+            padding: 15px 20px;
+            margin: 15px 0;
+            font-size: 0.9em;
+        }
+        .warning-box {
+            background: rgba(255, 71, 87, 0.1);
+            border: 1px solid rgba(255, 71, 87, 0.3);
+            border-radius: 10px;
+            padding: 15px 20px;
+            margin: 15px 0;
+            font-size: 0.9em;
+        }
+        .tip-box {
+            background: rgba(85, 239, 196, 0.1);
+            border: 1px solid rgba(85, 239, 196, 0.3);
+            border-radius: 10px;
+            padding: 15px 20px;
+            margin: 15px 0;
+            font-size: 0.9em;
+        }
+        .todo-box {
+            background: rgba(255, 215, 0, 0.08);
+            border: 1px dashed rgba(255, 215, 0, 0.4);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            font-size: 0.9em;
+            color: var(--text-dim);
+            text-align: center;
+        }
+        .todo-box strong { color: var(--gold); }
+
+        /* Tables */
+        .table-wrapper {
+            overflow-x: auto;
+            margin: 15px 0;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9em;
+        }
+        thead {
+            background: linear-gradient(135deg, var(--bg-card), #3e1a3e);
+        }
+        th {
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: 600;
+            color: #ff6b7a;
+            white-space: nowrap;
+        }
+        td {
+            padding: 10px 15px;
+            border-top: 1px solid var(--border);
+        }
+        tbody tr:hover {
+            background: var(--bg-card-hover);
+        }
+        tbody tr:nth-child(even) {
+            background: rgba(26, 26, 46, 0.5);
+        }
+
+        /* Team cards */
+        .team-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 15px 0;
+            transition: all 0.3s;
+        }
+        .team-card:hover {
+            border-color: var(--pvp-red);
+            box-shadow: 0 4px 20px rgba(255, 71, 87, 0.2);
+        }
+        .team-card h4 {
+            color: var(--accent);
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        .team-card .desc {
+            color: var(--text-dim);
+            font-size: 0.9em;
+            margin-bottom: 12px;
+        }
+
+        /* 替补队伍小标题 */
+        .subs-label {
+            font-size: 0.82em;
+            color: var(--text-dim);
+            margin: 14px 0 8px 4px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .subs-label::before {
+            content: '└─';
+            color: var(--pvp-red);
+            font-weight: bold;
+        }
+        /* 主队卡片内嵌替补区 */
+        .team-card .subs {
+            margin-top: 16px;
+            padding-top: 14px;
+            border-top: 1px dashed var(--border);
+        }
+
+        /* 可替换角色区（替换同一个位置的候选人） */
+        .replaceable-box {
+            margin-top: 14px;
+            padding: 12px 14px;
+            background: rgba(255, 71, 87, 0.04);
+            border: 1px dashed rgba(255, 71, 87, 0.3);
+            border-radius: 10px;
+        }
+        .replaceable-box .rb-title {
+            font-size: 0.9em;
+            color: var(--accent);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        .replaceable-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 0;
+            flex-wrap: wrap;
+        }
+        .replaceable-row + .replaceable-row {
+            border-top: 1px dashed rgba(255, 71, 87, 0.15);
+        }
+        .rb-source {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-shrink: 0;
+        }
+        .rb-source img {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+        }
+        .rb-source .name {
+            font-weight: 600;
+            color: var(--text);
+            font-size: 0.88em;
+            white-space: nowrap;
+        }
+        .rb-arrow {
+            color: var(--pvp-red);
+            font-weight: bold;
+            margin: 0 4px;
+        }
+        .rb-candidates {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            flex: 1;
+        }
+        .rb-group {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 14px;
+            border: 1px solid var(--border);
+        }
+        .rb-group-label {
+            font-size: 0.75em;
+            color: var(--wind);
+            font-weight: 600;
+            margin-right: 4px;
+        }
+        .rb-person {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+        }
+        .rb-person img {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+        }
+        .rb-person .name {
+            font-size: 0.7em;
+            color: var(--text-dim);
+            max-width: 60px;
+            text-align: center;
+            line-height: 1.1;
+        }
+
+        /* Tab 切换（国际服 / 国服） */
+        .server-tabs {
+            display: flex;
+            gap: 0;
+            margin: 10px 0 20px;
+            border-bottom: 2px solid var(--border);
+        }
+        .server-tab {
+            padding: 10px 24px;
+            font-size: 0.95em;
+            color: var(--text-dim);
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-bottom: 2px solid transparent;
+            margin-bottom: -2px;
+            font-weight: 500;
+            font-family: inherit;
+        }
+        .server-tab:hover {
+            color: var(--text);
+        }
+        .server-tab.active {
+            color: var(--pvp-red);
+            border-bottom-color: var(--pvp-red);
+            font-weight: 700;
+        }
+        .server-content {
+            display: none;
+        }
+        .server-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 精简版队伍卡片（替补队伍专用） */
+        .team-mini {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 14px 16px;
+            margin: 10px 0;
+            transition: all 0.3s;
+        }
+        .team-mini:hover {
+            border-color: var(--pvp-red);
+            box-shadow: 0 2px 12px rgba(255, 71, 87, 0.15);
+        }
+        .team-mini-title {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 1em;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .team-mini-members {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: flex-start;
+        }
+        .mini-member {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            min-width: 60px;
+            flex: 0 0 auto;
+        }
+        .mini-member img {
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            object-fit: cover;
+        }
+        .mini-member .name {
+            font-size: 0.78em;
+            color: var(--text);
+            text-align: center;
+            line-height: 1.2;
+            max-width: 70px;
+            word-break: break-all;
+        }
+        .label-defense { color: var(--pvp-blue); font-weight: bold; }
+
+        /* Element badges */
+        .elem {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 8px;
+            font-size: 0.75em;
+            font-weight: 600;
+        }
+        .elem-fire { background: rgba(255,107,107,0.2); color: var(--fire); border: 1px solid var(--fire); }
+        .elem-water { background: rgba(116,185,255,0.2); color: var(--water); border: 1px solid var(--water); }
+        .elem-electric { background: rgba(255,234,167,0.2); color: var(--electric); border: 1px solid var(--electric); }
+        .elem-iron { background: rgba(178,190,195,0.2); color: var(--iron); border: 1px solid var(--iron); }
+        .elem-wind { background: rgba(85,239,196,0.2); color: var(--wind); border: 1px solid var(--wind); }
+
+        /* Avatar */
+        .avatar-sm {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            vertical-align: middle;
+            margin-right: 6px;
+            border: 1px solid var(--border);
+        }
+
+        /* Collapsible */
+        details {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+        summary {
+            padding: 12px 20px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #ff6b7a;
+            transition: background 0.3s;
+        }
+        summary:hover {
+            background: var(--bg-card-hover);
+        }
+        details[open] summary {
+            border-bottom: 1px solid var(--border);
+        }
+        details .content {
+            padding: 15px 20px;
+        }
+
+        /* Tag pills */
+        .tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.75em;
+            margin: 1px 2px;
+            background: rgba(255, 71, 87, 0.2);
+            color: #ff6b7a;
+        }
+        .tag-priority-1 {
+            background: rgba(255, 215, 0, 0.2);
+            color: var(--gold);
+            border: 1px solid rgba(255, 215, 0, 0.4);
+        }
+        .tag-priority-2 {
+            background: rgba(108, 92, 231, 0.2);
+            color: var(--primary-light);
+            border: 1px solid rgba(108, 92, 231, 0.4);
+        }
+        .tag-priority-3 {
+            background: rgba(85, 239, 196, 0.2);
+            color: var(--wind);
+            border: 1px solid rgba(85, 239, 196, 0.4);
+        }
+
+        /* Legend */
+        .legend {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 10px;
+            margin: 15px 0;
+        }
+        .legend-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 12px 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .legend-item .mark {
+            font-size: 1.3em;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        /* Back to top */
+        .back-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 45px;
+            height: 45px;
+            background: var(--pvp-red);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.2em;
+            cursor: pointer;
+            opacity: 0;
+            transition: all 0.3s;
+            z-index: 99;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .back-top.show { opacity: 1; }
+        .back-top:hover { background: var(--accent); transform: scale(1.1); }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            border-top: 1px solid var(--border);
+            color: var(--text-dim);
+            font-size: 0.85em;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 { font-size: 1.8em; }
+            .section-title { font-size: 1.4em; }
+            .container { padding: 20px 15px; }
+            table { font-size: 0.8em; }
+            th, td { padding: 8px 10px; }
+            .back-link { top: 10px; left: 10px; font-size: 0.75em; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+    <a href="index.html" class="back-link">← 返回首页</a>
+    <h1>⚔️ NIKKE PVP 玩法指南</h1>
+    <p class="subtitle">竞技场机制、阵容配队、角色养成、攻防策略全解析</p>
+</div>
+
+<!-- Navigation -->
+<nav class="nav">
+    <div class="nav-inner">
+        <a href="#section1">PVP 基础机制</a>
+        <a href="#section2">PVP 核心角色</a>
+        <a href="#section3">推荐队伍</a>
+        <a href="#section4">养成推荐</a>
+        <a href="#section5">实战策略</a>
+        <a href="#section6">魔方&词条</a>
+    </div>
+</nav>
+
+<div class="container">
+
+<!-- 总览说明 -->
+<div class="section">
+    <div class="warning-box">
+        ⚠️ <strong>重要提示</strong>：PVP 环境变化快，角色强度会随版本更新变化。本指南内容会根据版本迭代持续更新。
+    </div>
+    <div class="info-box">
+        <strong>PVP 模式分类：</strong><br>
+        • <strong>普通竞技场（JJC）</strong>：每日刷新，主要刷钻石收益<br>
+        • <strong>特殊竞技场（SP / PJJC）</strong>：周期性排名赛，奖励丰厚<br>
+        • <strong>冠军竞技场</strong>：顶尖玩家参与，需要针对性配队
+    </div>
+</div>
+
+<!-- 一、PVP 基础机制 -->
+<div class="section" id="section1">
+    <h2 class="section-title"><span class="emoji">📋</span> 一、PVP 基础机制</h2>
+    <div class="sub-nav">
+        <a href="#sub-1-1">1.1 爆裂循环</a>
+        <a href="#sub-1-2">1.2 充能机制</a>
+        <a href="#sub-1-3">1.3 属性克制</a>
+        <a href="#sub-1-4">1.4 战压与等级</a>
+    </div>
+
+    <h3 class="subsection-title" id="sub-1-1">1.1 爆裂循环（Burst Cycle）</h3>
+    <div class="todo-box">
+        <strong>📝 待补充</strong><br>
+        爆裂循环原理、21蓄与15蓄差别、常见循环组合
+    </div>
+
+    <h3 class="subsection-title" id="sub-1-2">1.2 充能机制</h3>
+    <div class="todo-box">
+        <strong>📝 待补充</strong><br>
+        充能速度计算、充能拐的作用、弹容对充能的影响
+    </div>
+
+    <h3 class="subsection-title" id="sub-1-3">1.3 属性克制</h3>
+    <div class="tip-box">
+        <strong>属性克制链</strong>：电击 → 水冷 → 燃烧 → 风压 → 铁甲 → 电击（循环）
+    </div>
+    <div class="todo-box">
+        <strong>📝 待补充</strong><br>
+        PVP 中属性克制的实际影响（数值加成、是否必须考虑）
+    </div>
+
+    <h3 class="subsection-title" id="sub-1-4">1.4 战压与等级</h3>
+    <div class="todo-box">
+        <strong>📝 待补充</strong><br>
+        战压差对伤害和承伤的影响、等级碾压的重要性
+    </div>
+</div>
+
+<!-- 二、PVP 核心角色 -->
+<div class="section" id="section2">
+    <h2 class="section-title"><span class="emoji">⭐</span> 二、PVP 核心角色</h2>
+    <div class="sub-nav">
+        <a href="#sub-2-1">2.1 T0 核心</a>
+        <a href="#sub-2-2">2.2 主力输出</a>
+        <a href="#sub-2-3">2.3 辅助/拐</a>
+        <a href="#sub-2-4">2.4 防守/生存</a>
+    </div>
+
+    <h3 class="subsection-title" id="sub-2-1">2.1 T0 核心角色</h3>
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>角色</th>
+                    <th>定位</th>
+                    <th>功能</th>
+                    <th>优先级</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td colspan="4" class="todo-box" style="margin:0;">📝 待补充核心角色列表</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3 class="subsection-title" id="sub-2-2">2.2 主力输出</h3>
+    <div class="todo-box">
+        <strong>📝 待补充</strong><br>
+        主要 DPS 角色（如红莲、豺狼、灰姑娘等），按属性或武器分类
+    </div>
+
+    <h3 class="subsection-title" id="sub-2-3">2.3 辅助 / 拐</h3>
+    <div class="todo-box">
+        <strong>📝 待补充</strong><br>
+        增伤辅助、减CD拐、充能拐
+    </div>
+
+    <h3 class="subsection-title" id="sub-2-4">2.4 防守 / 生存</h3>
+    <div class="todo-box">
+        <strong>📝 待补充</strong><br>
+        奶、盾、治疗类角色
+    </div>
+</div>
+
+<!-- 三、阵容配队 -->
+<div class="section" id="section3">
+    <h2 class="section-title"><span class="emoji">🛡️</span> 三、推荐队伍</h2>
+    <div class="info-box">
+        队伍框架和思路可复用，具体角色替换为自己拥有的同类定位角色即可。
+    </div>
+
+    <!-- Tab 切换 -->
+    <div class="server-tabs">
+        <button class="server-tab active" onclick="switchServer(event, 'intl')">🌍 国际服</button>
+        <button class="server-tab" onclick="switchServer(event, 'cn')">🇨🇳 国服</button>
+    </div>
+
+    <!-- 国际服 Tab 内容 -->
+    <div class="server-content active" id="server-intl">
+    <div class="info-box">
+        📌 <strong>来源</strong>：哔哩哔哩 UP 主「吡万 YeeVan」 - 妮姬国际服 5 月特殊竞技场推荐队伍<br>
+        🌍 <strong>适用</strong>：国际服 SP 竞技场（国服请切换到国服 Tab）
+    </div>
+
+    <div class="team-card">
+        <h4>💥 2.5 动 白雪公主：重型武装 不屈队</h4>
+        <p class="desc">核心思路：以白雪公主：重型武装持续抗压不倒为基础，灰姑娘电击主输出，豺狼提供充能与续航，2.5 动节奏稳定输出。</p>
+        <p style="color: var(--wind); font-size: 0.85em; margin-bottom: 10px;">✓ 全员收藏品 <strong>SR15</strong></p>
+        <div class="table-wrapper">
+            <table>
+                <thead><tr><th>位置</th><th>角色</th><th>定位</th><th>技能</th><th>词条</th><th>魔方</th></tr></thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td><img class="avatar-sm" src="avatars/豺狼 (Jackal).png" alt="豺狼"> <strong>豺狼</strong></td>
+                        <td>充能核心</td>
+                        <td>全满</td>
+                        <td>防御力、蓄力速度</td>
+                        <td>量子遗迹</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td><img class="avatar-sm" src="avatars/白雪公主：重型武装 (Snow White：Heavy Arms).png" alt="白雪公主：重型武装"> <strong>白雪公主：重型武装</strong></td>
+                        <td>主 C / 抗压</td>
+                        <td>全满</td>
+                        <td>攻击力、优越代码、暴击伤害×3、最大弹容×1</td>
+                        <td>遗迹回火</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td><img class="avatar-sm" src="avatars/布兰儿 (Blanc).png" alt="布兰儿"> <strong>布兰儿</strong></td>
+                        <td>奶 / 治疗</td>
+                        <td>1/10/10</td>
+                        <td>防御力</td>
+                        <td>遗迹回火</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td><img class="avatar-sm" src="avatars/艾达 (Ada Wong).png" alt="艾达"> <strong>艾达</strong></td>
+                        <td>电击辅助</td>
+                        <td>全满</td>
+                        <td>攻击力、优越代码、暴击伤害（PVE）</td>
+                        <td>体力神器</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td><img class="avatar-sm" src="avatars/灰姑娘 (Cinderella).png" alt="灰姑娘"> <strong>灰姑娘</strong></td>
+                        <td>电击主输出</td>
+                        <td>全满</td>
+                        <td>攻击力、优越代码、最大弹容×1</td>
+                        <td>遗迹回火 / 体力神器</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="subs">
+            <div class="subs-label">替补方案</div>
+            <div class="team-mini">
+                <div class="team-mini-title">💥 2.5 动 重装白雪不屈队（替补版）</div>
+                <div class="team-mini-members">
+                    <div class="mini-member"><img src="avatars/豺狼 (Jackal).png" alt="豺狼"><span class="name">豺狼</span></div>
+                    <div class="mini-member"><img src="avatars/白雪公主：重型武装 (Snow White：Heavy Arms).png" alt="白雪公主：重型武装"><span class="name">白雪公主：重型武装</span></div>
+                    <div class="mini-member"><img src="avatars/布兰儿 (Blanc).png" alt="布兰儿"><span class="name">布兰儿</span></div>
+                    <div class="mini-member"><img src="avatars/鲁玛妮 (Rumani).png" alt="鲁玛妮"><span class="name">鲁玛妮</span></div>
+                    <div class="mini-member"><img src="avatars/灰姑娘 (Cinderella).png" alt="灰姑娘"><span class="name">灰姑娘</span></div>
+                </div>
+                <details style="margin-top: 10px; background: rgba(0,0,0,0.2); border: none;">
+                    <summary style="font-size: 0.85em; padding: 6px 10px; color: var(--text-dim);">查看养成详情</summary>
+                    <div class="content" style="padding: 10px;">
+                        <div class="table-wrapper" style="margin: 0;">
+                            <table style="font-size: 0.82em;">
+                                <thead><tr><th>角色</th><th>技能</th><th>词条</th><th>魔方</th><th>收藏品</th></tr></thead>
+                                <tbody>
+                                    <tr><td><strong>豺狼</strong></td><td>全满</td><td>防御力、蓄力速度</td><td>遗迹回火</td><td>SR15</td></tr>
+                                    <tr><td><strong>白雪公主：重型武装</strong></td><td>全满</td><td>攻击力、优越代码、暴击伤害×3、最大弹容×1</td><td>遗迹回火</td><td>SR15</td></tr>
+                                    <tr><td><strong>布兰儿</strong></td><td>1/10/10</td><td>防御力</td><td>遗迹回火</td><td>SR15</td></tr>
+                                    <tr><td><strong>鲁玛妮</strong></td><td>1/1/1</td><td>—</td><td>遗迹回火</td><td><span style="color: var(--accent);">SR0</span></td></tr>
+                                    <tr><td><strong>灰姑娘</strong></td><td>全满</td><td>攻击力、优越代码、最大弹容×1</td><td>遗迹回火</td><td>SR15</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </details>
+            </div>
+            <div class="team-mini">
+                <div class="team-mini-title">💥 无动 数邪修队</div>
+                <div class="team-mini-members">
+                    <div class="mini-member"><img src="avatars/鲁玛妮 (Rumani).png" alt="鲁玛妮"><span class="name">鲁玛妮</span></div>
+                    <div class="mini-member"><img src="avatars/米哈拉：羁绊之链 (Mihara：Bonding Chain).png" alt="米哈拉：羁绊之链"><span class="name">米哈拉：羁绊之链</span></div>
+                    <div class="mini-member"><img src="avatars/布兰儿 (Blanc).png" alt="布兰儿"><span class="name">布兰儿</span></div>
+                    <div class="mini-member"><img src="avatars/饼干 (Biscuit).png" alt="饼干"><span class="name">饼干</span></div>
+                    <div class="mini-member"><img src="avatars/灰姑娘 (Cinderella).png" alt="灰姑娘"><span class="name">灰姑娘</span></div>
+                </div>
+                <p style="font-size: 0.8em; color: var(--text-dim); margin-top: 8px; margin-left: 4px;">📌 按 PVE 正常养成即可（PVE 养成内容待后续补充）</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="team-card">
+        <h4>💥 2 动 尼恩无敌队</h4>
+        <p class="desc">核心思路：尼恩提供无敌效果保证生存，珍藏品牡丹快速减 CD，特蕾娜与诺雅形成爆发循环，阿妮斯承伤。</p>
+        <p style="color: var(--wind); font-size: 0.85em; margin-bottom: 10px;">✓ 牡丹达到 <strong>珍藏品 3 阶</strong>，其他角色收藏品 <strong>SR15</strong></p>
+        <div class="table-wrapper">
+            <table>
+                <thead><tr><th>位置</th><th>角色</th><th>定位</th><th>技能</th><th>词条</th><th>魔方</th></tr></thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td><img class="avatar-sm" src="avatars/牡丹（珍藏品） (Moran (Treasure)).png" alt="牡丹（珍藏品）"> <strong>牡丹（珍藏品）</strong></td>
+                        <td>减 CD 核心</td>
+                        <td>全满</td>
+                        <td>攻击力、优越代码（PVE）、<span style="color: var(--pvp-red);">防御力（PVP）</span></td>
+                        <td>遗迹回火</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td><img class="avatar-sm" src="avatars/诺雅 (Noah).png" alt="诺雅"> <strong>诺雅</strong></td>
+                        <td>辅助</td>
+                        <td>全满</td>
+                        <td>防御力、蓄力速度</td>
+                        <td>遗迹回火</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td><img class="avatar-sm" src="avatars/尼恩：幻视之眼 (Neon：Vision Eye).png" alt="尼恩：幻视之眼"> <strong>尼恩：幻视之眼</strong></td>
+                        <td>无敌核心</td>
+                        <td>全满</td>
+                        <td>攻击力×2~3、优越代码×4、最大弹容×1~2、蓄力速度×4</td>
+                        <td>遗迹回火</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td><img class="avatar-sm" src="avatars/特蕾娜 (Trina).png" alt="特蕾娜"> <strong>特蕾娜</strong></td>
+                        <td>输出</td>
+                        <td>全满</td>
+                        <td>蓄力速度</td>
+                        <td>体力神器</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td><img class="avatar-sm" src="avatars/阿妮斯：超级巨星 (Anis：Star).png" alt="阿妮斯：超级巨星"> <strong>阿妮斯：超级巨星</strong></td>
+                        <td>承伤 / 辅助</td>
+                        <td>全满</td>
+                        <td>攻击力、优越代码、最大弹容×1</td>
+                        <td>遗迹回火</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="subs">
+            <div class="subs-label">替补方案</div>
+            <div class="team-mini">
+                <div class="team-mini-title">💥 2.5 动 尼恩阿妮斯队</div>
+                <div class="team-mini-members">
+                    <div class="mini-member"><img src="avatars/阿妮斯：超级巨星 (Anis：Star).png" alt="阿妮斯：超级巨星"><span class="name">阿妮斯：超级巨星</span></div>
+                    <div class="mini-member"><img src="avatars/诺雅 (Noah).png" alt="诺雅"><span class="name">诺雅</span></div>
+                    <div class="mini-member"><img src="avatars/尼恩：幻视之眼 (Neon：Vision Eye).png" alt="尼恩：幻视之眼"><span class="name">尼恩：幻视之眼</span></div>
+                    <div class="mini-member"><img src="avatars/贝斯蒂：战术升级 (Vesti：Tactical Upgrade).png" alt="贝斯蒂：战术升级"><span class="name">贝斯蒂：战术升级</span></div>
+                    <div class="mini-member"><img src="avatars/饼干 (Biscuit).png" alt="饼干"><span class="name">饼干</span></div>
+                </div>
+                <details style="margin-top: 10px; background: rgba(0,0,0,0.2); border: none;">
+                    <summary style="font-size: 0.85em; padding: 6px 10px; color: var(--text-dim);">查看养成详情</summary>
+                    <div class="content" style="padding: 10px;">
+                        <div class="table-wrapper" style="margin: 0;">
+                            <table style="font-size: 0.82em;">
+                                <thead><tr><th>角色</th><th>技能</th><th>词条</th><th>魔方</th><th>收藏品</th></tr></thead>
+                                <tbody>
+                                    <tr><td><strong>阿妮斯：超级巨星</strong></td><td>全满</td><td>攻击力、优越代码、最大弹容×1</td><td>量子遗迹</td><td>SR15</td></tr>
+                                    <tr><td><strong>诺雅</strong></td><td>全满</td><td>防御力、蓄力速度</td><td>遗迹回火</td><td>SR15</td></tr>
+                                    <tr><td><strong>尼恩：幻视之眼</strong></td><td>全满</td><td>攻击力×2~3、优越代码×4、最大弹容×1~2、蓄力速度×4</td><td>遗迹回火</td><td>SR15</td></tr>
+                                    <tr><td><strong>贝斯蒂：战术升级</strong></td><td>全满</td><td>攻击力、最大弹容×2、蓄力速度21%</td><td>遗迹回火</td><td>SR15</td></tr>
+                                    <tr><td><strong>饼干</strong></td><td>1/1/1</td><td>—</td><td>遗迹回火</td><td>SR15</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </details>
+            </div>
+            <div class="team-mini">
+                <div class="team-mini-title">💥 3 动 尼恩无敌队</div>
+                <div class="team-mini-members">
+                    <div class="mini-member"><img src="avatars/牡丹（珍藏品） (Moran (Treasure)).png" alt="牡丹（珍藏品）"><span class="name">牡丹（珍藏品）</span></div>
+                    <div class="mini-member"><img src="avatars/贝伊（珍藏品） (Bay (Treasure)).png" alt="贝伊（珍藏品）"><span class="name">贝伊（珍藏品）</span></div>
+                    <div class="mini-member"><img src="avatars/尼恩：幻视之眼 (Neon：Vision Eye).png" alt="尼恩：幻视之眼"><span class="name">尼恩：幻视之眼</span></div>
+                    <div class="mini-member"><img src="avatars/饼干 (Biscuit).png" alt="饼干"><span class="name">饼干</span></div>
+                    <div class="mini-member"><img src="avatars/阿妮斯：超级巨星 (Anis：Star).png" alt="阿妮斯：超级巨星"><span class="name">阿妮斯：超级巨星</span></div>
+                </div>
+                <details style="margin-top: 10px; background: rgba(0,0,0,0.2); border: none;">
+                    <summary style="font-size: 0.85em; padding: 6px 10px; color: var(--text-dim);">查看养成详情</summary>
+                    <div class="content" style="padding: 10px;">
+                        <div class="table-wrapper" style="margin: 0;">
+                            <table style="font-size: 0.82em;">
+                                <thead><tr><th>角色</th><th>技能</th><th>词条</th><th>魔方</th><th>收藏品</th></tr></thead>
+                                <tbody>
+                                    <tr><td><strong>牡丹（珍藏品）</strong></td><td>全满</td><td>攻击力、优越代码（PVE）、<span style="color: var(--pvp-red);">防御力（PVP）</span></td><td>遗迹回火</td><td>珍藏品 3 阶</td></tr>
+                                    <tr><td><strong>贝伊（珍藏品）</strong></td><td>全满</td><td>防御力、蓄力速度</td><td>遗迹回火</td><td>珍藏品 3 阶</td></tr>
+                                    <tr><td><strong>尼恩：幻视之眼</strong></td><td>全满</td><td>攻击力×2~3、优越代码×4、最大弹容×1~2、蓄力速度×4</td><td>遗迹回火</td><td>SR15</td></tr>
+                                    <tr><td><strong>阿妮斯：超级巨星</strong></td><td>全满</td><td>攻击力、优越代码、最大弹容×1</td><td>遗迹回火</td><td>SR15</td></tr>
+                                    <tr><td><strong>饼干</strong></td><td>1/1/1</td><td>—</td><td>遗迹回火</td><td><span style="color: var(--accent);">SR0</span></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </div>
+
+    <div class="team-card">
+        <h4>💥 2 动 双核爆队</h4>
+        <p class="desc">核心思路：娜由塔与罗珊娜双核输出，桑迪保护 + 减伤，海伦（珍藏品）增伤辅助，艾米莉亚收割。</p>
+        <p style="color: var(--wind); font-size: 0.85em; margin-bottom: 10px;">✓ 海伦达到 <strong>珍藏品 3 阶</strong>，其他角色收藏品 <strong>SR15</strong></p>
+        <div class="table-wrapper">
+            <table>
+                <thead><tr><th>位置</th><th>角色</th><th>定位</th><th>技能</th><th>词条</th><th>魔方</th></tr></thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td><img class="avatar-sm" src="avatars/娜由塔 (Nayuta).png" alt="娜由塔"> <strong>娜由塔</strong></td>
+                        <td>双核之一</td>
+                        <td>全满</td>
+                        <td>攻击力、优越代码、<span style="color: var(--pvp-red);">蓄力伤害（PVP）</span></td>
+                        <td>体力神器</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td><img class="avatar-sm" src="avatars/海伦（珍藏品） (Helm (Treasure)).png" alt="海伦（珍藏品）"> <strong>海伦（珍藏品）</strong></td>
+                        <td>增伤辅助</td>
+                        <td>全满</td>
+                        <td>攻击力、优越代码、<span style="color: var(--pvp-red);">蓄力速度（PVP）</span></td>
+                        <td>量子遗迹</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td><img class="avatar-sm" src="avatars/艾米莉亚 (Emilia).png" alt="艾米莉亚"> <strong>艾米莉亚</strong></td>
+                        <td>收割 / 辅助</td>
+                        <td>全满</td>
+                        <td>攻击力、<span style="color: var(--pvp-red);">蓄力速度（PVP）</span></td>
+                        <td>量子遗迹</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td><img class="avatar-sm" src="avatars/桑迪 (Centi).png" alt="桑迪"> <strong>桑迪</strong></td>
+                        <td>保护 / 减伤</td>
+                        <td>1/1/1</td>
+                        <td>蓄力速度</td>
+                        <td>量子遗迹</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td><img class="avatar-sm" src="avatars/罗珊娜 (Rosanna).png" alt="罗珊娜"> <strong>罗珊娜</strong></td>
+                        <td>双核之二</td>
+                        <td>全满</td>
+                        <td><span style="color: var(--pvp-red);">攻击力</span>、暴击率、暴击伤害</td>
+                        <td>遗迹回火</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="subs">
+            <div class="subs-label">替补方案</div>
+            <div class="team-mini">
+                <div class="team-mini-title">💥 2 动 经典娜由塔队</div>
+                <div class="team-mini-members">
+                    <div class="mini-member"><img src="avatars/娜由塔 (Nayuta).png" alt="娜由塔"><span class="name">娜由塔</span></div>
+                    <div class="mini-member"><img src="avatars/桑迪 (Centi).png" alt="桑迪"><span class="name">桑迪</span></div>
+                    <div class="mini-member"><img src="avatars/海伦（珍藏品） (Helm (Treasure)).png" alt="海伦（珍藏品）"><span class="name">海伦（珍藏品）</span></div>
+                    <div class="mini-member"><img src="avatars/小红帽 (Red Hood).png" alt="小红帽"><span class="name">小红帽</span></div>
+                    <div class="mini-member"><img src="avatars/拉普拉斯（珍藏品） (Laplace (Treasure)).png" alt="拉普拉斯（珍藏品）"><span class="name">拉普拉斯（珍藏品）</span></div>
+                </div>
+                <details style="margin-top: 10px; background: rgba(0,0,0,0.2); border: none;">
+                    <summary style="font-size: 0.85em; padding: 6px 10px; color: var(--text-dim);">查看养成详情</summary>
+                    <div class="content" style="padding: 10px;">
+                        <div class="table-wrapper" style="margin: 0;">
+                            <table style="font-size: 0.82em;">
+                                <thead><tr><th>角色</th><th>技能</th><th>词条</th><th>魔方</th><th>收藏品</th></tr></thead>
+                                <tbody>
+                                    <tr><td><strong>娜由塔</strong></td><td>全满</td><td>攻击力、优越代码、<span style="color: var(--pvp-red);">蓄力伤害（PVP）</span></td><td>体力神器</td><td>SR15</td></tr>
+                                    <tr><td><strong>海伦（珍藏品）</strong></td><td>全满</td><td>攻击力、优越代码、<span style="color: var(--pvp-red);">蓄力速度（PVP）</span></td><td>量子遗迹</td><td>珍藏品 3 阶</td></tr>
+                                    <tr><td><strong>小红帽</strong></td><td>全满</td><td>攻击力、优越代码、最大弹容×1、<span style="color: var(--pvp-red);">蓄力速度（PVP）</span></td><td>量子遗迹</td><td>SR15</td></tr>
+                                    <tr><td><strong>桑迪</strong></td><td>1/1/1</td><td>蓄力速度</td><td>量子遗迹</td><td>SR15</td></tr>
+                                    <tr><td><strong>拉普拉斯（珍藏品）</strong></td><td>4/10/4</td><td>攻击力、优越代码（PVE）、<span style="color: var(--pvp-red);">蓄力速度（PVP）</span></td><td>量子遗迹</td><td>珍藏品 3 阶</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </details>
+            </div>
+            <div class="team-mini">
+                <div class="team-mini-title">💥 2 动 无艾米莉亚 双核爆队</div>
+                <div class="team-mini-members">
+                    <div class="mini-member"><img src="avatars/娜由塔 (Nayuta).png" alt="娜由塔"><span class="name">娜由塔</span></div>
+                    <div class="mini-member"><img src="avatars/海伦（珍藏品） (Helm (Treasure)).png" alt="海伦（珍藏品）"><span class="name">海伦（珍藏品）</span></div>
+                    <div class="mini-member"><img src="avatars/白雪公主：重型武装 (Snow White：Heavy Arms).png" alt="白雪公主：重型武装"><span class="name">白雪公主：重型武装</span></div>
+                    <div class="mini-member"><img src="avatars/罗珊娜 (Rosanna).png" alt="罗珊娜"><span class="name">罗珊娜</span></div>
+                    <div class="mini-member"><img src="avatars/拉普拉斯（珍藏品） (Laplace (Treasure)).png" alt="拉普拉斯（珍藏品）"><span class="name">拉普拉斯（珍藏品）</span></div>
+                </div>
+                <details style="margin-top: 10px; background: rgba(0,0,0,0.2); border: none;">
+                    <summary style="font-size: 0.85em; padding: 6px 10px; color: var(--text-dim);">查看养成详情</summary>
+                    <div class="content" style="padding: 10px;">
+                        <div class="table-wrapper" style="margin: 0;">
+                            <table style="font-size: 0.82em;">
+                                <thead><tr><th>角色</th><th>技能</th><th>词条</th><th>魔方</th><th>收藏品</th></tr></thead>
+                                <tbody>
+                                    <tr><td><strong>娜由塔</strong></td><td>全满</td><td>攻击力、优越代码、<span style="color: var(--pvp-red);">蓄力伤害（PVP）</span></td><td>体力神器</td><td>SR15</td></tr>
+                                    <tr><td><strong>海伦（珍藏品）</strong></td><td>全满</td><td>攻击力、优越代码、<span style="color: var(--pvp-red);">蓄力速度（PVP）</span></td><td>量子遗迹</td><td>珍藏品 3 阶</td></tr>
+                                    <tr><td><strong>白雪公主：重型武装</strong></td><td>全满</td><td>攻击力、优越代码、暴击伤害×3、最大弹容×1</td><td>量子遗迹</td><td>SR15</td></tr>
+                                    <tr><td><strong>拉普拉斯（珍藏品）</strong></td><td>4/10/4</td><td>攻击力、优越代码（PVE）、<span style="color: var(--pvp-red);">蓄力速度（PVP）</span></td><td>量子遗迹</td><td>珍藏品 3 阶</td></tr>
+                                    <tr><td><strong>罗珊娜</strong></td><td>全满</td><td><span style="color: var(--pvp-red);">攻击力</span>、暴击率、暴击伤害</td><td>遗迹回火</td><td>SR15</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </div>
+
+    <div class="tip-box">
+        💡 <strong>使用建议</strong>：以上三套是 5 月 SP 竞技场推荐队伍，攻防皆可使用。每个主队下方列出了 2 套替补方案，可根据账号现有角色灵活选择。
+    </div>
+    </div><!-- end: server-intl -->
+
+    <!-- 国服 Tab 内容 -->
+    <div class="server-content" id="server-cn">
+        <div class="info-box">
+            🇨🇳 <strong>适用</strong>：国服 SP 竞技场（角色池跟国际服有差异，以国服实际可获取角色为准）
+        </div>
+
+        <div class="team-card">
+            <h4>💥 2 动 红莲核爆队</h4>
+            <p class="desc">核心思路：红莲为主输出，利用核爆循环打出高爆发；布兰儿提供治疗维持生存，海伦（珍藏品）增伤辅助，桑迪与豺狼保障充能与节奏。</p>
+            <p style="color: var(--wind); font-size: 0.85em; margin-bottom: 10px;">✓ 海伦达到 <strong>珍藏品 3 阶</strong>，桑迪收藏品 <strong>SR5</strong>，其他角色 <strong>SR15</strong></p>
+            <div class="table-wrapper">
+                <table>
+                    <thead><tr><th>位置</th><th>角色</th><th>定位</th><th>技能</th><th>词条</th><th>魔方（最终 / 过渡）</th></tr></thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td><img class="avatar-sm" src="avatars/红莲 (Scarlet).png" alt="红莲"> <strong>红莲</strong></td>
+                            <td>主输出</td>
+                            <td>全满</td>
+                            <td>必须<span style="color: var(--pvp-red);">攻击力</span>、优越代码、最大弹容×2（PVE）、<span style="color: var(--pvp-red);">暴击伤害（PVP）</span></td>
+                            <td>遗迹回火 / 遗迹巨熊 · 体力神器（过渡）</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td><img class="avatar-sm" src="avatars/布兰儿 (Blanc).png" alt="布兰儿"> <strong>布兰儿</strong></td>
+                            <td>奶 / 治疗</td>
+                            <td>1/7+/7+</td>
+                            <td>防御力（无所谓）</td>
+                            <td>遗迹回火 / 遗迹巨熊 · 体力神器（过渡）</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td><img class="avatar-sm" src="avatars/海伦（珍藏品） (Helm (Treasure)).png" alt="海伦（珍藏品）"> <strong>海伦（珍藏品）</strong></td>
+                            <td>增伤辅助</td>
+                            <td>全满</td>
+                            <td><span style="color: var(--pvp-red);">蓄力速度＞21%（PVP）</span>、攻击力、优越代码</td>
+                            <td>遗迹回火 / 量子遗迹 · 战术促进（过渡）</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td><img class="avatar-sm" src="avatars/桑迪 (Centi).png" alt="桑迪"> <strong>桑迪</strong></td>
+                            <td>保护 / 减伤</td>
+                            <td>1/1/1</td>
+                            <td><span style="color: var(--pvp-red);">蓄力速度＞21%（PVP）</span>、防御力（额外）</td>
+                            <td>遗迹量子 / 遗迹巨熊 · 战术促进（过渡）</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td><img class="avatar-sm" src="avatars/豺狼 (Jackal).png" alt="豺狼"> <strong>豺狼</strong></td>
+                            <td>充能核心</td>
+                            <td>全满</td>
+                            <td><span style="color: var(--pvp-red);">蓄力速度＞21%（PVP）</span>、防御力（额外）</td>
+                            <td>遗迹量子 / 遗迹巨熊 · 战术促进（过渡）</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="replaceable-box">
+                <div class="rb-title">🔄 可替换角色（同位置候选）</div>
+                <div class="replaceable-row">
+                    <div class="rb-source">
+                        <img src="avatars/海伦（珍藏品） (Helm (Treasure)).png" alt="海伦（珍藏品）">
+                        <span class="name">海伦（珍藏品）</span>
+                        <span class="rb-arrow">→</span>
+                    </div>
+                    <div class="rb-candidates">
+                        <div class="rb-group">
+                            <span class="rb-group-label">2.5 动</span>
+                            <div class="rb-person"><img src="avatars/小红帽 (Red Hood).png" alt="小红帽"><span class="name">小红帽</span></div>
+                            <div class="rb-person"><img src="avatars/索达：闪亮兔女郎 (Soda：Twinkling Bunny).png" alt="索达：闪亮兔女郎"><span class="name">索达：闪亮兔女郎</span></div>
+                            <div class="rb-person"><img src="avatars/德雷克（珍藏品） (Drake (Treasure)).png" alt="德雷克（珍藏品）"><span class="name">德雷克（珍藏品）</span></div>
+                            <div class="rb-person"><img src="avatars/丽塔 (Liter).png" alt="丽塔"><span class="name">丽塔</span></div>
+                            <div class="rb-person"><img src="avatars/N102 (N102).png" alt="N102"><span class="name">N102</span></div>
+                        </div>
+                        <div class="rb-group">
+                            <span class="rb-group-label">2 动</span>
+                            <div class="rb-person"><img src="avatars/阿妮斯 (Anis).png" alt="阿妮斯"><span class="name">阿妮斯</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="replaceable-row">
+                    <div class="rb-source">
+                        <img src="avatars/布兰儿 (Blanc).png" alt="布兰儿">
+                        <span class="name">布兰儿</span>
+                        <span class="rb-arrow">→</span>
+                    </div>
+                    <div class="rb-candidates">
+                        <div class="rb-group">
+                            <div class="rb-person"><img src="avatars/波莉 (Poli).png" alt="波莉"><span class="name">波莉</span></div>
+                            <div class="rb-person"><img src="avatars/娜嘉 (Naga).png" alt="娜嘉"><span class="name">娜嘉</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="subs">
+                <div class="subs-label">替补方案</div>
+                <div class="team-mini">
+                    <div class="team-mini-title">💥 1.8 动 红莲罗珊娜献祭队</div>
+                    <div class="team-mini-members">
+                        <div class="mini-member"><img src="avatars/桑迪 (Centi).png" alt="桑迪"><span class="name">桑迪</span></div>
+                        <div class="mini-member"><img src="avatars/阿妮斯 (Anis).png" alt="阿妮斯"><span class="name">阿妮斯</span></div>
+                        <div class="mini-member"><img src="avatars/红莲 (Scarlet).png" alt="红莲"><span class="name">红莲</span></div>
+                        <div class="mini-member"><img src="avatars/罗珊娜 (Rosanna).png" alt="罗珊娜"><span class="name">罗珊娜</span></div>
+                        <div class="mini-member"><img src="avatars/豺狼 (Jackal).png" alt="豺狼"><span class="name">豺狼</span></div>
+                    </div>
+                    <p style="font-size: 0.8em; color: var(--text-dim); margin-top: 8px; margin-left: 4px;">📌 养成参考主队红莲/桑迪/罗珊娜/豺狼，阿妮斯养成待补充</p>
+                </div>
+                <div class="team-mini">
+                    <div class="team-mini-title">💥 2 动 红莲献祭复活队</div>
+                    <div class="team-mini-members">
+                        <div class="mini-member"><img src="avatars/红莲 (Scarlet).png" alt="红莲"><span class="name">红莲</span></div>
+                        <div class="mini-member"><img src="avatars/安妮：奇迹仙女 (Anne：Miracle Fairy).png" alt="安妮：奇迹仙女"><span class="name">安妮：奇迹仙女</span></div>
+                        <div class="mini-member"><img src="avatars/桑迪 (Centi).png" alt="桑迪"><span class="name">桑迪</span></div>
+                        <div class="mini-member"><img src="avatars/罗珊娜 (Rosanna).png" alt="罗珊娜"><span class="name">罗珊娜</span></div>
+                        <div class="mini-member"><img src="avatars/豺狼 (Jackal).png" alt="豺狼"><span class="name">豺狼</span></div>
+                    </div>
+                    <details style="margin-top: 10px; background: rgba(0,0,0,0.2); border: none;">
+                        <summary style="font-size: 0.85em; padding: 6px 10px; color: var(--text-dim);">查看养成详情</summary>
+                        <div class="content" style="padding: 10px;">
+                            <p style="font-size: 0.82em; color: var(--text-dim); margin-bottom: 8px;">📌 红莲/桑迪/罗珊娜/豺狼 参考主队养成，新增角色如下：</p>
+                            <div class="table-wrapper" style="margin: 0;">
+                                <table style="font-size: 0.82em;">
+                                    <thead><tr><th>角色</th><th>技能</th><th>词条</th><th>魔方（最终 / 过渡）</th><th>收藏品</th></tr></thead>
+                                    <tbody>
+                                        <tr><td><strong>安妮：奇迹仙女</strong></td><td>1/1/4</td><td>—</td><td>遗迹量子 / 遗迹巨熊 · 战术促进（过渡）</td><td><span style="color: var(--accent);">SR0</span></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </div>
+
+        <div class="team-card">
+            <h4>💥 3 动 阿妮斯乌龟队</h4>
+            <p class="desc">核心思路：诺伊斯、诺雅、饼干三人充能循环铺垫，阿妮斯：闪耀夏日作为核心输出，长发公主提供辅助与生存，3 动稳扎稳打。</p>
+            <p style="color: var(--wind); font-size: 0.85em; margin-bottom: 10px;">✓ 长发公主收藏品 <strong>SR5</strong>，其他角色 <strong>SR15</strong></p>
+            <div class="table-wrapper">
+                <table>
+                    <thead><tr><th>位置</th><th>角色</th><th>定位</th><th>技能</th><th>词条</th><th>魔方（最终 / 过渡）</th></tr></thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td><img class="avatar-sm" src="avatars/诺伊斯 (Noise).png" alt="诺伊斯"> <strong>诺伊斯</strong></td>
+                            <td>辅助 / 充能</td>
+                            <td>全满</td>
+                            <td><span style="color: var(--pvp-red);">蓄力速度＞21%（PVP）</span>、防御力（额外）</td>
+                            <td>遗迹回火 / 遗迹巨熊 · 体力神器（过渡）</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td><img class="avatar-sm" src="avatars/诺雅 (Noah).png" alt="诺雅"> <strong>诺雅</strong></td>
+                            <td>保命 / 辅助</td>
+                            <td>全满</td>
+                            <td><span style="color: var(--pvp-red);">蓄力速度＞21%（PVP）</span>、防御力（额外）</td>
+                            <td>遗迹回火 / 遗迹巨熊 · 体力神器（过渡）</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td><img class="avatar-sm" src="avatars/饼干 (Biscuit).png" alt="饼干"> <strong>饼干</strong></td>
+                            <td>充能 / 辅助</td>
+                            <td>全满</td>
+                            <td><span style="color: var(--pvp-red);">蓄力速度＞21%（PVP）</span>、防御力（额外）</td>
+                            <td>遗迹回火 / 遗迹巨熊 · 体力神器（过渡）</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td><img class="avatar-sm" src="avatars/阿妮斯：闪耀夏日 (Anis：Sparkling Summer).png" alt="阿妮斯：闪耀夏日"> <strong>阿妮斯：闪耀夏日</strong></td>
+                            <td>主输出</td>
+                            <td>10/10/9</td>
+                            <td>必须<span style="color: var(--pvp-red);">攻击力</span>、优越代码（PVE）</td>
+                            <td>遗迹巨熊</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td><img class="avatar-sm" src="avatars/长发公主 (Rapunzel).png" alt="长发公主"> <strong>长发公主</strong></td>
+                            <td>辅助 / 生存</td>
+                            <td>10/7/7</td>
+                            <td>暂时不刷</td>
+                            <td>遗迹促进</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="subs">
+                <div class="subs-label">替补方案</div>
+
+                <div class="team-mini">
+                    <div class="team-mini-title">💥 2 动 海伦单点秒杀队</div>
+                    <div class="team-mini-members">
+                        <div class="mini-member"><img src="avatars/诺伊斯 (Noise).png" alt="诺伊斯"><span class="name">诺伊斯</span></div>
+                        <div class="mini-member"><img src="avatars/诺雅 (Noah).png" alt="诺雅"><span class="name">诺雅</span></div>
+                        <div class="mini-member"><img src="avatars/海伦（珍藏品） (Helm (Treasure)).png" alt="海伦（珍藏品）"><span class="name">海伦（珍藏品）</span></div>
+                        <div class="mini-member"><img src="avatars/拉普拉斯（珍藏品） (Laplace (Treasure)).png" alt="拉普拉斯（珍藏品）"><span class="name">拉普拉斯（珍藏品）</span></div>
+                        <div class="mini-member"><img src="avatars/小红帽 (Red Hood).png" alt="小红帽"><span class="name">小红帽</span></div>
+                    </div>
+                    <details style="margin-top: 10px; background: rgba(0,0,0,0.2); border: none;">
+                        <summary style="font-size: 0.85em; padding: 6px 10px; color: var(--text-dim);">查看养成详情</summary>
+                        <div class="content" style="padding: 10px;">
+                            <p style="font-size: 0.82em; color: var(--text-dim); margin-bottom: 8px;">📌 诺伊斯/诺雅 参考主队养成。核心输出养成：</p>
+                            <div class="table-wrapper" style="margin: 0;">
+                                <table style="font-size: 0.82em;">
+                                    <thead><tr><th>角色</th><th>技能</th><th>词条</th><th>魔方（最终 / 过渡）</th><th>收藏品</th></tr></thead>
+                                    <tbody>
+                                        <tr><td><strong>海伦（珍藏品）</strong></td><td>全满</td><td><span style="color: var(--pvp-red);">蓄力速度＞21%（PVP）</span>、攻击力、优越代码</td><td>遗迹回火 / 量子遗迹 · 战术促进（过渡）</td><td>珍藏品 3 阶</td></tr>
+                                        <tr><td><strong>拉普拉斯（珍藏品）</strong></td><td>4/10/7</td><td>必须<span style="color: var(--pvp-red);">攻击力</span>、优越代码（PVE）、<span style="color: var(--pvp-red);">蓄力速度＞21%（PVP）</span></td><td>遗迹量子 / 遗迹巨熊 · 战术促进（过渡）</td><td>珍藏品 3 阶</td></tr>
+                                        <tr><td><strong>小红帽</strong></td><td>全满</td><td>必须<span style="color: var(--pvp-red);">攻击力</span>、<span style="color: var(--pvp-red);">暴击率、暴击伤害（PVP）</span></td><td>遗迹量子 / 遗迹巨熊 · 战术促进（过渡）</td><td>SR15</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </details>
+                </div>
+
+                <div class="team-mini">
+                    <div class="team-mini-title">💥 3 动 黑莲乌龟队</div>
+                    <div class="team-mini-members">
+                        <div class="mini-member"><img src="avatars/诺伊斯 (Noise).png" alt="诺伊斯"><span class="name">诺伊斯</span></div>
+                        <div class="mini-member"><img src="avatars/诺雅 (Noah).png" alt="诺雅"><span class="name">诺雅</span></div>
+                        <div class="mini-member"><img src="avatars/红莲：暗影 (Scarlet：Black Shadow).png" alt="红莲：暗影"><span class="name">红莲：暗影</span></div>
+                        <div class="mini-member"><img src="avatars/饼干 (Biscuit).png" alt="饼干"><span class="name">饼干</span></div>
+                        <div class="mini-member"><img src="avatars/长发公主 (Rapunzel).png" alt="长发公主"><span class="name">长发公主</span></div>
+                    </div>
+                    <div class="replaceable-box" style="margin-top: 12px;">
+                        <div class="rb-title">🔄 可替换角色</div>
+                        <div class="replaceable-row">
+                            <div class="rb-source">
+                                <img src="avatars/长发公主 (Rapunzel).png" alt="长发公主">
+                                <span class="name">长发公主</span>
+                                <span class="rb-arrow">→</span>
+                            </div>
+                            <div class="rb-candidates">
+                                <div class="rb-group">
+                                    <div class="rb-person"><img src="avatars/杨 (Yan).png" alt="杨"><span class="name">杨</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p style="font-size: 0.8em; color: var(--text-dim); margin-top: 8px; margin-left: 4px;">📌 诺伊斯/诺雅/饼干/长发公主 参考主队养成，红莲：暗影养成待补充</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="team-card">
+            <h4>💥 2 动 索达献祭队</h4>
+            <p class="desc">核心思路：索达：闪亮兔女郎与德雷克（珍藏品）双核爆发，罗珊娜与拉普拉斯（珍藏品）辅助增伤，安妮：奇迹仙女提供复活保命。</p>
+            <p style="color: var(--wind); font-size: 0.85em; margin-bottom: 10px;">✓ 德雷克、拉普拉斯达到 <strong>珍藏品 3 阶</strong>，安妮 <strong>SR0</strong>，其他角色 <strong>SR15</strong></p>
+            <div class="table-wrapper">
+                <table>
+                    <thead><tr><th>位置</th><th>角色</th><th>定位</th><th>技能</th><th>词条</th><th>魔方（最终 / 过渡）</th></tr></thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td><img class="avatar-sm" src="avatars/索达：闪亮兔女郎 (Soda：Twinkling Bunny).png" alt="索达：闪亮兔女郎"> <strong>索达：闪亮兔女郎</strong></td>
+                            <td>核心输出</td>
+                            <td>全满</td>
+                            <td>必须<span style="color: var(--pvp-red);">攻击力</span>、优越代码、最大弹容×1</td>
+                            <td>量子遗迹 / 遗迹巨熊 · 体力（过渡）</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td><img class="avatar-sm" src="avatars/德雷克（珍藏品） (Drake (Treasure)).png" alt="德雷克（珍藏品）"> <strong>德雷克（珍藏品）</strong></td>
+                            <td>核心输出</td>
+                            <td>全满</td>
+                            <td>必须<span style="color: var(--pvp-red);">攻击力</span>、优越代码、最大弹容×1</td>
+                            <td>量子遗迹 / 遗迹巨熊 · 体力（过渡）</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td><img class="avatar-sm" src="avatars/安妮：奇迹仙女 (Anne：Miracle Fairy).png" alt="安妮：奇迹仙女"> <strong>安妮：奇迹仙女</strong></td>
+                            <td>复活 / 保命</td>
+                            <td>1/1/4</td>
+                            <td>—</td>
+                            <td>遗迹回火 / 遗迹巨熊 · 战术促进（过渡）</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td><img class="avatar-sm" src="avatars/罗珊娜 (Rosanna).png" alt="罗珊娜"> <strong>罗珊娜</strong></td>
+                            <td>辅助 / 增伤</td>
+                            <td>全满</td>
+                            <td>必须<span style="color: var(--pvp-red);">攻击力</span>、<span style="color: var(--pvp-red);">暴击率、暴击伤害（PVP）</span></td>
+                            <td>遗迹量子 / 遗迹巨熊 · 战术促进（过渡）</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td><img class="avatar-sm" src="avatars/拉普拉斯（珍藏品） (Laplace (Treasure)).png" alt="拉普拉斯（珍藏品）"> <strong>拉普拉斯（珍藏品）</strong></td>
+                            <td>核心辅助</td>
+                            <td>4/10/7</td>
+                            <td>必须<span style="color: var(--pvp-red);">攻击力</span>、优越代码（PVE）、<span style="color: var(--pvp-red);">蓄力速度＞21%（PVP）</span></td>
+                            <td>遗迹量子 / 遗迹巨熊 · 战术促进（过渡）</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="subs">
+                <div class="subs-label">替补方案</div>
+
+                <div class="team-mini">
+                    <div class="team-mini-title">💥 3 动 黑莲不屈队</div>
+                    <div class="team-mini-members">
+                        <div class="mini-member"><img src="avatars/布兰儿 (Blanc).png" alt="布兰儿"><span class="name">布兰儿</span></div>
+                        <div class="mini-member"><img src="avatars/红莲：暗影 (Scarlet：Black Shadow).png" alt="红莲：暗影"><span class="name">红莲：暗影</span></div>
+                        <div class="mini-member"><img src="avatars/拉普拉斯（珍藏品） (Laplace (Treasure)).png" alt="拉普拉斯（珍藏品）"><span class="name">拉普拉斯（珍藏品）</span></div>
+                        <div class="mini-member"><img src="avatars/小红帽 (Red Hood).png" alt="小红帽"><span class="name">小红帽</span></div>
+                        <div class="mini-member"><img src="avatars/海伦（珍藏品） (Helm (Treasure)).png" alt="海伦（珍藏品）"><span class="name">海伦（珍藏品）</span></div>
+                    </div>
+                    <details style="margin-top: 10px; background: rgba(0,0,0,0.2); border: none;">
+                        <summary style="font-size: 0.85em; padding: 6px 10px; color: var(--text-dim);">查看养成详情</summary>
+                        <div class="content" style="padding: 10px;">
+                            <div class="table-wrapper" style="margin: 0;">
+                                <table style="font-size: 0.82em;">
+                                    <thead><tr><th>角色</th><th>技能</th><th>词条</th><th>魔方（最终 / 过渡）</th><th>收藏品</th></tr></thead>
+                                    <tbody>
+                                        <tr><td><strong>布兰儿</strong></td><td>1/7/10</td><td>—</td><td>遗迹回火 / 遗迹巨熊 · 体力（过渡）</td><td>SR15</td></tr>
+                                        <tr><td><strong>红莲：暗影</strong></td><td>10/7+/10</td><td>攻击力、优越代码、蓄力速度×3、最大弹容×1</td><td>遗迹回火 / 遗迹巨熊 · 体力神器（过渡）</td><td>SR15</td></tr>
+                                        <tr><td><strong>拉普拉斯（珍藏品）</strong></td><td>4/10/7</td><td>必须<span style="color: var(--pvp-red);">攻击力</span>、优越代码（PVE）、<span style="color: var(--pvp-red);">蓄力速度＞21%（PVP）</span></td><td>遗迹量子 / 遗迹巨熊 · 战术促进（过渡）</td><td>珍藏品 3 阶</td></tr>
+                                        <tr><td><strong>小红帽</strong></td><td>全满</td><td>必须<span style="color: var(--pvp-red);">攻击力</span>、<span style="color: var(--pvp-red);">暴击率、暴击伤害（PVP）</span></td><td>遗迹量子 / 遗迹巨熊 · 战术促进（过渡）</td><td>SR15</td></tr>
+                                        <tr><td><strong>海伦（珍藏品）</strong></td><td>全满</td><td><span style="color: var(--pvp-red);">蓄力速度＞21%（PVP）</span>、攻击力、优越代码</td><td>遗迹回火 / 量子遗迹 · 战术促进（过渡）</td><td>珍藏品 3 阶</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </div>
+
+        <div class="tip-box">
+            💡 <strong>使用建议</strong>：以上三套是国服 SP 竞技场推荐队伍，攻防皆可使用。每个主队下方列出了对应的替补方案，可根据账号现有角色灵活选择。
+        </div>
+    </div><!-- end: server-cn -->
+</div>
+
+<!-- 四、养成推荐 -->
+<div class="section" id="section4">
+    <h2 class="section-title"><span class="emoji">⚔️</span> 四、PVP 养成推荐</h2>
+    <div class="sub-nav">
+        <a href="#sub-4-1">4.1 技能等级</a>
+        <a href="#sub-4-2">4.2 词条优先级</a>
+        <a href="#sub-4-3">4.3 资源分配</a>
+    </div>
+
+    <h3 class="subsection-title" id="sub-4-1">4.1 PVP 技能等级推荐</h3>
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>角色</th>
+                    <th>技能等级</th>
+                    <th>词条推荐</th>
+                    <th>优先级</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td colspan="4" class="todo-box" style="margin:0;">📝 待补充各角色 PVP 技能加点</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3 class="subsection-title" id="sub-4-2">4.2 词条优先级</h3>
+    <div class="todo-box">
+        <strong>📝 待补充</strong><br>
+        PVP 和 PVE 词条区别：体力、防御力、暴伤等权重
+    </div>
+
+    <h3 class="subsection-title" id="sub-4-3">4.3 资源分配思路</h3>
+    <div class="todo-box">
+        <strong>📝 待补充</strong><br>
+        技能书/爆裂书/石头的 PVP 投入建议
+    </div>
+</div>
+
+<!-- 五、实战策略 -->
+<div class="section" id="section5">
+    <h2 class="section-title"><span class="emoji">🎯</span> 五、实战策略</h2>
+    <div class="sub-nav">
+        <a href="#sub-5-1">5.1 刷新规则</a>
+        <a href="#sub-5-2">5.2 反制技巧</a>
+        <a href="#sub-5-3">5.3 常见误区</a>
+    </div>
+
+    <h3 class="subsection-title" id="sub-5-1">5.1 刷新与排名规则</h3>
+    <div class="todo-box">
+        <strong>📝 待补充</strong><br>
+        JJC 刷新规则、SP 竞技场赛季机制、奖励领取
+    </div>
+
+    <h3 class="subsection-title" id="sub-5-2">5.2 反制技巧</h3>
+    <div class="todo-box">
+        <strong>📝 待补充</strong><br>
+        遇到不同对手阵容的应对方法
+    </div>
+
+    <h3 class="subsection-title" id="sub-5-3">5.3 常见误区</h3>
+    <div class="todo-box">
+        <strong>📝 待补充</strong><br>
+        新手 PVP 容易犯的错误、性价比陷阱
+    </div>
+</div>
+
+<!-- 六、魔方&词条 -->
+<div class="section" id="section6">
+    <h2 class="section-title"><span class="emoji">📊</span> 六、PVP 魔方与词条</h2>
+
+    <h3 class="subsection-title">PVP 魔方推荐</h3>
+    <div class="table-wrapper">
+        <table>
+            <thead><tr><th>魔方</th><th>效果</th><th>等级</th><th>适用角色</th></tr></thead>
+            <tbody>
+                <tr><td>遗迹量子魔方</td><td>蓄力速度↑</td><td>7级</td><td>狙击枪、发射器</td></tr>
+                <tr><td>遗迹回火魔方</td><td>充能能量速度↑</td><td>拉满</td><td>发射器</td></tr>
+                <tr><td>体力神谕魔方</td><td>最终体力↑</td><td>7级+开位置</td><td>全通用</td></tr>
+                <tr><td>遗迹回火魔方（减伤版）</td><td>减伤↑</td><td>拉满</td><td>全通用</td></tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="tip-box"><strong>PVP 优先级：</strong>遗迹量子 与 遗迹回火 优先提升</div>
+
+    <div class="todo-box">
+        <strong>📝 待补充</strong><br>
+        更详细的 PVP 魔方搭配思路、不同角色的魔方选择
+    </div>
+</div>
+
+<!-- 附录 -->
+<div class="section">
+    <h2 class="section-title"><span class="emoji">📎</span> 附录</h2>
+
+    <h3 class="subsection-title">术语说明</h3>
+    <div class="legend">
+        <div class="legend-item"><span class="mark">🏆</span><div><strong>JJC</strong><br><small>普通竞技场（Arena）</small></div></div>
+        <div class="legend-item"><span class="mark">⚡</span><div><strong>SP / PJJC</strong><br><small>特殊竞技场（Special Arena）</small></div></div>
+        <div class="legend-item"><span class="mark">💥</span><div><strong>爆裂（Burst）</strong><br><small>大招系统，1/2/3阶段</small></div></div>
+        <div class="legend-item"><span class="mark">🔄</span><div><strong>21蓄 / 15蓄</strong><br><small>爆裂循环周期</small></div></div>
+        <div class="legend-item"><span class="mark">🛡️</span><div><strong>战压</strong><br><small>战力压制，影响伤害/承伤</small></div></div>
+        <div class="legend-item"><span class="mark">✝️</span><div><strong>保1</strong><br><small>保证第一队胜利</small></div></div>
+    </div>
+
+    <h3 class="subsection-title">更新记录</h3>
+    <div class="table-wrapper">
+        <table>
+            <thead><tr><th>日期</th><th>内容</th></tr></thead>
+            <tbody>
+                <tr><td>2026-05-06</td><td>初始版本，搭建 PVP 指南框架</td></tr>
+                <tr><td>2026-05-06</td><td>新增 国际服 5 月 SP 竞技场 3 套推荐进攻队伍（来源：YeeVan）</td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+    <p>NIKKE PVP 玩法指南 © 2026</p>
+    <p>内容持续更新中 | 仅供个人学习参考</p>
+</div>
+
+</div><!-- end container -->
+
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+// Back to top button
+window.addEventListener('scroll', () => {
+    document.getElementById('backTop').classList.toggle('show', window.scrollY > 300);
+});
+
+// Server Tab switch
+function switchServer(event, serverId) {
+    document.querySelectorAll('.server-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.server-content').forEach(c => c.classList.remove('active'));
+    event.currentTarget.classList.add('active');
+    document.getElementById('server-' + serverId).classList.add('active');
+}
+</script>
+</body>
+</html>

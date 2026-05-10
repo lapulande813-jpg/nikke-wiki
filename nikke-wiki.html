@@ -1,0 +1,1983 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NIKKE 胜利女神知识库</title>
+    <style>
+        :root {
+            --primary: #6c5ce7;
+            --primary-light: #a29bfe;
+            --accent: #fd79a8;
+            --bg: #0f0f1a;
+            --bg-card: #1a1a2e;
+            --bg-card-hover: #222240;
+            --text: #e0e0e0;
+            --text-dim: #888;
+            --border: #2d2d4a;
+            --gold: #ffd700;
+            --tier-god: linear-gradient(135deg, #ff6b6b, #ffd93d);
+            --tier-t0: linear-gradient(135deg, #a29bfe, #6c5ce7);
+            --tier-ex: linear-gradient(135deg, #74b9ff, #0984e3);
+            --tier-t1: linear-gradient(135deg, #55efc4, #00b894);
+            --fire: #ff6b6b;
+            --water: #74b9ff;
+            --electric: #ffeaa7;
+            --iron: #b2bec3;
+            --wind: #55efc4;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif;
+            background: #0f0f1a; /* 后备颜色 */
+            background: var(--bg);
+            color: #e0e0e0; /* 后备颜色 */
+            color: var(--text);
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            padding: 60px 20px 40px;
+            text-align: center;
+            border-bottom: 2px solid var(--primary);
+            position: relative;
+            overflow: hidden;
+        }
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(108,92,231,0.1) 0%, transparent 50%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 1; }
+        }
+        .header h1 {
+            font-size: 2.5em;
+            background: linear-gradient(135deg, var(--primary-light), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            margin-bottom: 10px;
+        }
+        .header .subtitle {
+            color: var(--text-dim);
+            font-size: 0.95em;
+            position: relative;
+        }
+
+        /* Navigation */
+        .nav {
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border);
+            padding: 15px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .nav a {
+            color: var(--text);
+            text-decoration: none;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            transition: all 0.3s;
+            border: 1px solid var(--border);
+        }
+        .nav a:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        /* Section */
+        .section {
+            margin-bottom: 50px;
+        }
+        .section-title {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-title .emoji { font-size: 1.2em; }
+
+        .subsection-title {
+            font-size: 1.3em;
+            margin: 25px 0 15px;
+            color: var(--primary-light);
+            padding-left: 12px;
+            border-left: 3px solid var(--primary);
+        }
+
+        .sub-subsection-title {
+            font-size: 1.1em;
+            margin: 20px 0 10px;
+            color: var(--accent);
+        }
+
+        /* 本节快速跳转栏（每个大 section 顶部） */
+        .sub-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 10px 0 20px;
+            padding: 10px 14px;
+            background: rgba(108, 92, 231, 0.06);
+            border: 1px solid rgba(108, 92, 231, 0.2);
+            border-radius: 10px;
+        }
+        .sub-nav a {
+            display: inline-block;
+            padding: 5px 12px;
+            font-size: 0.88em;
+            color: var(--primary-light);
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(108, 92, 231, 0.3);
+            border-radius: 16px;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .sub-nav a:hover {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+        }
+
+        /* Info boxes */
+        .info-box {
+            background: rgba(108, 92, 231, 0.1);
+            border: 1px solid rgba(108, 92, 231, 0.3);
+            border-radius: 10px;
+            padding: 15px 20px;
+            margin: 15px 0;
+            font-size: 0.9em;
+        }
+        .warning-box {
+            background: rgba(253, 121, 168, 0.1);
+            border: 1px solid rgba(253, 121, 168, 0.3);
+            border-radius: 10px;
+            padding: 15px 20px;
+            margin: 15px 0;
+            font-size: 0.9em;
+        }
+        .tip-box {
+            background: rgba(85, 239, 196, 0.1);
+            border: 1px solid rgba(85, 239, 196, 0.3);
+            border-radius: 10px;
+            padding: 15px 20px;
+            margin: 15px 0;
+            font-size: 0.9em;
+        }
+
+        /* Tables */
+        .table-wrapper {
+            overflow-x: auto;
+            margin: 15px 0;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9em;
+        }
+        thead {
+            background: linear-gradient(135deg, var(--bg-card), #252550);
+        }
+        th {
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: 600;
+            color: var(--primary-light);
+            white-space: nowrap;
+        }
+        td {
+            padding: 10px 15px;
+            border-top: 1px solid var(--border);
+        }
+        tbody tr:hover {
+            background: var(--bg-card-hover);
+        }
+        tbody tr:nth-child(even) {
+            background: rgba(26, 26, 46, 0.5);
+        }
+
+        /* Tier badges */
+        .tier-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: bold;
+            color: white;
+        }
+        .tier-god { background: var(--tier-god); }
+        .tier-t0 { background: var(--tier-t0); }
+        .tier-ex { background: var(--tier-ex); }
+        .tier-t1 { background: var(--tier-t1); }
+
+        /* Element badges */
+        .elem {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 8px;
+            font-size: 0.75em;
+            font-weight: 600;
+        }
+        .elem-fire { background: rgba(255,107,107,0.2); color: var(--fire); border: 1px solid var(--fire); }
+        .elem-water { background: rgba(116,185,255,0.2); color: var(--water); border: 1px solid var(--water); }
+        .elem-electric { background: rgba(255,234,167,0.2); color: var(--electric); border: 1px solid var(--electric); }
+        .elem-iron { background: rgba(178,190,195,0.2); color: var(--iron); border: 1px solid var(--iron); }
+        .elem-wind { background: rgba(85,239,196,0.2); color: var(--wind); border: 1px solid var(--wind); }
+
+        /* Team cards */
+        .team-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 15px 0;
+            transition: all 0.3s;
+        }
+        .team-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 4px 20px rgba(108, 92, 231, 0.2);
+        }
+        .team-card h4 {
+            color: var(--accent);
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        .team-card .desc {
+            color: var(--text-dim);
+            font-size: 0.9em;
+            margin-bottom: 12px;
+        }
+
+        /* Legend table */
+        .legend {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 10px;
+            margin: 15px 0;
+        }
+        .legend-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 12px 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .legend-item .mark {
+            font-size: 1.3em;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        /* Collapsible */
+        details {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+        summary {
+            padding: 12px 20px;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--primary-light);
+            transition: background 0.3s;
+        }
+        summary:hover {
+            background: var(--bg-card-hover);
+        }
+        details[open] summary {
+            border-bottom: 1px solid var(--border);
+        }
+        details .content {
+            padding: 15px 20px;
+        }
+
+        /* Back to top */
+        .back-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 45px;
+            height: 45px;
+            background: var(--primary);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.2em;
+            cursor: pointer;
+            opacity: 0;
+            transition: all 0.3s;
+            z-index: 99;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .back-top.show { opacity: 1; }
+        .back-top:hover { background: var(--accent); transform: scale(1.1); }
+
+        /* Search */
+        .search-box {
+            max-width: 500px;
+            margin: 20px auto;
+            position: relative;
+        }
+        .search-box input {
+            width: 100%;
+            padding: 12px 20px 12px 45px;
+            border-radius: 25px;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            color: var(--text);
+            font-size: 1em;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        .search-box input:focus {
+            border-color: var(--primary);
+        }
+        .search-box::before {
+            content: '🔍';
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.1em;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 { font-size: 1.8em; }
+            .section-title { font-size: 1.4em; }
+            .container { padding: 20px 15px; }
+            table { font-size: 0.8em; }
+            th, td { padding: 8px 10px; }
+        }
+
+        /* Scroll highlight */
+        .highlight-row {
+            animation: highlightFade 2s ease;
+        }
+        @keyframes highlightFade {
+            0% { background: rgba(108, 92, 231, 0.3); }
+            100% { background: transparent; }
+        }
+
+        /* Tag pills */
+        .tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.75em;
+            margin: 1px 2px;
+            background: rgba(108,92,231,0.2);
+            color: var(--primary-light);
+        }
+        .tag-limited {
+            background: rgba(253,121,168,0.2);
+            color: var(--accent);
+        }
+        .tag-pilgrim {
+            background: rgba(255,215,0,0.2);
+            color: var(--gold);
+        }
+        .tag-treasure {
+            background: rgba(85,239,196,0.2);
+            color: var(--wind);
+        }
+
+        /* Footer */
+        .avatar-sm {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            vertical-align: middle;
+            margin-right: 6px;
+            border: 1px solid var(--border);
+        }
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            border-top: 1px solid var(--border);
+            color: var(--text-dim);
+            font-size: 0.85em;
+        }
+        .col-narrow { width: 32px; min-width: 32px; padding-left: 4px; padding-right: 4px; text-align: center; }
+
+        /* PVE 强度榜 卡片式布局 */
+        .tier-cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 12px 0;
+            padding: 12px;
+            border-radius: 12px;
+        }
+        .char-card {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 14px 8px 8px;
+            background: rgba(255,255,255,0.04);
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.08);
+            min-width: 180px;
+            flex: 1 1 200px;
+            transition: transform 0.15s, box-shadow 0.15s;
+        }
+        .char-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+        }
+        .char-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .char-name {
+            font-weight: 600;
+            font-size: 0.95em;
+            color: #f0f0f0;
+            white-space: nowrap;
+        }
+        .char-weapon {
+            font-size: 0.8em;
+            color: #aaa;
+        }
+        .avatar-tier {
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+        /* Tier 底色 */
+        .tier-mythic { background: linear-gradient(135deg, rgba(255,107,107,0.15), rgba(255,215,0,0.12)); border: 1px solid rgba(255,107,107,0.3); }
+        .tier-s { background: rgba(108,92,231,0.12); border: 1px solid rgba(108,92,231,0.25); }
+        .tier-ex { background: rgba(9,132,227,0.12); border: 1px solid rgba(9,132,227,0.25); }
+        .tier-a { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); }
+
+        /* Tab 切换（国际服 / 国服） */
+        .server-tabs {
+            display: flex;
+            gap: 0;
+            margin: 10px 0 20px;
+            border-bottom: 2px solid var(--border);
+        }
+        .server-tab {
+            padding: 10px 24px;
+            font-size: 0.95em;
+            color: var(--text-dim);
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-bottom: 2px solid transparent;
+            margin-bottom: -2px;
+            font-weight: 500;
+            font-family: inherit;
+        }
+        .server-tab:hover {
+            color: var(--text);
+        }
+        .server-tab.active {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+            font-weight: 700;
+        }
+        .server-tab::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 6px;
+            vertical-align: middle;
+        }
+        .server-tab.tab-intl::before {
+            background: #4ecdc4;
+        }
+        .server-tab.tab-cn::before {
+            background: #ff6b6b;
+        }
+        .server-content {
+            display: none;
+        }
+        .server-content.active {
+            display: block;
+            animation: tabFadeIn 0.3s ease;
+        }
+        @keyframes tabFadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+    </style>
+</head>
+<body>
+
+<a href="index.html" class="page-back-link" style="position:fixed;top:18px;left:18px;z-index:9999;display:inline-flex;align-items:center;gap:6px;padding:8px 16px;background:rgba(20,20,40,0.85);color:#e0e0e0;text-decoration:none;border:1px solid rgba(255,255,255,0.12);border-radius:20px;font-size:0.85em;backdrop-filter:blur(10px);transition:all 0.3s;font-family:'Microsoft YaHei','PingFang SC',sans-serif;">← 返回首页</a>
+<style>.page-back-link:hover{background:#6c5ce7 !important;border-color:#6c5ce7 !important;color:#fff !important;transform:translateX(-2px);}@media (max-width:768px){.page-back-link{top:10px !important;left:10px !important;font-size:0.75em !important;padding:6px 12px !important;}}</style>
+
+
+<!-- Header -->
+<div class="header">
+    <h1>🎮 NIKKE 胜利女神知识库</h1>
+    <p class="subtitle">来源：哔哩哔哩UP主「吡万YeeVan」攻略整理 | 更新时间：2026年4月26日（重构版）</p>
+    <div class="search-box">
+        <input type="text" id="searchInput" placeholder="搜索角色、队伍、词条..." oninput="searchContent(this.value)">
+    </div>
+</div>
+
+<!-- Navigation -->
+<nav class="nav">
+    <div class="nav-inner">
+        <a href="#section1">进池规则</a>
+        <a href="#section2">角色培养</a>
+        <a href="#section3">配队方案</a>
+        <a href="#section4">养成数据</a>
+        <a href="#tier-list">强度榜</a>
+    </div>
+</nav>
+
+<div class="container">
+
+<!-- 使用说明 -->
+<div class="section">
+    <div class="legend">
+        <div class="legend-item"><span class="mark">🌐</span><div><strong>通用</strong><br><small>国服 & 国际服均适用</small></div></div>
+        <div class="legend-item"><span class="mark">🇨🇳</span><div><strong>国服</strong><br><small>胜利女神：新的希望（腾讯代理）</small></div></div>
+        <div class="legend-item"><span class="mark">🌍</span><div><strong>国际服</strong><br><small>NIKKE: Goddess of Victory</small></div></div>
+    </div>
+    <div class="warning-box">
+        ⚠️ <strong>重要提示</strong>：本知识库大量内容来源于国际服攻略（YeeVan），国服因开服较晚、卡池节奏不同，<strong>角色可用性存在差异</strong>。国服玩家请结合自身已拥有/可获取的角色灵活调整，不可生搬硬套。
+    </div>
+</div>
+
+<!-- 一、角色分类与进池规则 -->
+<div class="section" id="section1">
+    <h2 class="section-title"><span class="emoji">📋</span> 一、角色分类与进池规则 <span class="tag">🌐 通用机制</span></h2>
+    <div class="sub-nav">
+        <a href="#sub-1-1">1.1 限定角色</a>
+        <a href="#sub-1-2">1.2 常驻角色</a>
+        <a href="#sub-1-3">1.3 判断方法</a>
+    </div>
+
+    <h3 class="subsection-title" id="sub-1-1">1.1 限定角色（不进常驻池）</h3>
+    <div class="table-wrapper">
+        <table>
+            <thead><tr><th>类型</th><th>举例</th><th>说明</th></tr></thead>
+            <tbody>
+                <tr><td>节日限定变体</td><td>露菲：冬日购物狂、米卡：雪地伙伴、梅里：海湾女神</td><td>名字带「：XXX」副标题</td></tr>
+                <tr><td>周年庆限定</td><td>小红帽（1周年）、灰姑娘（2周年）、格拉维（2.5周年）</td><td>高稀缺性</td></tr>
+                <tr><td>联动角色</td><td>2B/A2（尼尔）、玛奇玛（电锯人）、EVA联动等</td><td>版权问题，几乎不复刻</td></tr>
+                <tr><td>特殊朝圣者</td><td>部分朝圣者需看官方公告</td><td></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3 class="subsection-title" id="sub-1-2">1.2 常驻角色（会进常驻池）</h3>
+    <div class="table-wrapper">
+        <table>
+            <thead><tr><th>类型</th><th>说明</th></tr></thead>
+            <tbody>
+                <tr><td>普通新角色（无副标题）</td><td>UP期结束后进入普通招募池</td></tr>
+                <tr><td>大多数朝圣者</td><td>进常驻朝圣者子池（概率较低但可抽到）</td></tr>
+                <tr><td>SR / R 级角色</td><td>基本全进常驻</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3 class="subsection-title" id="sub-1-3">1.3 判断方法</h3>
+    <div class="info-box">
+        <ul style="list-style:none; padding:0;">
+            <li>📌 看官方公告 — 会注明"活动结束后加入常规招募"或"限定角色"</li>
+            <li>📌 看角色名格式 — 有「：副标题」= 大概率限定变体</li>
+            <li>📌 看卡池标注 — 抽卡界面会注明"期间限定"字样</li>
+        </ul>
+    </div>
+</div>
+
+<!-- 二、角色培养方案 -->
+<div class="section" id="section2">
+    <h2 class="section-title"><span class="emoji">⚔️</span> 二、角色培养方案</h2>
+    <div class="sub-nav">
+        <a href="#sub-2-1">2.1 PVE前期养成</a>
+        <a href="#sub-2-2">2.2 个人突袭必练</a>
+        <a href="#sub-2-3">2.3 后期突袭养成</a>
+    </div>
+    <div class="info-box">培养方法论（技能等级分配、词条选择逻辑）全球通用，具体养谁取决于你拥有哪些角色。<br><strong>每个角色只在此处出现一次</strong>，按优先级和属性分类。</div>
+
+    <h3 class="subsection-title" id="sub-2-1">2.1 PVE前期养成</h3>
+
+    <div class="tab-group">
+    <!-- Tab 切换 -->
+    <div class="server-tabs">
+        <button class="server-tab tab-intl active" onclick="switchTab(event, 'pve-early-intl')">国际服</button>
+        <button class="server-tab tab-cn" onclick="switchTab(event, 'pve-early-cn')">国服</button>
+    </div>
+
+    <!-- 国际服 Tab -->
+    <div class="server-content active" id="pve-early-intl">
+    <h4 class="sub-subsection-title">2.1.1 入坑必练角色，优先拉这些</h4>
+    <div class="table-wrapper">
+        <table>
+            <thead><tr><th>角色</th><th>定位</th><th>技能等级</th><th>词条推荐</th></tr></thead>
+            <tbody>
+                <tr><td><img class="avatar-sm" src="avatars/拉毗：小红帽 (Rapi：Red Hood).png" alt="拉毗：小红帽"> <strong>拉毗：小红帽</strong></td><td>人权输出（加特林）</td><td>10/10/10</td><td>攻击力×4、优越代码×4、最大弹容×3、暴击伤害×1</td></tr>
+                <tr><td><img class="avatar-sm" src="avatars/白雪公主：重型武装 (Snow White：Heavy Arms).png" alt="白雪公主：重型武装"> <strong>白雪公主：重型武装</strong></td><td>人权狙击（狙击枪）</td><td>10/10/10</td><td>攻击力×4、优越代码×4、最大弹容×1、暴击伤害×3</td></tr>
+                <tr><td><img class="avatar-sm" src="avatars/皇冠 (Crown).png" alt="皇冠"> <strong>皇冠</strong></td><td>人权辅助（加特林）</td><td>10/10/10</td><td>最大弹容×2&3</td></tr>
+                <tr><td><img class="avatar-sm" src="avatars/阿妮斯：超级巨星 (Anis：Star).png" alt="阿妮斯：超级巨星"> <strong>阿妮斯：超级巨星</strong></td><td>人权辅助（发射器）</td><td>10/10/10</td><td>攻击力×4、优越代码×4、最大弹容×2~4、暴击伤害×2</td></tr>
+                <tr><td><img class="avatar-sm" src="avatars/尼恩：幻视之眼 (Neon：Vision Eye).png" alt="尼恩：幻视之眼"> <strong>尼恩：幻视之眼</strong></td><td>人权发射器（发射器）</td><td>10/10/10</td><td>攻击力×2~3、优越代码×4、最大弹容×1~2、蓄力速度×4</td></tr>
+                <tr><td><img class="avatar-sm" src="avatars/红莲：暗影 (Scarlet：Black Shadow).png" alt="红莲：暗影"> <strong>红莲：暗影</strong></td><td>风压输出（发射器）</td><td>10/7+/10</td><td>攻击力×4、优越代码×4、最大弹容×1、蓄力速度×3&4</td></tr>
+                <tr><td><img class="avatar-sm" src="avatars/莉贝雷利奥 (Liberalio).png" alt="莉贝雷利奥"> <strong>莉贝雷利奥</strong></td><td>风压输出（狙击枪）</td><td>10/10/10</td><td>攻击力×4、优越代码×4、蓄力速度×4</td></tr>
+                <tr><td><img class="avatar-sm" src="avatars/海伦（珍藏品） (Helm (Treasure)).png" alt="海伦（珍藏品）"> <strong>海伦（珍藏品）</strong></td><td>水冷输出&辅助（狙击枪）</td><td>10/10/10</td><td>攻击力×4、优越代码×4；PVP: 蓄力速度×4</td></tr>
+                <tr><td><img class="avatar-sm" src="avatars/娜由塔 (Nayuta).png" alt="娜由塔"> <strong>娜由塔</strong></td><td>输出&辅助（冲锋枪）</td><td>10/4+/10</td><td>攻击力×4、优越代码×4、蓄力伤害×4；百爆队: 暴击伤害×4</td></tr>
+                <tr><td><img class="avatar-sm" src="avatars/小美人鱼 (Little Mermaid).png" alt="小美人鱼"> <strong>小美人鱼</strong></td><td>输出&减CD（冲锋枪）</td><td>10/10/10</td><td>攻击力×4、优越代码×4、最大弹容×1；额外: 暴击伤害×3</td></tr>
+            </tbody>
+        </table>
+    </div>
+    <h4 class="sub-subsection-title">2.1.2 补辅助&输出角色过渡</h4>
+    <div class="table-wrapper">
+        <table>
+            <thead><tr><th>角色</th><th>定位</th><th>技能等级</th><th>词条推荐</th><th>备注</th></tr></thead>
+            <tbody>
+                <tr><td><img class="avatar-sm" src="avatars/爱德：特工兔女郎 (Ade：Agent Bunny).png" alt="爱德：特工兔女郎"> <strong>爱德：特工兔女郎</strong></td><td>穿透&通用拐（狙击枪）</td><td>4+/4+/7+</td><td>—</td><td></td></tr>
+                <tr><td><img class="avatar-sm" src="avatars/娜嘉 (Naga).png" alt="娜嘉"> <strong>娜嘉</strong></td><td>黑白JK核心（霰弹枪）</td><td>7+/7+/7+</td><td>—</td><td></td></tr>
+                <tr><td><img class="avatar-sm" src="avatars/蒂亚 (Tia).png" alt="蒂亚"> <strong>蒂亚</strong></td><td>黑白JK核心（发射器）</td><td>7+/1/1</td><td>—</td><td></td></tr>
+                <tr><td><img class="avatar-sm" src="avatars/小红帽 (Red Hood).png" alt="小红帽"> <strong>小红帽</strong></td><td>铁甲输出（狙击枪）</td><td>10/10/10</td><td>攻击力×4、优越代码×4、最大弹容×1、蓄力速度×3</td><td></td></tr>
+                <tr><td><img class="avatar-sm" src="avatars/安克：天真的女仆 (Anchor：Innocent Maid).png" alt="安克：天真的女仆"> <strong>安克：天真的女仆</strong></td><td>海盗双子核心（发射器）</td><td>10/10/10</td><td>—</td><td></td></tr>
+                <tr><td><img class="avatar-sm" src="avatars/马斯特：浪漫的女仆 (Mast：Romantic Maid).png" alt="马斯特：浪漫的女仆"> <strong>马斯特：浪漫的女仆</strong></td><td>海盗双子核心（加特林）</td><td>10/10/10</td><td>最大弹容×2</td><td></td></tr>
+                <tr><td><img class="avatar-sm" src="avatars/牡丹（珍藏品） (Moran (Treasure)).png" alt="牡丹（珍藏品）"> <strong>牡丹（珍藏品）</strong></td><td>输出&减CD（步枪）</td><td>4+/10/10</td><td>攻击力×4、优越代码×4、PVP防御力×4</td><td>珍藏品3阶</td></tr>
+                <tr><td><img class="avatar-sm" src="avatars/普丽瓦蒂（珍藏品） (Privaty (Treasure)).png" alt="普丽瓦蒂（珍藏品）"> <strong>普丽瓦蒂（珍藏品）</strong></td><td>水冷输出&辅助（步枪）</td><td>10/7+/4+</td><td>攻击力×4、优越代码×4</td><td>珍藏品3阶</td></tr>
+            </tbody>
+        </table>
+    </div>
+    <h4 class="sub-subsection-title">2.1.3 补减CD角色过渡</h4>
+    <div class="table-wrapper">
+        <table>
+            <thead><tr><th>角色</th><th>定位</th><th>技能等级</th><th>词条推荐</th><th>武器</th></tr></thead>
+            <tbody>
+                <tr><td><img class="avatar-sm" src="avatars/D：杀手妻子 (D：Killer Wife).png" alt="D：杀手妻子"> <strong>D：杀手妻子</strong></td><td>穿透拐&减CD</td><td>4/7/4</td><td>最大弹容×1</td><td>狙击枪</td></tr>
+                <tr><td><img class="avatar-sm" src="avatars/露姬 (Rouge).png" alt="露姬"> <strong>露姬</strong></td><td>体力拐&减CD</td><td>10/7+/7+</td><td>最大弹容×1</td><td>狙击枪</td></tr>
+                <tr><td><img class="avatar-sm" src="avatars/丽塔 (Liter).png" alt="丽塔"> <strong>丽塔</strong></td><td>增伤&减CD</td><td>7+/4/7+</td><td>—</td><td>冲锋枪</td></tr>
+            </tbody>
+        </table>
+    </div>
+    </div><!-- end: pve-early-intl -->
+
+    <!-- 国服 Tab -->
+    <div class="server-content" id="pve-early-cn">
+
+        <h4 class="sub-subsection-title">2.1.1 入坑必练角色，优先拉这些</h4>
+        <div class="table-wrapper">
+            <table>
+                <thead><tr><th>角色</th><th>定位</th><th>技能等级</th><th>词条推荐</th><th>备注</th></tr></thead>
+                <tbody>
+                    <tr><td><img class="avatar-sm" src="avatars/拉毗：小红帽 (Rapi：Red Hood).png" alt="拉毗：小红帽"> <strong>拉毗：小红帽</strong></td><td>人权输出（加特林）</td><td>10/10/10</td><td>攻击力×4、优越代码×4、最大弹容×3、暴击伤害×1</td><td>收藏品</td></tr>
+                    <tr><td><img class="avatar-sm" src="avatars/小红帽 (Red Hood).png" alt="小红帽"> <strong>小红帽</strong></td><td>核心人权（狙击枪）</td><td>10/10/10</td><td>攻击力×4、优越代码×4、最大弹容×1、蓄力速度×3</td><td>收藏品</td></tr>
+                    <tr><td><img class="avatar-sm" src="avatars/红莲：暗影 (Scarlet：Black Shadow).png" alt="红莲：暗影"> <strong>红莲：暗影</strong></td><td>后期人权（发射器）</td><td>10/7+/10</td><td>攻击力×4、优越代码×4、最大弹容×1、蓄力速度×3&4</td><td>收藏品</td></tr>
+                    <tr><td><img class="avatar-sm" src="avatars/皇冠 (Crown).png" alt="皇冠"> <strong>皇冠</strong></td><td>人权辅助（加特林）</td><td>10/10/10</td><td>最大弹容×2~3</td><td>收藏品</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h4 class="sub-subsection-title">2.1.2 补辅助&输出角色过渡</h4>
+        <div class="table-wrapper">
+            <table>
+                <thead><tr><th>角色</th><th>定位</th><th>技能等级</th><th>词条推荐</th><th>备注</th></tr></thead>
+                <tbody>
+                    <tr><td><img class="avatar-sm" src="avatars/娜嘉 (Naga).png" alt="娜嘉"> <strong>娜嘉</strong></td><td>黑白JK之一（霰弹枪）</td><td>7+/7+/7+</td><td>—</td><td></td></tr>
+                    <tr><td><img class="avatar-sm" src="avatars/蒂亚 (Tia).png" alt="蒂亚"> <strong>蒂亚</strong></td><td>黑白JK之一（发射器）</td><td>7+/4/7+</td><td>最大弹容×1</td><td></td></tr>
+                    <tr><td><img class="avatar-sm" src="avatars/布兰儿 (Blanc).png" alt="布兰儿"> <strong>布兰儿</strong></td><td>黑白兔之一·奶（步枪）</td><td>1/4/7+</td><td>—</td><td></td></tr>
+                    <tr><td><img class="avatar-sm" src="avatars/诺亚尔 (Noir).png" alt="诺亚尔"> <strong>诺亚尔</strong></td><td>黑白兔之一（霰弹枪）</td><td>7+/4/1</td><td>攻击力×4、优越代码×4、额外：命中率×4</td><td></td></tr>
+                    <tr><td><img class="avatar-sm" src="avatars/丽塔 (Liter).png" alt="丽塔"> <strong>丽塔</strong></td><td>减CD辅助（冲锋枪）</td><td>7/7/1</td><td>—</td><td></td></tr>
+                    <tr><td><img class="avatar-sm" src="avatars/神罚 (Modernia).png" alt="神罚"> <strong>神罚</strong></td><td>火系输出（加特林）</td><td>7+/7+/1</td><td>攻击力×4、优越代码×4、最大弹容×2&3、暴击伤害×1</td><td>收藏品</td></tr>
+                    <tr><td><img class="avatar-sm" src="avatars/爱丽丝 (Alice).png" alt="爱丽丝"> <strong>爱丽丝</strong></td><td>火系输出（狙击枪）</td><td>10/1/10</td><td>攻击力×3&4、优越代码×4、最大弹容×2&3、蓄力速度×2</td><td>收藏品</td></tr>
+                    <tr><td><img class="avatar-sm" src="avatars/桃乐丝 (Dorothy).png" alt="桃乐丝"> <strong>桃乐丝</strong></td><td>减CD辅助（步枪）</td><td>10/4/7</td><td>—</td><td>收藏品</td></tr>
+                    <tr><td><img class="avatar-sm" src="avatars/红莲 (Scarlet).png" alt="红莲"> <strong>红莲</strong></td><td>电系输出（步枪）</td><td>10/4/7（PVP拉满）</td><td>攻击力×4、优越代码×4、最大弹容×2、暴击伤害×2</td><td>收藏品</td></tr>
+                    <tr><td><img class="avatar-sm" src="avatars/索林：冰霜车票 (Soline：Frost Ticket).png" alt="索林：冰霜车票"> <strong>索林：冰霜车票</strong></td><td>火系输出（霰弹枪）</td><td>8/1/1</td><td>—</td><td></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </div><!-- end: tab-group 2.1 -->
+
+    <h3 class="subsection-title" id="sub-2-2">2.2 PVE个人突袭必练角色&队伍</h3>
+
+    <div class="tab-group">
+    <!-- Tab 切换 -->
+    <div class="server-tabs">
+        <button class="server-tab tab-intl active" onclick="switchTab(event, 'raid-intl')">国际服</button>
+        <button class="server-tab tab-cn" onclick="switchTab(event, 'raid-cn')">国服</button>
+    </div>
+
+    <!-- 国际服 Tab -->
+    <div class="server-content active" id="raid-intl">
+
+    <h4 class="sub-subsection-title">2.2.1 个人突袭-三体人-数值高强度狠必练</h4>
+    <div class="table-wrapper">
+        <table>
+            <thead><tr><th>角色</th><th>定位</th><th>技能等级</th><th>词条推荐</th></tr></thead>
+            <tbody>
+                <tr><td><img class="avatar-sm" src="avatars/米哈拉：羁绊之链 (Mihara：Bonding Chain).png" alt="米哈拉：羁绊之链"> <strong>米哈拉：羁绊之链</strong></td><td>燃烧输出（加特林）</td><td>10/4+/10</td><td>攻击力×4、优越代码×4、暴击伤害×4</td></tr>
+                <tr><td><img class="avatar-sm" src="avatars/渡鸦 (Raven).png" alt="渡鸦"> <strong>渡鸦</strong></td><td>铁甲输出（发射器）</td><td>10/4+/10</td><td>攻击力×4、优越代码×4、暴击伤害×4</td></tr>
+                <tr><td><img class="avatar-sm" src="avatars/迪赛尔：冬日甜品 (Diesel：Winter Sweets).png" alt="迪赛尔：冬日甜品"> <strong>迪赛尔：冬日甜品</strong></td><td>燃烧输出（发射器）</td><td>10/10/10</td><td>攻击力×4、优越代码×4、暴击伤害×4</td></tr>
+                <tr><td><img class="avatar-sm" src="avatars/灰姑娘 (Cinderella).png" alt="灰姑娘"> <strong>灰姑娘</strong></td><td>电击输出（发射器）</td><td>10/10/10</td><td>攻击力×4、优越代码×4、最大弹容×1、暴击伤害×3</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h4 class="sub-subsection-title">2.2.2 个人突袭-霰弹队-必练</h4>
+    <div class="table-wrapper">
+        <table>
+            <thead><tr><th>角色</th><th>定位</th><th>技能等级</th><th>词条推荐</th><th>备注</th></tr></thead>
+            <tbody>
+                <tr><td><img class="avatar-sm" src="avatars/托比（珍藏品） (Tove (Treasure)).png" alt="托比（珍藏品）"> <strong>托比（珍藏品）</strong></td><td>霰弹输出（霰弹枪）</td><td>9/10/10</td><td>攻击力×4、优越代码×4、暴击伤害×4</td><td>珍藏品2阶</td></tr>
+                <tr><td><img class="avatar-sm" src="avatars/桃乐丝：机缘巧遇 (Dorothy：Serendipity).png" alt="桃乐丝：机缘巧遇"> <strong>桃乐丝：机缘巧遇</strong></td><td>霰弹输出（霰弹枪）</td><td>10/10/10</td><td>攻击力×4、优越代码×4、最大弹容×4</td><td></td></tr>
+                <tr><td><img class="avatar-sm" src="avatars/德雷克（珍藏品） (Drake (Treasure)).png" alt="德雷克（珍藏品）"> <strong>德雷克（珍藏品）</strong></td><td>霰弹输出（霰弹枪）</td><td>10/7/10</td><td>攻击力×4、优越代码×4、最大弹容×1</td><td>珍藏品3阶</td></tr>
+                <tr><td><img class="avatar-sm" src="avatars/索林：冰霜车票 (Soline：Frost Ticket).png" alt="索林：冰霜车票"> <strong>索林：冰霜车票</strong></td><td>霰弹减CD核心（霰弹枪）</td><td>7+/1/1</td><td>—</td><td></td></tr>
+                <tr><td><img class="avatar-sm" src="avatars/索达：闪亮兔女郎 (Soda：Twinkling Bunny).png" alt="索达：闪亮兔女郎"> <strong>索达：闪亮兔女郎</strong></td><td>铁甲霰弹输出（霰弹枪）</td><td>7/10/10</td><td>攻击力×4、优越代码×4、最大弹容×1</td><td></td></tr>
+                <tr><td><img class="avatar-sm" src="avatars/阿尔卡娜：命运搭档 (Arcana：Fortune Mate).png" alt="阿尔卡娜：命运搭档"> <strong>阿尔卡娜：命运搭档</strong></td><td>燃烧输出（霰弹枪）</td><td>7+/7+/7+</td><td>攻击力×4、优越代码×4、最大弹容×1、暴击伤害×3</td><td></td></tr>
+                <tr><td><img class="avatar-sm" src="avatars/伊莎贝尔 (Isabel).png" alt="伊莎贝尔"> <strong>伊莎贝尔</strong></td><td>电击霰弹输出（霰弹枪）</td><td>7+/7+/7+</td><td>攻击力×4、优越代码×4、最大弹容×1</td><td></td></tr>
+                <tr><td><img class="avatar-sm" src="avatars/阿尔卡娜 (Arcana).png" alt="阿尔卡娜"> <strong>阿尔卡娜</strong></td><td>伊莎贝尔专拐（发射器）</td><td>7+/7+/4</td><td>最大弹容×1</td><td></td></tr>
+                <tr><td><img class="avatar-sm" src="avatars/布丽德：寂静轨道 (Brid：Silent Track).png" alt="布丽德：寂静轨道"> <strong>布丽德：寂静轨道</strong></td><td>燃烧辅助（霰弹枪）</td><td>7+/7+/7+</td><td>攻击力×4、优越代码×4、最大弹容×1</td><td></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h4 class="sub-subsection-title">2.2.3 个人突袭-百爆队</h4>
+    <div class="table-wrapper">
+        <table>
+            <thead><tr><th>角色</th><th>定位</th><th>技能等级</th><th>词条推荐</th><th>备注</th></tr></thead>
+            <tbody>
+                <tr><td><img class="avatar-sm" src="avatars/米兰达（珍藏品） (Miranda (Treasure)).png" alt="米兰达（珍藏品）"> <strong>米兰达（珍藏品）</strong></td><td>暴击辅助（冲锋枪）</td><td>1/10/10</td><td>—</td><td>珍藏品2阶</td></tr>
+                <tr><td><img class="avatar-sm" src="avatars/艾达 (Ada Wong).png" alt="艾达"> <strong>艾达</strong></td><td>电击输出（发射器）</td><td>10/10/7+</td><td>攻击力×4、优越代码×4、暴击伤害×4</td><td></td></tr>
+            </tbody>
+        </table>
+    </div>
+    </div><!-- end: raid-intl -->
+
+    <!-- 国服 Tab -->
+    <div class="server-content" id="raid-cn">
+
+        <h4 class="sub-subsection-title">2.2.1 个人突袭-三体人-数值高强度狠必练</h4>
+        <div class="table-wrapper">
+            <table>
+                <thead><tr><th>角色</th><th>定位</th><th>技能等级</th><th>词条推荐</th><th>备注</th></tr></thead>
+                <tbody>
+                    <tr><td><img class="avatar-sm" src="avatars/渡鸦 (Raven).png" alt="渡鸦"> <strong>渡鸦</strong></td><td>铁甲输出（发射器）</td><td>10/4+/7+</td><td>攻击力×4、优越代码×4</td><td>收藏品</td></tr>
+                    <tr><td><img class="avatar-sm" src="avatars/迪赛尔：冬日甜品 (Diesel：Winter Sweets).png" alt="迪赛尔：冬日甜品"> <strong>迪赛尔：冬日甜品</strong></td><td>火系输出（发射器）</td><td>7+/7+/7+</td><td>攻击力×4、优越代码×4、额外：暴击伤害×4</td><td>收藏品</td></tr>
+                    <tr><td><img class="avatar-sm" src="avatars/阿妮斯：闪耀夏日 (Anis：Sparkling Summer).png" alt="阿妮斯：闪耀夏日"> <strong>阿妮斯：闪耀夏日</strong></td><td>电系输出（霰弹枪）</td><td>7+/7+/9</td><td>攻击力×4、优越代码×4</td><td>收藏品</td></tr>
+                    <tr><td><img class="avatar-sm" src="avatars/布丽德：寂静轨道 (Brid：Silent Track).png" alt="布丽德：寂静轨道"> <strong>布丽德：寂静轨道</strong></td><td>火系辅助（霰弹枪）</td><td>7+/4+/7+</td><td>—</td><td></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h4 class="sub-subsection-title">2.2.2 个人突袭-霰弹队-必练</h4>
+        <div class="table-wrapper">
+            <table>
+                <thead><tr><th>角色</th><th>定位</th><th>技能等级</th><th>词条推荐</th><th>备注</th></tr></thead>
+                <tbody>
+                    <tr><td><img class="avatar-sm" src="avatars/托比（珍藏品） (Tove (Treasure)).png" alt="托比（珍藏品）"> <strong>托比（珍藏品）</strong></td><td>霰弹核心（步枪）</td><td>9/10/10</td><td>—</td><td>收藏品</td></tr>
+                    <tr><td><img class="avatar-sm" src="avatars/德雷克（珍藏品） (Drake (Treasure)).png" alt="德雷克（珍藏品）"> <strong>德雷克（珍藏品）</strong></td><td>火系霰弹（霰弹枪）</td><td>1/1/1</td><td>攻击力×4、优越代码×4、最大弹容×1、额外：命中率×3</td><td>收藏品</td></tr>
+                    <tr><td><img class="avatar-sm" src="avatars/索达：闪亮兔女郎 (Soda：Twinkling Bunny).png" alt="索达：闪亮兔女郎"> <strong>索达：闪亮兔女郎</strong></td><td>铁甲霰弹（霰弹枪）</td><td>1/1/1</td><td>攻击力×4、优越代码×4、最大弹容×1、额外：命中率×3</td><td>收藏品</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h4 class="sub-subsection-title">2.2.3 个人突袭-百爆队</h4>
+        <div class="table-wrapper">
+            <table>
+                <thead><tr><th>角色</th><th>定位</th><th>技能等级</th><th>词条推荐</th><th>备注</th></tr></thead>
+                <tbody>
+                    <tr><td><img class="avatar-sm" src="avatars/米兰达 (Miranda).png" alt="米兰达"> <strong>米兰达</strong></td><td>暴击辅助（冲锋枪）</td><td>1/10/10</td><td>—</td><td>收藏品</td></tr>
+                    <tr><td><img class="avatar-sm" src="avatars/白雪公主 (Snow White).png" alt="白雪公主"> <strong>白雪公主</strong></td><td>铁甲输出（步枪）</td><td>4/7/10</td><td>攻击力×4、优越代码×4、暴击伤害×4</td><td>收藏品</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </div><!-- end: tab-group 2.2 -->
+
+    <h3 class="subsection-title" id="sub-2-3">2.3 PVE后期个人突袭养成</h3>
+
+    <div class="tab-group">
+    <!-- Tab 切换 -->
+    <div class="server-tabs">
+        <button class="server-tab tab-intl active" onclick="switchTab(event, 'late-raid-intl')">国际服</button>
+        <button class="server-tab tab-cn" onclick="switchTab(event, 'late-raid-cn')">国服</button>
+    </div>
+
+    <!-- 国际服 Tab -->
+    <div class="server-content active" id="late-raid-intl">
+
+    <!-- 铁甲 -->
+    <h4 class="sub-subsection-title"><span class="elem elem-iron">铁甲</span> 2.3.1 铁甲角色</h4>
+    <div class="table-wrapper">
+        <table>
+            <thead><tr><th>角色</th><th>类型</th><th>技能等级</th><th>词条推荐</th></tr></thead>
+            <tbody>
+                <tr><td><img class="avatar-sm" src="avatars/小红帽 (Red Hood).png" alt="小红帽"> 小红帽</td><td>铁甲输出（狙击枪）</td><td>10/10/10</td><td>—</td></tr>
+                <tr><td><img class="avatar-sm" src="avatars/伊芙 (Eve).png" alt="伊芙"> 伊芙</td><td>铁甲输出（霰弹枪）</td><td>10/7+/10</td><td>攻击力×4、优越代码×4、暴击伤害×3</td></tr>
+                <tr><td><img class="avatar-sm" src="avatars/麦斯威尔 (Maxwell).png" alt="麦斯威尔"> 麦斯威尔</td><td>铁甲输出（狙击枪）</td><td>10/10/10</td><td>攻击力×4、优越代码×4、暴击伤害×4</td></tr>
+                <tr><td><img class="avatar-sm" src="avatars/白雪公主 (Snow White).png" alt="白雪公主"> 白雪公主</td><td>铁甲输出（步枪）</td><td>4+/7+/10</td><td>攻击力×4、优越代码×4</td></tr>
+                <tr><td><img class="avatar-sm" src="avatars/千束 (Chisato Nishikigi).png" alt="千束"> 千束</td><td>铁甲输出（冲锋枪）</td><td>7+/10/7+</td><td>攻击力×4、暴击伤害×4、最大弹容×2</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 水冷 -->
+    <h4 class="sub-subsection-title"><span class="elem elem-water">水冷</span> 2.3.2 水冷角色</h4>
+    <div class="table-wrapper">
+        <table>
+            <thead><tr><th>角色</th><th>定位</th><th>技能</th><th>词条</th></tr></thead>
+            <tbody>
+                <tr><td><img class="avatar-sm" src="avatars/吉萝婷：冬日杀手 (Guillotine：Winter Slayer).png" alt="吉萝婷：冬日杀手"> <strong>吉萝婷：冬日杀手</strong></td><td>水冷输出（步枪）</td><td>7/7/7</td><td>攻击力×4、优越代码×4、最大弹容×2</td></tr>
+                <tr><td><img class="avatar-sm" src="avatars/鲁德米拉：冬日之主 (Ludmilla：Winter Owner).png" alt="鲁德米拉：冬日之主"> <strong>鲁德米拉：冬日之主</strong></td><td>水冷输出（加特林）</td><td>10/7+/10</td><td>攻击力×4、优越代码×4、最大弹容×2</td></tr>
+                <tr><td><img class="avatar-sm" src="avatars/布蕾德 (Bready).png" alt="布蕾德"> <strong>布蕾德</strong></td><td>水冷输出（狙击枪）</td><td>4+/10/4+</td><td>攻击力×4、优越代码×4、最大弹容×2</td></tr>
+                <tr><td><img class="avatar-sm" src="avatars/坎西：逃生女王 (Quency：Escape Queen).png" alt="坎西：逃生女王"> <strong>坎西：逃生女王</strong></td><td>水冷输出（冲锋枪）</td><td>4+/10/7</td><td>攻击力×4、优越代码×4、最大弹容×1、暴击伤害×3</td></tr>
+                <tr><td><img class="avatar-sm" src="avatars/伊莱格：风暴 (Elegg：Boom and Shock).png" alt="伊莱格：风暴"> <strong>伊莱格：风暴</strong></td><td>水冷输出（加特林）</td><td>10/7+/10</td><td>攻击力×4、优越代码×4、最大弹容×1</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 燃烧 -->
+    <h4 class="sub-subsection-title"><span class="elem elem-fire">燃烧</span> 2.3.3 燃烧角色</h4>
+    <div class="table-wrapper">
+        <table>
+            <thead><tr><th>角色</th><th>定位</th><th>技能</th><th>词条</th></tr></thead>
+            <tbody>
+                <tr><td><img class="avatar-sm" src="avatars/迪赛尔 (Diesel).png" alt="迪赛尔"> <strong>迪赛尔</strong></td><td>燃烧输出（发射器）</td><td>10/10/10</td><td>攻击力×4、优越代码×4、暴击伤害×4</td></tr>
+                <tr><td><img class="avatar-sm" src="avatars/神罚 (Modernia).png" alt="神罚"> <strong>神罚</strong></td><td>燃烧输出（加特林）</td><td>10/10/1</td><td>攻击力×4、优越代码×4、最大弹容×3、暴击率or暴伤</td></tr>
+                <tr><td><img class="avatar-sm" src="avatars/明日香：WILLE (Asuka Shikinami Langley：Wille).png" alt="明日香：WILLE"> <strong>明日香：WILLE</strong></td><td>燃烧输出（步枪）</td><td>10/10/10</td><td>攻击力×4、优越代码×4、最大弹容×4</td></tr>
+                <tr><td><img class="avatar-sm" src="avatars/零 (Rei Ayanami).png" alt="零"> <strong>零</strong></td><td>燃烧输出（加特林）</td><td>7+/7+/7+</td><td>攻击力×4、优越代码×4、最大弹容×4</td></tr>
+                <tr><td><img class="avatar-sm" src="avatars/爱丽丝 (Alice).png" alt="爱丽丝"> <strong>爱丽丝</strong></td><td>燃烧输出（狙击枪）</td><td>10/1/10</td><td>攻击力×3&4、优越代码×4、最大弹容×2&3、蓄力速度×2</td></tr>
+                <tr><td><img class="avatar-sm" src="avatars/格拉维 (Grave).png" alt="格拉维"> <strong>格拉维</strong></td><td>燃烧输出（步枪）</td><td>4/10/10</td><td>攻击力×4、优越代码×4、暴击伤害×4</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 电击 -->
+    <h4 class="sub-subsection-title"><span class="elem elem-electric">电击</span> 2.3.4 电击角色</h4>
+    <div class="table-wrapper">
+        <table>
+            <thead><tr><th>角色</th><th>定位</th><th>技能</th><th>词条</th></tr></thead>
+            <tbody>
+                <tr><td><img class="avatar-sm" src="avatars/红莲 (Scarlet).png" alt="红莲"> <strong>红莲</strong></td><td>电击输出（步枪）</td><td>10/1/7</td><td>攻击力×4、优越代码×4、最大弹容×2</td></tr>
+                <tr><td><img class="avatar-sm" src="avatars/吉尔 (Jill Valentine).png" alt="吉尔"> <strong>吉尔</strong></td><td>电击输出（步枪）</td><td>10/7+/7+</td><td>优越代码×4</td></tr>
+                <tr><td><img class="avatar-sm" src="avatars/爱因 (Ein).png" alt="爱因"> <strong>爱因</strong></td><td>电击输出（狙击枪）</td><td>10/10/10</td><td>攻击力×4、暴击伤害×4</td></tr>
+                <tr><td><img class="avatar-sm" src="avatars/阿妮斯：闪耀夏日 (Anis：Sparkling Summer).png" alt="阿妮斯：闪耀夏日"> <strong>阿妮斯：闪耀夏日</strong></td><td>电击输出（霰弹枪）</td><td>10/10/9</td><td>攻击力×4、优越代码×4</td></tr>
+                <tr><td><img class="avatar-sm" src="avatars/阿妮斯：超级巨星 (Anis：Star).png" alt="阿妮斯：超级巨星"> <strong>阿妮斯：超级巨星</strong></td><td>电击防御（发射器）</td><td>10/7/7→拉满</td><td>攻击力×4、优越代码×4、最大弹容×2</td></tr>
+                <tr><td><img class="avatar-sm" src="avatars/梅登：冰之玫瑰 (Maiden：Ice Rose).png" alt="梅登：冰之玫瑰"> <strong>梅登：冰之玫瑰</strong></td><td>电击输出（发射器）</td><td>7/10/10</td><td>攻击力×4、优越代码×4、最大弹容×1</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 风压 -->
+    <h4 class="sub-subsection-title"><span class="elem elem-wind">风压</span> 2.3.5 风压角色</h4>
+    <div class="table-wrapper">
+        <table>
+            <thead><tr><th>角色</th><th>类型</th><th>技能等级</th><th>词条推荐</th></tr></thead>
+            <tbody>
+                <tr><td><img class="avatar-sm" src="avatars/樱花 (Sakura).png" alt="樱花"> <strong>樱花</strong></td><td>风压输出（步枪）</td><td>7/10/10</td><td>攻击力×4、优越代码×4</td></tr>
+                <tr><td><img class="avatar-sm" src="avatars/玛娜 (Mana).png" alt="玛娜"> <strong>玛娜</strong></td><td>风压输出（步枪）</td><td>4/10/10</td><td>攻击力×4、优越代码×4</td></tr>
+                <tr><td><img class="avatar-sm" src="avatars/零（暂称） (Rei Ayanami (Tentative Name)).png" alt="零（暂称）"> <strong>零（暂称）</strong></td><td>风压输出（步枪）</td><td>10/4+/7+</td><td>攻击力×4、优越代码×4、最大弹容×2</td></tr>
+                <tr><td><img class="avatar-sm" src="avatars/明日香：WILLE (Asuka Shikinami Langley：Wille).png" alt="明日香：WILLE"> <strong>明日香：WILLE</strong></td><td>风压输出（加特林）</td><td>10/7+/10</td><td>攻击力×4、优越代码×4、最大弹容×3、暴击伤害×1</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h4 class="sub-subsection-title">2.3.6 补珍藏品</h4>
+    <div class="table-wrapper">
+        <table>
+            <thead><tr><th>角色</th><th>类型</th><th>技能等级</th><th>词条推荐</th><th>备注</th></tr></thead>
+            <tbody>
+                <tr><td><img class="avatar-sm" src="avatars/艾可希雅（珍藏品） (Exia (Treasure)).png" alt="艾可希雅（珍藏品）"> <strong>艾可希雅（珍藏品）</strong></td><td>电击辅助（狙击枪）</td><td>1/10/10</td><td>—</td><td>珍藏品3阶</td></tr>
+                <tr><td><img class="avatar-sm" src="avatars/茨瓦伊（珍藏品） (Zwei (Treasure)).png" alt="茨瓦伊（珍藏品）"> <strong>茨瓦伊（珍藏品）</strong></td><td>穿透辅助（霰弹枪）</td><td>10/10/10</td><td>—</td><td>珍藏品3阶</td></tr>
+                <tr><td><img class="avatar-sm" src="avatars/尤莉亚（珍藏品） (Julia (Treasure)).png" alt="尤莉亚（珍藏品）"> <strong>尤莉亚（珍藏品）</strong></td><td>铁甲输出（步枪）</td><td>10/10/10</td><td>攻击力×4、优越代码×4、暴击伤害×3、暴击率×1</td><td>珍藏品3阶</td></tr>
+            </tbody>
+        </table>
+    </div>
+    </div><!-- end: late-raid-intl -->
+
+    <!-- 国服 Tab -->
+    <div class="server-content" id="late-raid-cn">
+
+        <h4 class="sub-subsection-title"><span class="elem elem-iron">铁甲</span> 2.3.1 铁甲角色</h4>
+        <div class="table-wrapper">
+            <table>
+                <thead><tr><th>角色</th><th>定位</th><th>技能等级</th><th>词条推荐</th><th>备注</th></tr></thead>
+                <tbody>
+                    <tr><td><img class="avatar-sm" src="avatars/伊芙 (Eve).png" alt="伊芙"> <strong>伊芙</strong></td><td>铁甲输出（步枪）</td><td>10/4+/7+</td><td>攻击力×4、优越代码×4、暴击伤害×3、暴击率×1</td><td>收藏品</td></tr>
+                    <tr><td><img class="avatar-sm" src="avatars/麦斯威尔 (Maxwell).png" alt="麦斯威尔"> <strong>麦斯威尔</strong></td><td>铁甲输出（狙击枪）</td><td>7+/1/7+</td><td>攻击力×4、蓄力伤害×4</td><td>收藏品</td></tr>
+                    <tr><td><img class="avatar-sm" src="avatars/海伦：海蓝宝石 (Helm：Aquamarine).png" alt="海伦：海蓝宝石"> <strong>海伦：海蓝宝石</strong></td><td>铁甲辅助&减CD（步枪）</td><td>1/4+/1</td><td>—</td><td></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h4 class="sub-subsection-title"><span class="elem elem-water">水冷</span> 2.3.2 水冷角色</h4>
+        <div class="table-wrapper">
+            <table>
+                <thead><tr><th>角色</th><th>定位</th><th>技能等级</th><th>词条推荐</th><th>备注</th></tr></thead>
+                <tbody>
+                    <tr><td><img class="avatar-sm" src="avatars/尼恩：蓝色海洋 (Neon：Blue Ocean).png" alt="尼恩：蓝色海洋"> <strong>尼恩：蓝色海洋</strong></td><td>水系输出（加特林）</td><td>7+/7+/1</td><td>攻击力×4、优越代码×4、最大弹容×3</td><td>收藏品</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h4 class="sub-subsection-title"><span class="elem elem-fire">燃烧</span> 2.3.3 燃烧角色</h4>
+        <div class="todo-box" style="background: rgba(255,215,0,0.08); border: 1px dashed rgba(255,215,0,0.4); border-radius: 10px; padding: 20px; margin: 15px 0; font-size: 0.9em; color: #888; text-align: center;">
+            <span style="color:#888;">暂无推荐，后续补充</span>
+        </div>
+
+        <h4 class="sub-subsection-title"><span class="elem elem-electric">电击</span> 2.3.4 电击角色</h4>
+        <div class="todo-box" style="background: rgba(255,215,0,0.08); border: 1px dashed rgba(255,215,0,0.4); border-radius: 10px; padding: 20px; margin: 15px 0; font-size: 0.9em; color: #888; text-align: center;">
+            <span style="color:#888;">暂无推荐，后续补充</span>
+        </div>
+
+        <h4 class="sub-subsection-title"><span class="elem elem-wind">风压</span> 2.3.5 风压角色</h4>
+        <div class="todo-box" style="background: rgba(255,215,0,0.08); border: 1px dashed rgba(255,215,0,0.4); border-radius: 10px; padding: 20px; margin: 15px 0; font-size: 0.9em; color: #888; text-align: center;">
+            <span style="color:#888;">暂无推荐，后续补充</span>
+        </div>
+
+        <h4 class="sub-subsection-title">2.3.6 补珍藏品</h4>
+        <div class="table-wrapper">
+            <table>
+                <thead><tr><th>角色</th><th>定位</th><th>技能等级</th><th>词条推荐</th></tr></thead>
+                <tbody>
+                    <tr><td><img class="avatar-sm" src="avatars/艾可希雅（珍藏品） (Exia (Treasure)).png" alt="艾可希雅（珍藏品）"> <strong>艾可希雅（珍藏品）</strong></td><td>电系拐（狙击枪）</td><td>1/7+/7+</td><td>—</td></tr>
+                    <tr><td><img class="avatar-sm" src="avatars/拉普拉斯（珍藏品） (Laplace (Treasure)).png" alt="拉普拉斯（珍藏品）"> <strong>拉普拉斯（珍藏品）</strong></td><td>铁甲输出（发射器）</td><td>1/7/7+</td><td>攻击力×4、优越代码×4、PVP：蓄力速度×4</td></tr>
+                    <tr><td><img class="avatar-sm" src="avatars/海伦（珍藏品） (Helm (Treasure)).png" alt="海伦（珍藏品）"> <strong>海伦（珍藏品）</strong></td><td>可C可拐·奶（狙击枪）</td><td>10/10/10</td><td>攻击力×4、优越代码×4、PVP：蓄力速度×4</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </div><!-- end: tab-group 2.3 -->
+
+</div>
+
+<!-- 三、队伍配队方案 -->
+<div class="section" id="section3">
+    <h2 class="section-title"><span class="emoji">🛡️</span> 三、队伍配队方案</h2>
+    <div class="sub-nav">
+        <a href="#sub-3-1">3.1 推图日常</a>
+        <a href="#sub-3-2">3.2 企业塔</a>
+        <a href="#sub-3-3">3.3 异常拦截</a>
+        <a href="#sub-3-4">3.4 突袭模式</a>
+    </div>
+    <div class="info-box">按应用场景分类。队伍框架和思路可复用，具体角色替换为自己拥有的同类定位角色即可。</div>
+
+    <h3 class="subsection-title" id="sub-3-1">3.1 推图 / 日常通用队伍</h3>
+
+    <!-- Tab 切换 -->
+    <div class="tab-group">
+    <div class="server-tabs">
+        <button class="server-tab tab-intl active" onclick="switchTab(event, 'daily-intl')">国际服</button>
+        <button class="server-tab tab-cn" onclick="switchTab(event, 'daily-cn')">国服</button>
+    </div>
+
+    <!-- 国际服 Tab -->
+    <div class="server-content active" id="daily-intl">
+
+    <div class="team-card">
+        <h4>🌟 萌新低压爽推队</h4>
+        <p class="desc">低压全自动爽推，不需要手动操作。</p>
+        <div class="table-wrapper">
+            <table>
+                <thead><tr><th>位置</th><th>角色</th><th>武器</th><th>定位</th></tr></thead>
+                <tbody>
+                    <tr><td><img class="avatar-sm" src="avatars/阿妮斯：超级巨星 (Anis：Star).png" alt="阿妮斯：超级巨星"> 阿妮斯：超级巨星</td><td>发射器</td><td>防御/输出核心</td></tr>
+                    <tr><td><img class="avatar-sm" src="avatars/娜由塔 (Nayuta).png" alt="娜由塔"> 娜由塔</td><td>冲锋枪</td><td>电击辅助</td></tr>
+                    <tr><td><img class="avatar-sm" src="avatars/拉毗：小红帽 (Rapi：Red Hood).png" alt="拉毗：小红帽"> 拉毗：小红帽</td><td>加特林</td><td>燃烧主输出</td></tr>
+                    <tr><td><img class="avatar-sm" src="avatars/尼恩：幻视之眼 (Neon：Vision Eye).png" alt="尼恩：幻视之眼"> 尼恩：幻视之眼</td><td>发射器</td><td>辅助</td></tr>
+                    <tr><td><img class="avatar-sm" src="avatars/皇冠 (Crown).png" alt="皇冠"> 皇冠</td><td>加特林</td><td>辅助</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+        <div class="team-card">
+            <h4>⚔️ 萌新后期通用队</h4>
+            <p class="desc">高压手操必用。没有普丽瓦蒂时可用其他水冷输出替代；牡丹可替换阿妮斯。</p>
+            <div class="table-wrapper">
+                <table>
+                    <thead><tr><th>位置</th><th>角色</th><th>武器</th><th>定位</th></tr></thead>
+                    <tbody>
+                        <tr><td><img class="avatar-sm" src="avatars/阿妮斯：超级巨星 (Anis：Star).png" alt="阿妮斯：超级巨星"> 阿妮斯：超级巨星</td><td>发射器</td><td>防御/输出核心</td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/皇冠 (Crown).png" alt="皇冠"> 皇冠</td><td>加特林</td><td>辅助</td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/拉毗：小红帽 (Rapi：Red Hood).png" alt="拉毗：小红帽"> 拉毗：小红帽</td><td>加特林</td><td>燃烧主输出</td></tr>
+                    <tr><td><img class="avatar-sm" src="avatars/白雪公主：重型武装 (Snow White：Heavy Arms).png" alt="白雪公主：重型武装"> 白雪公主：重型武装</td><td>狙击枪</td><td>狙击输出</td></tr>
+                    <tr><td><img class="avatar-sm" src="avatars/普丽瓦蒂（珍藏品） (Privaty (Treasure)).png" alt="普丽瓦蒂（珍藏品）"> 普丽瓦蒂（珍藏品）</td><td>步枪</td><td>水冷输出+辅助</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <details>
+        <summary>📋 减CD爆裂1角色（可选）</summary>
+        <div class="content">
+            <div class="table-wrapper">
+                <table>
+                    <thead><tr><th>角色</th><th>功能</th><th>备注</th></tr></thead>
+                    <tbody>
+                        <tr><td><img class="avatar-sm" src="avatars/阿妮斯：闪耀夏日 (Anis：Sparkling Summer).png" alt="阿妮斯：闪耀夏日"> 阿妮斯：闪耀夏日</td><td>减CD</td><td>发射器</td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/小美人鱼 (Little Mermaid).png" alt="小美人鱼"> 小美人鱼</td><td>减CD</td><td>冲锋枪</td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/丽塔 (Liter).png" alt="丽塔"> 丽塔</td><td>减CD</td><td>冲锋枪</td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/露姬 (Rouge).png" alt="露姬"> 露姬</td><td>减CD</td><td>狙击枪</td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/D：杀手妻子 (D：Killer Wife).png" alt="D：杀手妻子"> D：杀手妻子</td><td>减CD</td><td>狙击枪</td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/沃伦姆 (Volume).png" alt="沃伦姆"> 沃伦姆</td><td>减CD</td><td>冲锋枪</td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/牡丹（珍藏品） (Moran (Treasure)).png" alt="牡丹（珍藏品）"> 牡丹（珍藏品）</td><td>减CD</td><td>步枪，珍藏品</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </details>
+
+    <details>
+        <summary>📋 轴外角色（替补增伤）</summary>
+        <div class="content">
+            <div class="table-wrapper">
+                <table>
+                    <thead><tr><th>角色</th><th>功能</th><th>备注</th></tr></thead>
+                    <tbody>
+                        <tr><td><img class="avatar-sm" src="avatars/娜嘉 (Naga).png" alt="娜嘉"> 娜嘉</td><td>核心增伤</td><td>霰弹枪，珍藏品</td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/海伦（珍藏品） (Helm (Treasure)).png" alt="海伦（珍藏品）"> 海伦（珍藏品）</td><td>提速增伤（奶）</td><td>狙击枪，珍藏品</td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/马斯特：浪漫的女仆 (Mast：Romantic Maid).png" alt="马斯特：浪漫的女仆"> 马斯特：浪漫的女仆</td><td>通用增伤</td><td>加特林</td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/普丽瓦蒂（珍藏品） (Privaty (Treasure)).png" alt="普丽瓦蒂（珍藏品）"> 普丽瓦蒂（珍藏品）</td><td>最强增伤</td><td>步枪，珍藏品</td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/娜由塔 (Nayuta).png" alt="娜由塔"> 娜由塔</td><td>通用增伤</td><td>冲锋枪</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </details>
+
+    </div><!-- end: daily-intl -->
+
+    <!-- 国服 Tab -->
+    <div class="server-content" id="daily-cn">
+
+        <div class="team-card">
+            <h4>🌟 短CD皇冠珍藏品海伦队</h4>
+            <p class="desc">主线道中 / BOSS 战均可。桃乐丝需技能 1 满级。</p>
+            <div class="table-wrapper">
+                <table>
+                    <thead><tr><th>角色</th><th>武器</th><th>功能</th></tr></thead>
+                    <tbody>
+                        <tr><td><img class="avatar-sm" src="avatars/桃乐丝 (Dorothy).png" alt="桃乐丝"> 桃乐丝</td><td>冲锋枪</td><td>减CD（技能1满级）</td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/皇冠 (Crown).png" alt="皇冠"> 皇冠</td><td>加特林</td><td>辅助</td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/小红帽 (Red Hood).png" alt="小红帽"> 小红帽</td><td>狙击枪</td><td>输出</td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/拉毗：小红帽 (Rapi：Red Hood).png" alt="拉毗：小红帽"> 拉毗：小红帽</td><td>加特林</td><td>主C</td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/海伦（珍藏品） (Helm (Treasure)).png" alt="海伦（珍藏品）"> 海伦（珍藏品）</td><td>狙击枪</td><td>奶/增伤辅助</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="team-card">
+            <h4>⚔️ 无爆裂1暂替队</h4>
+            <p class="desc">主线道中 / BOSS 战均可。排球小怪杀手，没有爆裂1角色时的替代方案。</p>
+            <div class="table-wrapper">
+                <table>
+                    <thead><tr><th>角色</th><th>武器</th><th>功能</th></tr></thead>
+                    <tbody>
+                        <tr><td><img class="avatar-sm" src="avatars/拉毗：小红帽 (Rapi：Red Hood).png" alt="拉毗：小红帽"> 拉毗：小红帽</td><td>加特林</td><td>主C</td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/皇冠 (Crown).png" alt="皇冠"> 皇冠</td><td>加特林</td><td>辅助</td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/小红帽 (Red Hood).png" alt="小红帽"> 小红帽</td><td>狙击枪</td><td>输出</td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/红莲：暗影 (Scarlet：Black Shadow).png" alt="红莲：暗影"> 红莲：暗影</td><td>发射器</td><td>风压输出</td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/海伦（珍藏品） (Helm (Treasure)).png" alt="海伦（珍藏品）"> 海伦（珍藏品）</td><td>狙击枪</td><td>奶/增伤辅助</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="team-card" style="border-color: rgba(253,121,168,0.3);">
+            <h4 style="color: #fd79a8;">🔄 轴外角色推荐（海伦位替代）</h4>
+            <p class="desc">以下角色可替换上面两个队伍中的海伦（珍藏品）位置：</p>
+            <div class="table-wrapper">
+                <table>
+                    <thead><tr><th>角色</th><th>武器</th><th>备注</th></tr></thead>
+                    <tbody>
+                        <tr><td><img class="avatar-sm" src="avatars/娜嘉 (Naga).png" alt="娜嘉"> 娜嘉</td><td>霰弹枪</td><td>增伤</td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/普丽瓦蒂（珍藏品） (Privaty (Treasure)).png" alt="普丽瓦蒂（珍藏品）"> 普丽瓦蒂（珍藏品）</td><td>步枪</td><td>增伤/辅助</td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/神罚 (Modernia).png" alt="神罚"> 神罚</td><td>加特林</td><td>输出</td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/麦斯威尔 (Maxwell).png" alt="麦斯威尔"> 麦斯威尔</td><td>狙击枪</td><td>输出</td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/长发公主 (Rapunzel).png" alt="长发公主"> 长发公主</td><td>发射器</td><td>奶位</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    </div><!-- end: tab-group 3.1 -->
+
+    <h3 class="subsection-title" id="sub-3-2">3.2 企业塔（日常 / 周常）</h3>
+    <div class="info-box">玩法机制：按企业凑同色队，具体阵容取决于你拥有的对应企业角色。</div>
+
+    <div class="tab-group">
+    <!-- Tab 切换 -->
+    <div class="server-tabs">
+        <button class="server-tab tab-intl active" onclick="switchTab(event, 'tower-intl')">国际服</button>
+        <button class="server-tab tab-cn" onclick="switchTab(event, 'tower-cn')">国服</button>
+    </div>
+
+    <!-- 国际服 Tab -->
+    <div class="server-content active" id="tower-intl">
+
+    <div class="team-card">
+        <h4>🏝️ 极乐净土（Elysion）</h4>
+        <div class="table-wrapper">
+            <table>
+                <thead><tr><th>角色</th><th>武器</th><th>备注</th></tr></thead>
+                <tbody>
+                    <tr><td><img class="avatar-sm" src="avatars/D：杀手妻子 (D：Killer Wife).png" alt="D：杀手妻子"> <strong>D：杀手妻子</strong></td><td>狙击枪</td><td>替换进场</td></tr>
+                    <tr><td><img class="avatar-sm" src="avatars/马斯特：浪漫的女仆 (Mast：Romantic Maid).png" alt="马斯特：浪漫的女仆"> 马斯特：浪漫的女仆</td><td>加特林</td><td></td></tr>
+                    <tr><td><img class="avatar-sm" src="avatars/拉毗：小红帽 (Rapi：Red Hood).png" alt="拉毗：小红帽"> 拉毗：小红帽</td><td>加特林</td><td></td></tr>
+                    <tr><td><img class="avatar-sm" src="avatars/海伦（珍藏品） (Helm (Treasure)).png" alt="海伦（珍藏品）"> 海伦（珍藏品）</td><td>狙击枪</td><td>奶</td></tr>
+                    <tr><td><img class="avatar-sm" src="avatars/安克：天真的女仆 (Anchor：Innocent Maid).png" alt="安克：天真的女仆"> 安克：天真的女仆</td><td>发射器</td><td></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="team-card">
+        <h4>🚀 米西利斯（Missilis）</h4>
+        <div class="table-wrapper">
+            <table>
+                <thead><tr><th>角色</th><th>武器</th><th>备注</th></tr></thead>
+                <tbody>
+                    <tr><td><img class="avatar-sm" src="avatars/蒂亚 (Tia).png" alt="蒂亚"> 蒂亚</td><td>发射器</td><td>输出位很多</td></tr>
+                    <tr><td><img class="avatar-sm" src="avatars/丽塔 (Liter).png" alt="丽塔"> 丽塔</td><td>冲锋枪</td><td>有珍藏品拉普拉斯可用</td></tr>
+                    <tr><td><img class="avatar-sm" src="avatars/娜嘉 (Naga).png" alt="娜嘉"> 娜嘉</td><td>霰弹枪</td><td></td></tr>
+                    <tr><td><img class="avatar-sm" src="avatars/尼恩：幻视之眼 (Neon：Vision Eye).png" alt="尼恩：幻视之眼"> <strong>尼恩：幻视之眼</strong></td><td>发射器</td><td>替换麦斯威尔</td></tr>
+                    <tr><td><img class="avatar-sm" src="avatars/爱因 (Ein).png" alt="爱因"> 爱因</td><td>狙击枪</td><td></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="team-card">
+        <h4>🔬 泰特拉（Tetra）</h4>
+        <div class="table-wrapper">
+            <table>
+                <thead><tr><th>角色</th><th>武器</th><th>备注</th></tr></thead>
+                <tbody>
+                    <tr><td><img class="avatar-sm" src="avatars/阿妮斯：超级巨星 (Anis：Star).png" alt="阿妮斯：超级巨星"> <strong>阿妮斯：超级巨星</strong></td><td>发射器</td><td>替换波莉</td></tr>
+                    <tr><td><img class="avatar-sm" src="avatars/爱德：特工兔女郎 (Ade：Agent Bunny).png" alt="爱德：特工兔女郎"> 爱德：特工兔女郎</td><td>狙击枪</td><td>就别上黑白兔了（强度太低）</td></tr>
+                    <tr><td><img class="avatar-sm" src="avatars/爱丽丝 (Alice).png" alt="爱丽丝"> 爱丽丝</td><td>狙击枪</td><td>爱丽丝还是要有</td></tr>
+                    <tr><td><img class="avatar-sm" src="avatars/阿妮斯：闪耀夏日 (Anis：Sparkling Summer).png" alt="阿妮斯：闪耀夏日"> 阿妮斯：闪耀夏日</td><td>霰弹枪</td><td></td></tr>
+                    <tr><td><img class="avatar-sm" src="avatars/鲁德米拉：冬日之主 (Ludmilla：Winter Owner).png" alt="鲁德米拉：冬日之主"> 鲁德米拉：冬日之主</td><td>加特林</td><td></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="team-card">
+        <h4>✝️ 朝圣者（Pilgrim）</h4>
+        <div class="table-wrapper">
+            <table>
+                <thead><tr><th>角色</th><th>武器</th><th>备注</th></tr></thead>
+                <tbody>
+                    <tr><td><img class="avatar-sm" src="avatars/阿妮斯：超级巨星 (Anis：Star).png" alt="阿妮斯：超级巨星"> <strong>阿妮斯：超级巨星</strong></td><td>发射器</td><td></td></tr>
+                    <tr><td><img class="avatar-sm" src="avatars/娜由塔 (Nayuta).png" alt="娜由塔"> <strong>娜由塔</strong></td><td>冲锋枪</td><td></td></tr>
+                    <tr><td><img class="avatar-sm" src="avatars/拉毗：小红帽 (Rapi：Red Hood).png" alt="拉毗：小红帽"> <strong>拉毗：小红帽</strong></td><td>加特林</td><td></td></tr>
+                    <tr><td><img class="avatar-sm" src="avatars/白雪公主：重型武装 (Snow White：Heavy Arms).png" alt="白雪公主：重型武装"> <strong>白雪公主：重型武装</strong></td><td>狙击枪</td><td></td></tr>
+                    <tr><td><img class="avatar-sm" src="avatars/皇冠 (Crown).png" alt="皇冠"> <strong>皇冠</strong></td><td>加特林</td><td></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    </div><!-- end: tower-intl -->
+
+    <!-- 国服 Tab -->
+    <div class="server-content" id="tower-cn">
+
+        <div class="team-card">
+            <h4>🌸 极乐净土（Elysion）</h4>
+            <div class="table-wrapper">
+                <table>
+                    <thead><tr><th>角色</th><th>武器</th><th>备注</th></tr></thead>
+                    <tbody>
+                        <tr><td><img class="avatar-sm" src="avatars/米兰达 (Miranda).png" alt="米兰达"> 米兰达</td><td>冲锋枪</td><td></td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/布丽德：寂静轨道 (Brid：Silent Track).png" alt="布丽德：寂静轨道"> 布丽德：寂静轨道</td><td>霰弹枪</td><td></td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/拉毗：小红帽 (Rapi：Red Hood).png" alt="拉毗：小红帽"> 拉毗：小红帽</td><td>加特林</td><td></td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/海伦（珍藏品） (Helm (Treasure)).png" alt="海伦（珍藏品）"> 海伦（珍藏品）</td><td>狙击枪</td><td>奶</td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/索林：冰霜车票 (Soline：Frost Ticket).png" alt="索林：冰霜车票"> 索林：冰霜车票</td><td>霰弹枪</td><td></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="team-card">
+            <h4>🔬 米西利斯（Missilis）</h4>
+            <div class="table-wrapper">
+                <table>
+                    <thead><tr><th>角色</th><th>武器</th><th>备注</th></tr></thead>
+                    <tbody>
+                        <tr><td><img class="avatar-sm" src="avatars/蒂亚 (Tia).png" alt="蒂亚"> 蒂亚</td><td>发射器</td><td></td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/丽塔 (Liter).png" alt="丽塔"> 丽塔</td><td>冲锋枪</td><td></td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/娜嘉 (Naga).png" alt="娜嘉"> 娜嘉</td><td>霰弹枪</td><td></td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/麦斯威尔 (Maxwell).png" alt="麦斯威尔"> 麦斯威尔</td><td>狙击枪</td><td></td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/拉普拉斯 (Laplace).png" alt="拉普拉斯"> 拉普拉斯</td><td>发射器</td><td></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="team-card">
+            <h4>🔮 泰特拉（Tetra）</h4>
+            <div class="table-wrapper">
+                <table>
+                    <thead><tr><th>角色</th><th>武器</th><th>备注</th></tr></thead>
+                    <tbody>
+                        <tr><td><img class="avatar-sm" src="avatars/沃伦姆 (Volume).png" alt="沃伦姆"> 沃伦姆</td><td>冲锋枪</td><td></td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/布兰儿 (Blanc).png" alt="布兰儿"> 布兰儿</td><td>步枪</td><td>奶</td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/爱丽丝 (Alice).png" alt="爱丽丝"> 爱丽丝</td><td>狙击枪</td><td></td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/鲁德米拉：冬日之主 (Ludmilla：Winter Owner).png" alt="鲁德米拉：冬日之主"> 鲁德米拉：冬日之主</td><td>加特林</td><td></td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/诺亚尔 (Noir).png" alt="诺亚尔"> 诺亚尔</td><td>霰弹枪</td><td></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="team-card">
+            <h4>✝️ 朝圣者（Pilgrim）</h4>
+            <div class="table-wrapper">
+                <table>
+                    <thead><tr><th>角色</th><th>武器</th><th>备注</th></tr></thead>
+                    <tbody>
+                        <tr><td><img class="avatar-sm" src="avatars/桃乐丝 (Dorothy).png" alt="桃乐丝"> 桃乐丝</td><td>步枪</td><td></td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/皇冠 (Crown).png" alt="皇冠"> 皇冠</td><td>加特林</td><td></td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/拉毗：小红帽 (Rapi：Red Hood).png" alt="拉毗：小红帽"> 拉毗：小红帽</td><td>加特林</td><td></td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/小红帽 (Red Hood).png" alt="小红帽"> 小红帽</td><td>狙击枪</td><td></td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/神罚 (Modernia).png" alt="神罚"> 神罚</td><td>加特林</td><td></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    </div><!-- end: tab-group 3.2 -->
+
+    <h3 class="subsection-title" id="sub-3-3">3.3 异常拦截（周常自动挂机）</h3>
+    <div class="info-box">属性克制机制通用，队伍配置好后可全自动挂机。</div>
+
+    <div class="tab-group">
+    <!-- Tab 切换 -->
+    <div class="server-tabs">
+        <button class="server-tab tab-intl active" onclick="switchTab(event, 'anomaly-intl')">国际服</button>
+        <button class="server-tab tab-cn" onclick="switchTab(event, 'anomaly-cn')">国服</button>
+    </div>
+
+    <!-- 国际服 Tab -->
+    <div class="server-content active" id="anomaly-intl">
+
+    <div class="team-card">
+        <h4>🐙 克拉肯（铁甲属性）— 用风压队打</h4>
+        <p class="desc">核心思路：4风压属性输出 + 皇冠辅助，利用风压克水冷的属性优势；红莲：暗影可被莉贝雷利奥替换</p>
+        <div class="table-wrapper">
+            <table>
+                <thead><tr><th>角色</th><th>武器</th><th>功能</th></tr></thead>
+                <tbody>
+                    <tr><td><img class="avatar-sm" src="avatars/娜由塔 (Nayuta).png" alt="娜由塔"> 娜由塔</td><td>冲锋枪</td><td>风压输出&辅助</td></tr>
+                    <tr><td><img class="avatar-sm" src="avatars/红莲：暗影 (Scarlet：Black Shadow).png" alt="红莲：暗影"> 红莲：暗影</td><td>发射器</td><td>风压输出（莉贝雷利奥可替补）</td></tr>
+                    <tr><td><img class="avatar-sm" src="avatars/小美人鱼 (Little Mermaid).png" alt="小美人鱼"> 小美人鱼</td><td>冲锋枪</td><td>风压输出&减CD</td></tr>
+                    <tr><td><img class="avatar-sm" src="avatars/海伦（珍藏品） (Helm (Treasure)).png" alt="海伦（珍藏品）"> 海伦（珍藏品）</td><td>狙击枪</td><td>水冷输出&辅助（挂异常）</td></tr>
+                    <tr><td><img class="avatar-sm" src="avatars/皇冠 (Crown).png" alt="皇冠"> 皇冠</td><td>加特林</td><td>辅助</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="team-card">
+        <h4>🔮 镜像容器（水冷属性）— 用电击队打</h4>
+        <p class="desc">核心思路：灰姑娘（电击主C，克制水冷属性）+ 皇冠辅助 + 阿妮斯：超级巨星承伤 + 海伦/普丽瓦蒂（珍藏品）增伤；灰姑娘可被尼恩：幻视之眼替换</p>
+        <div class="table-wrapper">
+            <table>
+                <thead><tr><th>角色</th><th>武器</th><th>功能</th></tr></thead>
+                <tbody>
+                    <tr><td><img class="avatar-sm" src="avatars/灰姑娘 (Cinderella).png" alt="灰姑娘"> 灰姑娘</td><td>发射器</td><td>主C（尼恩：幻视之眼可替补）</td></tr>
+                    <tr><td><img class="avatar-sm" src="avatars/皇冠 (Crown).png" alt="皇冠"> 皇冠</td><td>加特林</td><td>辅助</td></tr>
+                    <tr><td><img class="avatar-sm" src="avatars/阿妮斯：超级巨星 (Anis：Star).png" alt="阿妮斯：超级巨星"> 阿妮斯：超级巨星</td><td>发射器</td><td>承伤/输出核心</td></tr>
+                    <tr><td><img class="avatar-sm" src="avatars/海伦（珍藏品） (Helm (Treasure)).png" alt="海伦（珍藏品）"> 海伦（珍藏品）</td><td>狙击枪</td><td>水冷输出&辅助</td></tr>
+                    <tr><td><img class="avatar-sm" src="avatars/普丽瓦蒂（珍藏品） (Privaty (Treasure)).png" alt="普丽瓦蒂（珍藏品）"> 普丽瓦蒂（珍藏品）</td><td>步枪</td><td>水冷输出&辅助</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="team-card">
+        <h4>🔥 茵迪维利亚（燃烧属性）— 用水冷队打</h4>
+        <p class="desc">核心思路：那由他增伤 + 拉毗：小红帽主C + 阿妮斯：超级巨星承伤，水冷属性完美克制燃烧属性</p>
+        <div class="table-wrapper">
+            <table>
+                <thead><tr><th>角色</th><th>武器</th><th>功能</th></tr></thead>
+                <tbody>
+                    <tr><td><img class="avatar-sm" src="avatars/娜由塔 (Nayuta).png" alt="娜由塔"> 娜由塔</td><td>步枪</td><td>辅助/增伤</td></tr>
+                    <tr><td><img class="avatar-sm" src="avatars/拉毗：小红帽 (Rapi：Red Hood).png" alt="拉毗：小红帽"> 拉毗：小红帽</td><td>发射器</td><td>主C</td></tr>
+                    <tr><td><img class="avatar-sm" src="avatars/阿妮斯：超级巨星 (Anis：Star).png" alt="阿妮斯：超级巨星"> 阿妮斯：超级巨星</td><td>发射器</td><td>承伤/输出</td></tr>
+                    <tr><td><img class="avatar-sm" src="avatars/海伦（珍藏品） (Helm (Treasure)).png" alt="海伦（珍藏品）"> 海伦（珍藏品）</td><td>狙击枪</td><td>水冷辅助/增伤</td></tr>
+                    <tr><td><img class="avatar-sm" src="avatars/普丽瓦蒂（珍藏品） (Privaty (Treasure)).png" alt="普丽瓦蒂（珍藏品）"> 普丽瓦蒂（珍藏品）</td><td>步枪</td><td>水冷辅助/增伤</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="team-card">
+        <h4>⚡ 过激派（电击属性）— 用风压队打</h4>
+        <p class="desc">核心思路：皇冠辅助 + 拉毗：小红帽主C + 阿妮斯：超级巨星承伤，风压属性克制电击</p>
+        <div class="table-wrapper">
+            <table>
+                <thead><tr><th>角色</th><th>武器</th><th>功能</th></tr></thead>
+                <tbody>
+                    <tr><td><img class="avatar-sm" src="avatars/皇冠 (Crown).png" alt="皇冠"> 皇冠</td><td>加特林</td><td>辅助</td></tr>
+                    <tr><td><img class="avatar-sm" src="avatars/拉毗：小红帽 (Rapi：Red Hood).png" alt="拉毗：小红帽"> 拉毗：小红帽</td><td>发射器</td><td>主C</td></tr>
+                    <tr><td><img class="avatar-sm" src="avatars/阿妮斯：超级巨星 (Anis：Star).png" alt="阿妮斯：超级巨星"> 阿妮斯：超级巨星</td><td>发射器</td><td>承伤/输出</td></tr>
+                    <tr><td><img class="avatar-sm" src="avatars/海伦（珍藏品） (Helm (Treasure)).png" alt="海伦（珍藏品）"> 海伦（珍藏品）</td><td>狙击枪</td><td>增伤/辅助</td></tr>
+                    <tr><td><img class="avatar-sm" src="avatars/普丽瓦蒂（珍藏品） (Privaty (Treasure)).png" alt="普丽瓦蒂（珍藏品）"> 普丽瓦蒂（珍藏品）</td><td>步枪</td><td>增伤/辅助</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="team-card">
+        <h4>💀 死神（燃烧属性）— 用水冷队打</h4>
+        <p class="desc">核心思路：皇冠辅助 + 白雪公主：重型武装主C + 阿妮斯：超级巨星承伤，水冷属性克制燃烧</p>
+        <div class="table-wrapper">
+            <table>
+                <thead><tr><th>角色</th><th>武器</th><th>功能</th></tr></thead>
+                <tbody>
+                    <tr><td><img class="avatar-sm" src="avatars/皇冠 (Crown).png" alt="皇冠"> 皇冠</td><td>加特林</td><td>辅助</td></tr>
+                    <tr><td><img class="avatar-sm" src="avatars/白雪公主：重型武装 (Snow White：Heavy Arms).png" alt="白雪公主：重型武装"> 白雪公主：重型武装</td><td>发射器</td><td>主C</td></tr>
+                    <tr><td><img class="avatar-sm" src="avatars/阿妮斯：超级巨星 (Anis：Star).png" alt="阿妮斯：超级巨星"> 阿妮斯：超级巨星</td><td>发射器</td><td>承伤/输出</td></tr>
+                    <tr><td><img class="avatar-sm" src="avatars/海伦（珍藏品） (Helm (Treasure)).png" alt="海伦（珍藏品）"> 海伦（珍藏品）</td><td>狙击枪</td><td>水冷辅助/增伤</td></tr>
+                    <tr><td><img class="avatar-sm" src="avatars/普丽瓦蒂（珍藏品） (Privaty (Treasure)).png" alt="普丽瓦蒂（珍藏品）"> 普丽瓦蒂（珍藏品）</td><td>步枪</td><td>水冷辅助/增伤</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    </div><!-- end: anomaly-intl -->
+
+    <!-- 国服 Tab -->
+    <div class="server-content" id="anomaly-cn">
+        <div class="info-box">
+            🇨🇳 <strong>适用</strong>：国服异常拦截（角色池跟国际服有差异，以国服实际可获取角色为准）
+        </div>
+
+        <div class="team-card">
+            <h4>🐙 克拉肯（铁甲属性）— 半自动队伍</h4>
+            <p class="desc">核心思路：拉毗：小红帽主输出 + 皇冠辅助 + 红莲：暗影火力支援，海伦（珍藏品）增伤辅助，爱丽丝补位输出。</p>
+            <div class="table-wrapper">
+                <table>
+                    <thead><tr><th>角色</th><th>武器</th><th>功能</th></tr></thead>
+                    <tbody>
+                        <tr><td><img class="avatar-sm" src="avatars/拉毗：小红帽 (Rapi：Red Hood).png" alt="拉毗：小红帽"> 拉毗：小红帽</td><td>发射器</td><td>主C</td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/皇冠 (Crown).png" alt="皇冠"> 皇冠</td><td>加特林</td><td>辅助</td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/红莲：暗影 (Scarlet：Black Shadow).png" alt="红莲：暗影"> 红莲：暗影</td><td>发射器</td><td>风压输出</td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/海伦（珍藏品） (Helm (Treasure)).png" alt="海伦（珍藏品）"> 海伦（珍藏品）</td><td>狙击枪</td><td>增伤/辅助</td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/爱丽丝 (Alice).png" alt="爱丽丝"> 爱丽丝</td><td>狙击枪</td><td>输出</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="team-card">
+            <h4>🐙 克拉肯（铁甲属性）— 手操队伍</h4>
+            <p class="desc">核心思路：拉毗：小红帽主输出 + 皇冠辅助 + 红莲：暗影火力支援，娜嘉提供高强增伤，爱丽丝高额单点输出。</p>
+            <div class="table-wrapper">
+                <table>
+                    <thead><tr><th>角色</th><th>武器</th><th>功能</th></tr></thead>
+                    <tbody>
+                        <tr><td><img class="avatar-sm" src="avatars/拉毗：小红帽 (Rapi：Red Hood).png" alt="拉毗：小红帽"> 拉毗：小红帽</td><td>发射器</td><td>主C</td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/皇冠 (Crown).png" alt="皇冠"> 皇冠</td><td>加特林</td><td>辅助</td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/红莲：暗影 (Scarlet：Black Shadow).png" alt="红莲：暗影"> 红莲：暗影</td><td>发射器</td><td>风压输出</td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/爱丽丝 (Alice).png" alt="爱丽丝"> 爱丽丝</td><td>狙击枪</td><td>输出</td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/娜嘉 (Naga).png" alt="娜嘉"> 娜嘉</td><td>霰弹枪</td><td>增伤/辅助</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="team-card">
+            <h4>⚡ 过激派（电击属性）— 手操队伍</h4>
+            <p class="desc">核心思路：丽塔减 CD + 皇冠辅助 + 小红帽与拉毗：小红帽双核输出，海伦（珍藏品）增伤辅助。</p>
+            <div class="table-wrapper">
+                <table>
+                    <thead><tr><th>角色</th><th>武器</th><th>功能</th></tr></thead>
+                    <tbody>
+                        <tr><td><img class="avatar-sm" src="avatars/丽塔 (Liter).png" alt="丽塔"> 丽塔</td><td>冲锋枪</td><td>减CD/辅助</td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/皇冠 (Crown).png" alt="皇冠"> 皇冠</td><td>加特林</td><td>辅助</td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/小红帽 (Red Hood).png" alt="小红帽"> 小红帽</td><td>狙击枪</td><td>输出</td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/拉毗：小红帽 (Rapi：Red Hood).png" alt="拉毗：小红帽"> 拉毗：小红帽</td><td>发射器</td><td>主C</td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/海伦（珍藏品） (Helm (Treasure)).png" alt="海伦（珍藏品）"> 海伦（珍藏品）</td><td>狙击枪</td><td>增伤/辅助</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="team-card">
+            <h4>⚡ 过激派（电击属性）— 半自动队伍</h4>
+            <p class="desc">核心思路：拉毗：小红帽主输出 + 皇冠辅助 + 小红帽副输出，海伦（珍藏品）增伤辅助，娜嘉补充增伤。</p>
+            <div class="table-wrapper">
+                <table>
+                    <thead><tr><th>角色</th><th>武器</th><th>功能</th></tr></thead>
+                    <tbody>
+                        <tr><td><img class="avatar-sm" src="avatars/拉毗：小红帽 (Rapi：Red Hood).png" alt="拉毗：小红帽"> 拉毗：小红帽</td><td>发射器</td><td>主C</td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/皇冠 (Crown).png" alt="皇冠"> 皇冠</td><td>加特林</td><td>辅助</td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/小红帽 (Red Hood).png" alt="小红帽"> 小红帽</td><td>狙击枪</td><td>输出</td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/海伦（珍藏品） (Helm (Treasure)).png" alt="海伦（珍藏品）"> 海伦（珍藏品）</td><td>狙击枪</td><td>增伤/辅助</td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/娜嘉 (Naga).png" alt="娜嘉"> 娜嘉</td><td>霰弹枪</td><td>增伤/辅助</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="team-card">
+            <h4>🔥 茵迪维利亚（燃烧属性）— 手操队伍</h4>
+            <p class="desc">核心思路：丽塔减 CD + 皇冠辅助 + 拉毗：小红帽主输出，爱丽丝补位输出，娜嘉增伤辅助，水冷属性克制燃烧。</p>
+            <div class="table-wrapper">
+                <table>
+                    <thead><tr><th>角色</th><th>武器</th><th>功能</th></tr></thead>
+                    <tbody>
+                        <tr><td><img class="avatar-sm" src="avatars/丽塔 (Liter).png" alt="丽塔"> 丽塔</td><td>冲锋枪</td><td>减CD/辅助</td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/皇冠 (Crown).png" alt="皇冠"> 皇冠</td><td>加特林</td><td>辅助</td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/拉毗：小红帽 (Rapi：Red Hood).png" alt="拉毗：小红帽"> 拉毗：小红帽</td><td>发射器</td><td>主C</td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/爱丽丝 (Alice).png" alt="爱丽丝"> 爱丽丝</td><td>狙击枪</td><td>输出</td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/娜嘉 (Naga).png" alt="娜嘉"> 娜嘉</td><td>霰弹枪</td><td>增伤/辅助</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="team-card">
+            <h4>🔥 茵迪维利亚（燃烧属性）— 半自动队伍</h4>
+            <p class="desc">核心思路：丽塔减 CD + 皇冠辅助 + 拉毗：小红帽主输出，海伦（珍藏品）增伤辅助，娜嘉补充增伤。</p>
+            <div class="table-wrapper">
+                <table>
+                    <thead><tr><th>角色</th><th>武器</th><th>功能</th></tr></thead>
+                    <tbody>
+                        <tr><td><img class="avatar-sm" src="avatars/丽塔 (Liter).png" alt="丽塔"> 丽塔</td><td>冲锋枪</td><td>减CD/辅助</td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/皇冠 (Crown).png" alt="皇冠"> 皇冠</td><td>加特林</td><td>辅助</td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/拉毗：小红帽 (Rapi：Red Hood).png" alt="拉毗：小红帽"> 拉毗：小红帽</td><td>发射器</td><td>主C</td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/海伦（珍藏品） (Helm (Treasure)).png" alt="海伦（珍藏品）"> 海伦（珍藏品）</td><td>狙击枪</td><td>增伤/辅助</td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/娜嘉 (Naga).png" alt="娜嘉"> 娜嘉</td><td>霰弹枪</td><td>增伤/辅助</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="team-card">
+            <h4>💀 死神（燃烧属性）— 半自动队伍</h4>
+            <p class="desc">核心思路：桃乐丝减 CD + 皇冠辅助 + 拉毗：小红帽主输出，海伦（珍藏品）增伤辅助，鲁德米拉：冬日之主水冷输出，水冷克制燃烧。</p>
+            <div class="table-wrapper">
+                <table>
+                    <thead><tr><th>角色</th><th>武器</th><th>功能</th></tr></thead>
+                    <tbody>
+                        <tr><td><img class="avatar-sm" src="avatars/桃乐丝 (Dorothy).png" alt="桃乐丝"> 桃乐丝</td><td>冲锋枪</td><td>减CD/辅助</td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/皇冠 (Crown).png" alt="皇冠"> 皇冠</td><td>加特林</td><td>辅助</td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/拉毗：小红帽 (Rapi：Red Hood).png" alt="拉毗：小红帽"> 拉毗：小红帽</td><td>发射器</td><td>主C</td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/海伦（珍藏品） (Helm (Treasure)).png" alt="海伦（珍藏品）"> 海伦（珍藏品）</td><td>狙击枪</td><td>增伤/辅助</td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/鲁德米拉：冬日之主 (Ludmilla：Winter Owner).png" alt="鲁德米拉：冬日之主"> 鲁德米拉：冬日之主</td><td>发射器</td><td>水冷输出</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="team-card">
+            <h4>🔮 镜像容器（水冷属性）— 等灰姑娘（电击队）</h4>
+            <p class="desc">核心思路：灰姑娘电击主输出克制水冷 + 露姬辅助 + 阿妮斯：闪耀夏日承伤输出 + 皇冠辅助 + 梅登：冰之玫瑰补充输出。</p>
+            <div class="table-wrapper">
+                <table>
+                    <thead><tr><th>角色</th><th>武器</th><th>功能</th></tr></thead>
+                    <tbody>
+                        <tr><td><img class="avatar-sm" src="avatars/灰姑娘 (Cinderella).png" alt="灰姑娘"> 灰姑娘</td><td>发射器</td><td>电击主C</td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/露姬 (Rouge).png" alt="露姬"> 露姬</td><td>狙击枪</td><td>辅助</td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/阿妮斯：闪耀夏日 (Anis：Sparkling Summer).png" alt="阿妮斯：闪耀夏日"> 阿妮斯：闪耀夏日</td><td>发射器</td><td>承伤/输出</td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/皇冠 (Crown).png" alt="皇冠"> 皇冠</td><td>加特林</td><td>辅助</td></tr>
+                        <tr><td><img class="avatar-sm" src="avatars/梅登：冰之玫瑰 (Maiden：Ice Rose).png" alt="梅登：冰之玫瑰"> 梅登：冰之玫瑰</td><td>狙击枪</td><td>输出</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    </div><!-- end: tab-group 3.3 -->
+
+    <h3 class="subsection-title" id="sub-3-4">3.4 突袭模式（按属性克制组队）</h3>
+    <div class="tip-box">
+        <strong>属性克制</strong>：电击→水冷→燃烧→风压→铁甲→电击（循环克制）。<br><br>
+        <strong>通用组队模板</strong>：<br>
+        • 主C × 2-3：克制属性的高输出角色<br>
+        • 增伤/拐 × 1：对应属性的最佳增伤角色<br>
+        • 减CD × 1：加速爆裂循环<br>
+        • 生存位（可选）：高压关卡带奶/盾
+    </div>
+</div>
+
+<!-- 四、养成参考数据 -->
+<div class="section" id="section4">
+    <h2 class="section-title"><span class="emoji">📊</span> 四、养成参考数据 <span class="tag">🌐 完全通用</span></h2>
+    <div class="sub-nav">
+        <a href="#sub-4-1">4.1 芯片数值效果</a>
+        <a href="#sub-4-2">4.2 魔方养成</a>
+    </div>
+
+    <h3 class="subsection-title" id="sub-4-1">4.1 芯片数值效果总表</h3>
+    <div class="info-box">词条数值对应表，用于计算装备词条收益。此数据为游戏底层设定，全球所有服务器一致。</div>
+
+    <details>
+        <summary>⚔️ 攻击力增加</summary>
+        <div class="content">
+            <div class="table-wrapper">
+                <table>
+                    <thead><tr><th>阶级</th><th>数值</th><th>概率</th></tr></thead>
+                    <tbody>
+                        <tr><td>1阶</td><td>0.0477</td><td>12%</td></tr>
+                        <tr><td>2阶</td><td>0.0547</td><td>12%</td></tr>
+                        <tr><td>3阶</td><td>0.0618</td><td>12%</td></tr>
+                        <tr><td>4阶</td><td>0.0688</td><td>12%</td></tr>
+                        <tr><td>5阶</td><td>0.0759</td><td>12%</td></tr>
+                        <tr><td>6阶</td><td>0.0829</td><td>7%</td></tr>
+                        <tr><td>7阶</td><td>0.0900</td><td>7%</td></tr>
+                        <tr><td>8阶</td><td>0.0970</td><td>7%</td></tr>
+                        <tr><td>9阶</td><td>0.1040</td><td>7%</td></tr>
+                        <tr><td>10阶</td><td>0.1111</td><td>7%</td></tr>
+                        <tr><td>11阶</td><td>0.1181</td><td>1%</td></tr>
+                        <tr><td>12阶</td><td>0.1252</td><td>1%</td></tr>
+                        <tr><td>13阶</td><td>0.1322</td><td>1%</td></tr>
+                        <tr><td>14阶</td><td>0.1393</td><td>1%</td></tr>
+                        <tr><td>15阶</td><td>0.1463</td><td>1%</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </details>
+
+    <details>
+        <summary>💎 优越代码伤害增加</summary>
+        <div class="content">
+            <div class="table-wrapper">
+                <table>
+                    <thead><tr><th>阶级</th><th>数值</th><th>概率</th></tr></thead>
+                    <tbody>
+                        <tr><td>1阶</td><td>0.0954</td><td>12%</td></tr>
+                        <tr><td>2阶</td><td>0.1094</td><td>12%</td></tr>
+                        <tr><td>3阶</td><td>0.1234</td><td>12%</td></tr>
+                        <tr><td>4阶</td><td>0.1375</td><td>12%</td></tr>
+                        <tr><td>5阶</td><td>0.1515</td><td>12%</td></tr>
+                        <tr><td>6阶</td><td>0.1655</td><td>7%</td></tr>
+                        <tr><td>7阶</td><td>0.1795</td><td>7%</td></tr>
+                        <tr><td>8阶</td><td>0.1935</td><td>7%</td></tr>
+                        <tr><td>9阶</td><td>0.2075</td><td>7%</td></tr>
+                        <tr><td>10阶</td><td>0.2215</td><td>7%</td></tr>
+                        <tr><td>11阶</td><td>0.2356</td><td>1%</td></tr>
+                        <tr><td>12阶</td><td>0.2496</td><td>1%</td></tr>
+                        <tr><td>13阶</td><td>0.2636</td><td>1%</td></tr>
+                        <tr><td>14阶</td><td>0.2776</td><td>1%</td></tr>
+                        <tr><td>15阶</td><td>0.2916</td><td>1%</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </details>
+
+    <details>
+        <summary>📦 最大装弹数增加</summary>
+        <div class="content">
+            <div class="table-wrapper">
+                <table>
+                    <thead><tr><th>阶级</th><th>数值</th><th>概率</th></tr></thead>
+                    <tbody>
+                        <tr><td>1阶</td><td>0.2784</td><td>12%</td></tr>
+                        <tr><td>2阶</td><td>0.3195</td><td>12%</td></tr>
+                        <tr><td>3阶</td><td>0.3606</td><td>12%</td></tr>
+                        <tr><td>4阶</td><td>0.4017</td><td>12%</td></tr>
+                        <tr><td>5阶</td><td>0.4428</td><td>12%</td></tr>
+                        <tr><td>6阶</td><td>0.4839</td><td>7%</td></tr>
+                        <tr><td>7阶</td><td>0.5250</td><td>7%</td></tr>
+                        <tr><td>8阶</td><td>0.5660</td><td>7%</td></tr>
+                        <tr><td>9阶</td><td>0.6071</td><td>7%</td></tr>
+                        <tr><td>10阶</td><td>0.6482</td><td>7%</td></tr>
+                        <tr><td>11阶</td><td>0.6893</td><td>1%</td></tr>
+                        <tr><td>12阶</td><td>0.7304</td><td>1%</td></tr>
+                        <tr><td>13阶</td><td>0.7715</td><td>1%</td></tr>
+                        <tr><td>14阶</td><td>0.8126</td><td>1%</td></tr>
+                        <tr><td>15阶</td><td>0.8537</td><td>1%</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </details>
+
+    <details>
+        <summary>💥 暴击伤害增加</summary>
+        <div class="content">
+            <div class="table-wrapper">
+                <table>
+                    <thead><tr><th>阶级</th><th>数值</th><th>概率</th></tr></thead>
+                    <tbody>
+                        <tr><td>1阶</td><td>0.0664</td><td>12%</td></tr>
+                        <tr><td>2阶</td><td>0.0762</td><td>12%</td></tr>
+                        <tr><td>3阶</td><td>0.0860</td><td>12%</td></tr>
+                        <tr><td>4阶</td><td>0.0958</td><td>12%</td></tr>
+                        <tr><td>5阶</td><td>0.1056</td><td>12%</td></tr>
+                        <tr><td>6阶</td><td>0.1154</td><td>7%</td></tr>
+                        <tr><td>7阶</td><td>0.1252</td><td>7%</td></tr>
+                        <tr><td>8阶</td><td>0.1350</td><td>7%</td></tr>
+                        <tr><td>9阶</td><td>0.1448</td><td>7%</td></tr>
+                        <tr><td>10阶</td><td>0.1546</td><td>7%</td></tr>
+                        <tr><td>11阶</td><td>0.1644</td><td>1%</td></tr>
+                        <tr><td>12阶</td><td>0.1742</td><td>1%</td></tr>
+                        <tr><td>13阶</td><td>0.1840</td><td>1%</td></tr>
+                        <tr><td>14阶</td><td>0.1938</td><td>1%</td></tr>
+                        <tr><td>15阶</td><td>0.2036</td><td>1%</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </details>
+
+    <details>
+        <summary>🎯 暴击率增加</summary>
+        <div class="content">
+            <div class="table-wrapper">
+                <table>
+                    <thead><tr><th>阶级</th><th>数值</th><th>概率</th></tr></thead>
+                    <tbody>
+                        <tr><td>1阶</td><td>0.0230</td><td>1.44%</td></tr>
+                        <tr><td>2阶</td><td>0.0264</td><td>1.44%</td></tr>
+                        <tr><td>3阶</td><td>0.0298</td><td>1.44%</td></tr>
+                        <tr><td>4阶</td><td>0.0332</td><td>1.44%</td></tr>
+                        <tr><td>5阶</td><td>0.0366</td><td>1.44%</td></tr>
+                        <tr><td>6阶</td><td>0.0400</td><td>0.84%</td></tr>
+                        <tr><td>7阶</td><td>0.0435</td><td>0.84%</td></tr>
+                        <tr><td>8阶</td><td>0.0469</td><td>0.84%</td></tr>
+                        <tr><td>9阶</td><td>0.0503</td><td>0.84%</td></tr>
+                        <tr><td>10阶</td><td>0.0537</td><td>0.84%</td></tr>
+                        <tr><td>11阶</td><td>0.0571</td><td>0.12%</td></tr>
+                        <tr><td>12阶</td><td>0.0605</td><td>0.12%</td></tr>
+                        <tr><td>13阶</td><td>0.0639</td><td>0.12%</td></tr>
+                        <tr><td>14阶</td><td>0.0673</td><td>0.12%</td></tr>
+                        <tr><td>15阶</td><td>0.0707</td><td>0.12%</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </details>
+
+    <details>
+        <summary>⚡ 蓄力速度增加</summary>
+        <div class="content">
+            <div class="table-wrapper">
+                <table>
+                    <thead><tr><th>阶级</th><th>数值</th><th>概率</th></tr></thead>
+                    <tbody>
+                        <tr><td>1阶</td><td>0.0198</td><td>12%</td></tr>
+                        <tr><td>2阶</td><td>0.0228</td><td>12%</td></tr>
+                        <tr><td>3阶</td><td>0.0257</td><td>12%</td></tr>
+                        <tr><td>4阶</td><td>0.0286</td><td>12%</td></tr>
+                        <tr><td>5阶</td><td>0.0316</td><td>12%</td></tr>
+                        <tr><td>6阶</td><td>0.0345</td><td>7%</td></tr>
+                        <tr><td>7阶</td><td>0.0375</td><td>7%</td></tr>
+                        <tr><td>8阶</td><td>0.0404</td><td>7%</td></tr>
+                        <tr><td>9阶</td><td>0.0433</td><td>7%</td></tr>
+                        <tr><td>10阶</td><td>0.0463</td><td>7%</td></tr>
+                        <tr><td>11阶</td><td>0.0492</td><td>1%</td></tr>
+                        <tr><td>12阶</td><td>0.0521</td><td>1%</td></tr>
+                        <tr><td>13阶</td><td>0.0551</td><td>1%</td></tr>
+                        <tr><td>14阶</td><td>0.0580</td><td>1%</td></tr>
+                        <tr><td>15阶</td><td>0.0609</td><td>1%</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </details>
+
+    <h3 class="subsection-title" id="sub-4-2">4.2 魔方养成指南</h3>
+    <div class="info-box">
+        <strong>通用规则</strong>：技能1效果7级最大 | 技能2提升优越增伤，资源多可继续提升
+    </div>
+
+    <div class="tab-group">
+    <!-- Tab 切换 -->
+    <div class="server-tabs">
+        <button class="server-tab tab-intl active" onclick="switchTab(event, 'cube-intl')">国际服</button>
+        <button class="server-tab tab-cn" onclick="switchTab(event, 'cube-cn')">国服</button>
+    </div>
+
+    <!-- 国际服 Tab -->
+    <div class="server-content active" id="cube-intl">
+
+    <h4 class="sub-subsection-title">PVE魔方推荐</h4>
+    <div class="table-wrapper">
+        <table>
+            <thead><tr><th>魔方</th><th>效果</th><th>等级</th><th>适用角色</th></tr></thead>
+            <tbody>
+                <tr><td>遗迹巨熊魔方</td><td>换弹速度↑</td><td>7级+拉满</td><td>全通用</td></tr>
+                <tr><td>战术巨熊魔方</td><td>子弹射10补1↑</td><td>7级+拉满</td><td>加特林、冲锋枪</td></tr>
+                <tr><td>遗迹穿透魔方</td><td>穿透伤害↑</td><td>7级+拉满</td><td>穿透角色</td></tr>
+                <tr><td>遗迹粉碎魔方</td><td>真实伤害↑</td><td>7级+拉满</td><td>真伤角色</td></tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="tip-box"><strong>PVE优先级：</strong>遗迹巨熊 → 战术巨熊 → 后期补遗迹穿透、遗迹粉碎</div>
+
+    <h4 class="sub-subsection-title">PVP魔方推荐</h4>
+    <div class="table-wrapper">
+        <table>
+            <thead><tr><th>魔方</th><th>效果</th><th>等级</th><th>适用角色</th></tr></thead>
+            <tbody>
+                <tr><td>遗迹量子魔方</td><td>蓄力速度↑</td><td>7级</td><td>狙击枪、发射器</td></tr>
+                <tr><td>遗迹回火魔方</td><td>充能能量速度↑</td><td>拉满</td><td>发射器</td></tr>
+                <tr><td>体力神谕魔方</td><td>最终体力↑</td><td>7级+开位置</td><td>全通用</td></tr>
+                <tr><td>遗迹回火魔方</td><td>减伤↑</td><td>拉满</td><td>全通用</td></tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="tip-box"><strong>PVP优先级：</strong>遗迹量子与遗迹回火优先提升</div>
+
+    </div><!-- end: cube-intl -->
+
+    <!-- 国服 Tab -->
+    <div class="server-content" id="cube-cn">
+        <div class="info-box">
+            🇨🇳 PVE优先提升遗迹巨熊魔方即可，基本上能玩到退坑！<br>
+            后面可以补战术巨熊魔方给加特林角色使用。<br>
+            PVP优先给遗迹量子魔方 / 遗迹回火魔方！
+        </div>
+
+        <h4 class="sub-subsection-title">PVE魔方推荐</h4>
+        <div class="table-wrapper">
+            <table>
+                <thead><tr><th>魔方</th><th>效果</th><th>等级</th><th>适用角色</th></tr></thead>
+                <tbody>
+                    <tr><td>遗迹巨熊魔方</td><td>换弹速度↑</td><td>7&拉满</td><td>全通用</td></tr>
+                    <tr><td>战术巨熊魔方</td><td>子弹射10补1↑</td><td>7&拉满</td><td>加特林、冲锋枪</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h4 class="sub-subsection-title">PVP魔方推荐</h4>
+        <div class="table-wrapper">
+            <table>
+                <thead><tr><th>魔方</th><th>效果</th><th>等级</th><th>适用角色</th></tr></thead>
+                <tbody>
+                    <tr><td>遗迹回火魔方</td><td>减伤↑</td><td>拉满</td><td>全通用</td></tr>
+                    <tr><td>遗迹量子魔方</td><td>充能能量速度↑</td><td>7&开位置</td><td>发射器、霰弹枪</td></tr>
+                    <tr><td>体力神器魔方</td><td>最大体力↑</td><td>7&开位置</td><td>全通用</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </div><!-- end: tab-group 4.2 -->
+</div>
+
+<!-- PVE角色强度榜 -->
+<div class="section" id="tier-list">
+    <h2 class="section-title"><span class="emoji">🏆</span> PVE角色强度榜</h2>
+    <div class="sub-nav">
+        <a href="#tier-god">幻神</a>
+        <a href="#tier-t0">T0</a>
+        <a href="#tier-ex">EX</a>
+    </div>
+    <div class="info-box">✅ 数据来源：YeeVan B站「PVE角色推荐榜」（2026年4月30日刷新）<br>🖼️ 四档结构：<strong>幻神 → T0 → EX → T1</strong></div>
+
+    <!-- 幻神 -->
+    <h3 class="subsection-title" style="border-left-color: #ff6b6b; color: #ffd93d;" id="tier-god">幻神（4人）</h3>
+    <div class="tier-cards tier-mythic">
+        <div class="char-card"><img class="avatar-tier" src="avatars/阿妮斯：超级巨星 (Anis：Star).png" alt="阿妮斯：超级巨星"><div class="char-info"><div class="char-name">阿妮斯：超级巨星</div><div class="char-weapon">发射器</div></div></div>
+        <div class="char-card"><img class="avatar-tier" src="avatars/皇冠 (Crown).png" alt="皇冠"><div class="char-info"><div class="char-name">皇冠</div><div class="char-weapon">加特林</div></div></div>
+        <div class="char-card"><img class="avatar-tier" src="avatars/拉毗：小红帽 (Rapi：Red Hood).png" alt="拉毗：小红帽"><div class="char-info"><div class="char-name">拉毗：小红帽</div><div class="char-weapon">加特林</div></div></div>
+        <div class="char-card"><img class="avatar-tier" src="avatars/白雪公主：重型武装 (Snow White：Heavy Arms).png" alt="白雪公主：重型武装"><div class="char-info"><div class="char-name">白雪公主：重型武装</div><div class="char-weapon">狙击枪</div></div></div>
+    </div>
+
+    <!-- T0 -->
+    <h3 class="subsection-title" style="border-left-color: #6c5ce7;" id="tier-t0">T0（5人）</h3>
+    <div class="tier-cards tier-s">
+        <div class="char-card"><img class="avatar-tier" src="avatars/尼恩：幻视之眼 (Neon：Vision Eye).png" alt="尼恩：幻视之眼"><div class="char-info"><div class="char-name">尼恩：幻视之眼</div><div class="char-weapon">发射器</div></div></div>
+        <div class="char-card"><img class="avatar-tier" src="avatars/红莲：暗影 (Scarlet：Black Shadow).png" alt="红莲：暗影"><div class="char-info"><div class="char-name">红莲：暗影</div><div class="char-weapon">发射器</div></div></div>
+        <div class="char-card"><img class="avatar-tier" src="avatars/小美人鱼 (Little Mermaid).png" alt="小美人鱼"><div class="char-info"><div class="char-name">小美人鱼</div><div class="char-weapon">冲锋枪</div></div></div>
+        <div class="char-card"><img class="avatar-tier" src="avatars/莉贝雷利奥 (Liberalio).png" alt="莉贝雷利奥"><div class="char-info"><div class="char-name">莉贝雷利奥</div><div class="char-weapon">狙击枪</div></div></div>
+        <div class="char-card"><img class="avatar-tier" src="avatars/娜由塔 (Nayuta).png" alt="娜由塔"><div class="char-info"><div class="char-name">娜由塔</div><div class="char-weapon">冲锋枪</div></div></div>
+    </div>
+    <div class="tip-box">💡 这5个全是朝圣者阵营（除尼恩外），说明当前版本朝圣者在T0占据绝对统治地位</div>
+
+    <!-- EX -->
+    <h3 class="subsection-title" style="border-left-color: #0984e3;" id="tier-ex">EX（11人）</h3>
+    <div class="tier-cards tier-ex">
+        <div class="char-card"><img class="avatar-tier" src="avatars/格拉维 (Grave).png" alt="格拉维"><div class="char-info"><div class="char-name">格拉维</div><div class="char-weapon">步枪</div></div></div>
+        <div class="char-card"><img class="avatar-tier" src="avatars/马斯特：浪漫的女仆 (Mast：Romantic Maid).png" alt="马斯特：浪漫的女仆"><div class="char-info"><div class="char-name">马斯特：浪漫的女仆</div><div class="char-weapon">加特林</div></div></div>
+        <div class="char-card"><img class="avatar-tier" src="avatars/安克：天真的女仆 (Anchor：Innocent Maid).png" alt="安克：天真的女仆"><div class="char-info"><div class="char-name">安克：天真的女仆</div><div class="char-weapon">发射器</div></div></div>
+        <div class="char-card"><img class="avatar-tier" src="avatars/桃乐丝：机缘巧遇 (Dorothy：Serendipity).png" alt="桃乐丝：机缘巧遇"><div class="char-info"><div class="char-name">桃乐丝：机缘巧遇</div><div class="char-weapon">霰弹枪</div></div></div>
+        <div class="char-card"><img class="avatar-tier" src="avatars/米哈拉：羁绊之链 (Mihara：Bonding Chain).png" alt="米哈拉：羁绊之链"><div class="char-info"><div class="char-name">米哈拉：羁绊之链</div><div class="char-weapon">加特林</div></div></div>
+        <div class="char-card"><img class="avatar-tier" src="avatars/灰姑娘 (Cinderella).png" alt="灰姑娘"><div class="char-info"><div class="char-name">灰姑娘</div><div class="char-weapon">发射器</div></div></div>
+        <div class="char-card"><img class="avatar-tier" src="avatars/渡鸦 (Raven).png" alt="渡鸦"><div class="char-info"><div class="char-name">渡鸦</div><div class="char-weapon">发射器</div></div></div>
+        <div class="char-card"><img class="avatar-tier" src="avatars/小红帽 (Red Hood).png" alt="小红帽"><div class="char-info"><div class="char-name">小红帽</div><div class="char-weapon">狙击枪</div></div></div>
+        <div class="char-card"><img class="avatar-tier" src="avatars/海伦（珍藏品） (Helm (Treasure)).png" alt="海伦（珍藏品）"><div class="char-info"><div class="char-name">海伦（珍藏品）</div><div class="char-weapon">狙击枪</div></div></div>
+        <div class="char-card"><img class="avatar-tier" src="avatars/普丽瓦蒂（珍藏品） (Privaty (Treasure)).png" alt="普丽瓦蒂（珍藏品）"><div class="char-info"><div class="char-name">普丽瓦蒂（珍藏品）</div><div class="char-weapon">步枪</div></div></div>
+        <div class="char-card"><img class="avatar-tier" src="avatars/牡丹（珍藏品） (Moran (Treasure)).png" alt="牡丹（珍藏品）"><div class="char-info"><div class="char-name">牡丹（珍藏品）</div><div class="char-weapon">步枪</div></div></div>
+    </div>
+
+    <!-- T1（可折叠） -->
+    <details>
+        <summary>📋 T1（约40人）— 点击展开</summary>
+        <div class="tier-cards tier-a">
+            <div class="char-card"><img class="avatar-tier" src="avatars/丽塔 (Liter).png" alt="丽塔"><div class="char-info"><div class="char-name">丽塔</div><div class="char-weapon">冲锋枪</div></div></div>
+            <div class="char-card"><img class="avatar-tier" src="avatars/露姬 (Rouge).png" alt="露姬"><div class="char-info"><div class="char-name">露姬</div><div class="char-weapon">狙击枪</div></div></div>
+            <div class="char-card"><img class="avatar-tier" src="avatars/蒂亚 (Tia).png" alt="蒂亚"><div class="char-info"><div class="char-name">蒂亚</div><div class="char-weapon">发射器</div></div></div>
+            <div class="char-card"><img class="avatar-tier" src="avatars/泷奈 (Takina Inoue).png" alt="泷奈"><div class="char-info"><div class="char-name">泷奈</div><div class="char-weapon">狙击枪</div></div></div>
+            <div class="char-card"><img class="avatar-tier" src="avatars/娜嘉 (Naga).png" alt="娜嘉"><div class="char-info"><div class="char-name">娜嘉</div><div class="char-weapon">霰弹枪</div></div></div>
+            <div class="char-card"><img class="avatar-tier" src="avatars/爱德：特工兔女郎 (Ade：Agent Bunny).png" alt="爱德：特工兔女郎"><div class="char-info"><div class="char-name">爱德：特工兔女郎</div><div class="char-weapon">狙击枪</div></div></div>
+            <div class="char-card"><img class="avatar-tier" src="avatars/布丽德：寂静轨道 (Brid：Silent Track).png" alt="布丽德：寂静轨道"><div class="char-info"><div class="char-name">布丽德：寂静轨道</div><div class="char-weapon">霰弹枪</div></div></div>
+            <div class="char-card"><img class="avatar-tier" src="avatars/阿尔卡娜：命运搭档 (Arcana：Fortune Mate).png" alt="阿尔卡娜：命运搭档"><div class="char-info"><div class="char-name">阿尔卡娜：命运搭档</div><div class="char-weapon">霰弹枪</div></div></div>
+            <div class="char-card"><img class="avatar-tier" src="avatars/阿尔卡娜 (Arcana).png" alt="阿尔卡娜"><div class="char-info"><div class="char-name">阿尔卡娜</div><div class="char-weapon">发射器</div></div></div>
+            <div class="char-card"><img class="avatar-tier" src="avatars/伊莎贝尔 (Isabel).png" alt="伊莎贝尔"><div class="char-info"><div class="char-name">伊莎贝尔</div><div class="char-weapon">霰弹枪</div></div></div>
+            <div class="char-card"><img class="avatar-tier" src="avatars/吉萝婷：冬日杀手 (Guillotine：Winter Slayer).png" alt="吉萝婷：冬日杀手"><div class="char-info"><div class="char-name">吉萝婷：冬日杀手</div><div class="char-weapon">步枪</div></div></div>
+            <div class="char-card"><img class="avatar-tier" src="avatars/零（暂称） (Rei Ayanami (Tentative Name)).png" alt="零（暂称）"><div class="char-info"><div class="char-name">零（暂称）</div><div class="char-weapon">步枪</div></div></div>
+            <div class="char-card"><img class="avatar-tier" src="avatars/红莲 (Scarlet).png" alt="红莲"><div class="char-info"><div class="char-name">红莲</div><div class="char-weapon">步枪</div></div></div>
+            <div class="char-card"><img class="avatar-tier" src="avatars/爱因 (Ein).png" alt="爱因"><div class="char-info"><div class="char-name">爱因</div><div class="char-weapon">狙击枪</div></div></div>
+            <div class="char-card"><img class="avatar-tier" src="avatars/零 (Rei Ayanami).png" alt="零"><div class="char-info"><div class="char-name">零</div><div class="char-weapon">加特林</div></div></div>
+            <div class="char-card"><img class="avatar-tier" src="avatars/梅登：冰之玫瑰 (Maiden：Ice Rose).png" alt="梅登：冰之玫瑰"><div class="char-info"><div class="char-name">梅登：冰之玫瑰</div><div class="char-weapon">发射器</div></div></div>
+            <div class="char-card"><img class="avatar-tier" src="avatars/坎西：逃生女王 (Quency：Escape Queen).png" alt="坎西：逃生女王"><div class="char-info"><div class="char-name">坎西：逃生女王</div><div class="char-weapon">冲锋枪</div></div></div>
+            <div class="char-card"><img class="avatar-tier" src="avatars/爱丽丝 (Alice).png" alt="爱丽丝"><div class="char-info"><div class="char-name">爱丽丝</div><div class="char-weapon">狙击枪</div></div></div>
+            <div class="char-card"><img class="avatar-tier" src="avatars/布蕾德 (Bready).png" alt="布蕾德"><div class="char-info"><div class="char-name">布蕾德</div><div class="char-weapon">狙击枪</div></div></div>
+            <div class="char-card"><img class="avatar-tier" src="avatars/白雪公主 (Snow White).png" alt="白雪公主"><div class="char-info"><div class="char-name">白雪公主</div><div class="char-weapon">步枪</div></div></div>
+            <div class="char-card"><img class="avatar-tier" src="avatars/伊莱格：风暴 (Elegg：Boom and Shock).png" alt="伊莱格：风暴"><div class="char-info"><div class="char-name">伊莱格：风暴</div><div class="char-weapon">加特林</div></div></div>
+            <div class="char-card"><img class="avatar-tier" src="avatars/神罚 (Modernia).png" alt="神罚"><div class="char-info"><div class="char-name">神罚</div><div class="char-weapon">加特林</div></div></div>
+            <div class="char-card"><img class="avatar-tier" src="avatars/索达：闪亮兔女郎 (Soda：Twinkling Bunny).png" alt="索达：闪亮兔女郎"><div class="char-info"><div class="char-name">索达：闪亮兔女郎</div><div class="char-weapon">霰弹枪</div></div></div>
+            <div class="char-card"><img class="avatar-tier" src="avatars/米尔克（珍藏品） (Milk (Treasure)).png" alt="米尔克（珍藏品）"><div class="char-info"><div class="char-name">米尔克（珍藏品）</div><div class="char-weapon">狙击枪</div></div></div>
+            <div class="char-card"><img class="avatar-tier" src="avatars/吉尔 (Jill Valentine).png" alt="吉尔"><div class="char-info"><div class="char-name">吉尔</div><div class="char-weapon">步枪</div></div></div>
+            <div class="char-card"><img class="avatar-tier" src="avatars/艾达 (Ada Wong).png" alt="艾达"><div class="char-info"><div class="char-name">艾达</div><div class="char-weapon">发射器</div></div></div>
+            <div class="char-card"><img class="avatar-tier" src="avatars/明日香 (Asuka Shikinami Langley).png" alt="明日香"><div class="char-info"><div class="char-name">明日香</div><div class="char-weapon">步枪</div></div></div>
+            <div class="char-card"><img class="avatar-tier" src="avatars/明日香：WILLE (Asuka Shikinami Langley：Wille).png" alt="明日香：WILLE"><div class="char-info"><div class="char-name">明日香：WILLE</div><div class="char-weapon">加特林</div></div></div>
+            <div class="char-card"><img class="avatar-tier" src="avatars/鲁德米拉：冬日之主 (Ludmilla：Winter Owner).png" alt="鲁德米拉：冬日之主"><div class="char-info"><div class="char-name">鲁德米拉：冬日之主</div><div class="char-weapon">加特林</div></div></div>
+            <div class="char-card"><img class="avatar-tier" src="avatars/阿妮斯：闪耀夏日 (Anis：Sparkling Summer).png" alt="阿妮斯：闪耀夏日"><div class="char-info"><div class="char-name">阿妮斯：闪耀夏日</div><div class="char-weapon">霰弹枪</div></div></div>
+            <div class="char-card"><img class="avatar-tier" src="avatars/迪赛尔：冬日甜品 (Diesel：Winter Sweets).png" alt="迪赛尔：冬日甜品"><div class="char-info"><div class="char-name">迪赛尔：冬日甜品</div><div class="char-weapon">发射器</div></div></div>
+            <div class="char-card"><img class="avatar-tier" src="avatars/伊芙 (Eve).png" alt="伊芙"><div class="char-info"><div class="char-name">伊芙</div><div class="char-weapon">步枪</div></div></div>
+            <div class="char-card"><img class="avatar-tier" src="avatars/麦斯威尔 (Maxwell).png" alt="麦斯威尔"><div class="char-info"><div class="char-name">麦斯威尔</div><div class="char-weapon">狙击枪</div></div></div>
+            <div class="char-card"><img class="avatar-tier" src="avatars/千束 (Chisato Nishikigi).png" alt="千束"><div class="char-info"><div class="char-name">千束</div><div class="char-weapon">冲锋枪</div></div></div>
+            <div style="width:100%;text-align:center;font-size:0.95em;color:#2ecc71;margin:8px 0;">🔖 珍藏品（6人）</div>
+            <div class="char-card"><img class="avatar-tier" src="avatars/米兰达（珍藏品） (Miranda (Treasure)).png" alt="米兰达（珍藏品）"><div class="char-info"><div class="char-name">米兰达（珍藏品）</div><div class="char-weapon">冲锋枪</div></div></div>
+            <div class="char-card"><img class="avatar-tier" src="avatars/艾可希雅（珍藏品） (Exia (Treasure)).png" alt="艾可希雅（珍藏品）"><div class="char-info"><div class="char-name">艾可希雅（珍藏品）</div><div class="char-weapon">狙击枪</div></div></div>
+            <div class="char-card"><img class="avatar-tier" src="avatars/托比（珍藏品） (Tove (Treasure)).png" alt="托比（珍藏品）"><div class="char-info"><div class="char-name">托比（珍藏品）</div><div class="char-weapon">步枪</div></div></div>
+            <div class="char-card"><img class="avatar-tier" src="avatars/尤莉亚（珍藏品） (Julia (Treasure)).png" alt="尤莉亚（珍藏品）"><div class="char-info"><div class="char-name">尤莉亚（珍藏品）</div><div class="char-weapon">步枪</div></div></div>
+            <div class="char-card"><img class="avatar-tier" src="avatars/茨瓦伊 (Zwei).png" alt="茨瓦伊"><div class="char-info"><div class="char-name">茨瓦伊</div><div class="char-weapon">霰弹枪</div></div></div>
+            <div class="char-card"><img class="avatar-tier" src="avatars/德雷克（珍藏品） (Drake (Treasure)).png" alt="德雷克（珍藏品）"><div class="char-info"><div class="char-name">德雷克（珍藏品）</div><div class="char-weapon">霰弹枪</div></div></div>
+        </div>
+    </details>
+</div>
+
+
+
+
+
+<!-- 附录 -->
+<div class="section">
+    <h2 class="section-title"><span class="emoji">📎</span> 附录</h2>
+
+    <h3 class="subsection-title" id="glossary">术语说明</h3>
+    <div class="legend">
+        <div class="legend-item"><span class="mark">📝</span><div><strong>技能等级格式</strong>：技能1/技能2/技能3</div></div>
+        <div class="legend-item"><span class="mark">×4</span><div><strong>词条推荐</strong>：×4 表示该词条叠满4条</div></div>
+        <div class="legend-item"><span class="mark">💎</span><div><strong>珍藏品</strong>：需完成珍藏品任务解锁完整能力</div></div>
+        <div class="legend-item"><span class="mark">✝️</span><div><strong>朝圣者</strong>：属于企业「朝圣者」，通常较稀有</div></div>
+        <div class="legend-item"><span class="mark">💥</span><div><strong>爆裂（Burst）</strong>：全队共享大招系统，分1/2/3阶段</div></div>
+        <div class="legend-item"><span class="mark">🔷</span><div><strong>优越代码</strong>：NIKKE特有攻击类型加成</div></div>
+    </div>
+
+    <h3 class="subsection-title" id="changelog">更新记录</h3>
+    <div class="table-wrapper">
+        <table>
+            <thead><tr><th>日期</th><th>内容</th></tr></thead>
+            <tbody>
+                <tr><td><strong>2026-05-10</strong></td><td><strong>新增国服 Tab 切换：2.1前期养成/2.2个人突袭/2.3后期突袭/3.1推图日常/3.2企业塔/3.3异常拦截/4.2魔方养成 全面支持国服独立数据</strong></td></tr>
+                <tr><td>2026-05-01</td><td>删除"角色名权威对照表（A-Z）"章节；PVEPVE强度榜及其他表格批量补头像；强度榜改为卡片式布局</td></tr>
+                <tr><td>2026-04-26</td><td>新增异常拦截自动队伍章节；从MEMORY.md迁移攻略知识</td></tr>
+                <tr><td>2026-04-26</td><td>重大重构：按「通用 / 国际服参考」分区，每章标注适用范围</td></tr>
+                <tr><td>2026-04-16</td><td>添加芯片数值效果总表（词条对应数值）</td></tr>
+                <tr><td>2026-04-16</td><td>初始版本，整合8张YeeVan攻略图</td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+    <p>NIKKE 胜利女神知识库 © 2026 | 攻略来源：哔哩哔哩UP主「吡万YeeVan」</p>
+    <p>本页面仅供个人学习参考使用</p>
+</div>
+
+</div><!-- end container -->
+
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+// Back to top button
+window.addEventListener('scroll', () => {
+    document.getElementById('backTop').classList.toggle('show', window.scrollY > 300);
+});
+
+// Simple search
+function searchContent(query) {
+    if (!query) {
+        document.querySelectorAll('tr[data-searchable]').forEach(r => r.style.display = '');
+        return;
+    }
+    const q = query.toLowerCase();
+    document.querySelectorAll('tbody tr').forEach(row => {
+        const text = row.textContent.toLowerCase();
+        row.style.display = text.includes(q) ? '' : 'none';
+    });
+}
+
+// 通用 Tab 切换（各章节独立）
+function switchTab(event, tabId) {
+    const wrapper = event.currentTarget.closest('.tab-group');
+    wrapper.querySelectorAll('.server-tab').forEach(t => t.classList.remove('active'));
+    wrapper.querySelectorAll('.server-content').forEach(c => c.classList.remove('active'));
+    event.currentTarget.classList.add('active');
+    document.getElementById(tabId).classList.add('active');
+}
+</script>
+</body>
+</html>
+
+
